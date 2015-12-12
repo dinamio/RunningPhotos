@@ -1,4 +1,4 @@
-package bom;
+package com.runningphotos.bom;
 
 import java.util.List;
 

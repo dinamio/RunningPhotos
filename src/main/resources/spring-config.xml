@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/jdbc
+       http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">
+
+       <!--context:annotation-config /-->
+
+       <!-- For MySQL -->
+       <!--bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+          <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+          <property name="url" value="jdbc:mysql://localhost:3306/runningphotos" />
+          <property name="username" value="root" />
+          <property name="password" value ="lbyfvj" />
+       </bean-->
+
+       <!-- ( 1 ) datasource -->
+       <jdbc:embedded-database id="dataSource" type="H2" >
+              <jdbc:script location="classpath:schema.sql"/>
+              <jdbc:script location="classpath:test-data.sql"/>
+       </jdbc:embedded-database>
+
+       <!-- ( 2 ) sqlSessionFactory (dataSource, configLocation "optional") -->
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="dataSource" />
+              <property name="configLocation" value="classpath:com/runningphotos/mybatis/mybatis-config.xml" />
+              <property name="mapperLocations" value="classpath*:com/runningphotos/mybatis/mapper/RoleMapper.xml"/>
+       </bean>
+
+       <!-- ( 3 ) mapper (sqlSessionFactory, Mapper) -->
+       <bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+              <property name="mapperInterface" value="com.runningphotos.dao.RoleDao" />
+              <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+       </bean>
+
+
+</beans>

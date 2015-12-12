@@ -1,4 +1,4 @@
-package bom;
+package com.runningphotos.bom;
 
 
 public class Distance extends EntityWithName{
