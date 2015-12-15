@@ -77,4 +77,8 @@ public class User extends EntityWithName {
     this.birthDate = birthDate;
   }
 
+  public String toString(){
+    return "User: name = "+getName()+ " surname = "+getSurname();
+  }
+
 }
