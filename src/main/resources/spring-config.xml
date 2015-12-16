@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
        http://www.springframework.org/schema/jdbc
-       http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">
+       http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+       http://mybatis.org/schema/mybatis-spring
+       http://mybatis.org/schema/mybatis-spring.xsd">
 
        <!--context:annotation-config /-->
 
@@ -30,15 +34,6 @@
        </bean>
 
        <!-- ( 3 ) mapper (sqlSessionFactory, Mapper) -->
-       <bean id="mapper" class="org.mybatis.spring.mapper.MapperFactoryBean" >
-              <property name="mapperInterface" value="com.runningphotos.dao.RoleDao" />
-              <property name="sqlSessionFactory" ref="sqlSessionFactory" />
-       </bean>
-       <bean id="UserDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
-              <property name="mapperInterface" value="com.runningphotos.dao.UserDao" />
-              <property name="sqlSessionFactory" ref="sqlSessionFactory" />
-       </bean>
-
-
+       <mybatis:scan base-package="com.runningphotos.dao" />
 
 </beans>
