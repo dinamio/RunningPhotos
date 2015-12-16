@@ -48,23 +48,10 @@ public class UserDaoTest extends TestData {
     @Test
 
     public void testInsertRole(){
-        List<User > result =  userDao.selectAllUsers();
-        for(User entity : result)
-        {
-            userDao.delete(entity);
-        }
         log.info("testing insert User()...");
-        userDao.clearUserTable();
+        clearUserTable();
         User user = new User();
-        user.setName(USERNAME);
-        user.setSurname(USER_SURNAME);
-        user.setLogin(USER_LOGIN);
-        user.setBirthDate(USER_BIRTHDAY);
-        user.setCity(USER_CITY);
-        user.setMail(USER_MAIL);
-        Role userRole = roleDao.selectAllRoles().get(0);
-        user.setRole(userRole);
-        assertEquals(0, userDao.selectAllUsers().size());
+        user = fillUser();
         userDao.insert(user);
         List<User> users = userDao.selectAllUsers();
         System.out.println(users+"first test");
@@ -76,18 +63,51 @@ public class UserDaoTest extends TestData {
         assertEquals(dateFormat.format(USER_BIRTHDAY), dateFormat.format(user.getBirthDate()));
         assertEquals(USER_CITY, user.getCity());
         assertEquals(USER_MAIL,user.getMail());
-        assertEquals(userRole.getId(),user.getRole().getId());
+        assertEquals(user.getRole().getId(),user.getRole().getId());
         log.info(users);
     }
 
     @Test
     public void testUpdate(){
-        List<User > result =  userDao.selectAllUsers();
-        for(User entity : result)
-        {
-            userDao.delete(entity);
-        }
         log.info("testing update User()...");
+        clearUserTable();
+        User user = new User();
+        user = fillUser();
+        userDao.insert(user);
+        List<User> users = userDao.selectAllUsers();
+
+
+        user = fillUpdatedUser();
+        user.setId(users.get(0).getId());
+
+        userDao.update(user);
+         users = userDao.selectAllUsers();
+        System.out.println(users.get(0) + " second Test");
+        assertEquals(USERNAME_UPDATE, users.get(0).getName());
+        assertEquals(USER_SURNAME_UPDATE, users.get(0).getSurname());
+        assertEquals(USER_LOGIN_UPDATE, users.get(0).getLogin());
+        assertEquals(dateFormat.format(USER_BIRTHDAY_UPDATE), dateFormat.format(users.get(0).getBirthDate()));
+        assertEquals(USER_CITY_UPDATE, users.get(0).getCity());
+        assertEquals(USER_MAIL_UPDATE,users.get(0).getMail());
+        assertEquals(user.getRole().getId(),users.get(0).getRole().getId());
+        log.info(users);
+    }
+  @Test
+   public void deleteTest(){
+        log.info("testing delete User()...");
+        clearUserTable();
+        User user = new User();
+        user = fillUser();
+        userDao.insert(user);
+        List<User> users = userDao.selectAllUsers();
+
+        assertNotNull(users.get(0));
+
+        userDao.delete(users.get(0));
+        users = userDao.selectAllUsers();
+        assertEquals(0,users.size());
+}
+    private User fillUpdatedUser(){
         User user = new User();
         user.setName(USERNAME_UPDATE);
         user.setSurname(USER_SURNAME_UPDATE);
@@ -95,46 +115,26 @@ public class UserDaoTest extends TestData {
         user.setBirthDate(USER_BIRTHDAY_UPDATE);
         user.setCity(USER_CITY_UPDATE);
         user.setMail(USER_MAIL_UPDATE);
-        Role userRole = roleDao.selectAllRoles().get(0);
-        user.setRole(userRole);
-        userDao.insert(user);
-        user.setId(1);
-
-        userDao.update(user);
-        List<User> users = userDao.selectAllUsers();
-        System.out.println(users + "second Test");
-        assertEquals(USERNAME_UPDATE, users.get(0).getName());
-        assertEquals(USER_SURNAME_UPDATE, user.getSurname());
-        assertEquals(USER_LOGIN_UPDATE, user.getLogin());
-        assertEquals(dateFormat.format(USER_BIRTHDAY_UPDATE), dateFormat.format(user.getBirthDate()));
-        assertEquals(USER_CITY_UPDATE, user.getCity());
-        assertEquals(USER_MAIL_UPDATE,user.getMail());
-        assertEquals(userRole.getId(),user.getRole().getId());
-        log.info(users);
+        //Role userRole = roleDao.selectAllRoles().get(0);
+        user.setRole(roleDao.selectAllRoles().get(0));
+        return user;
     }
-   @Test
-   public void deleteTest(){
-       List<User > result =  userDao.selectAllUsers();
-       for(User entity : result)
-       {
-           userDao.delete(entity);
-       }
-        log.info("testing delete User()...");
+    private User fillUser(){
         User user = new User();
-       user.setName(USERNAME_UPDATE);
-       user.setSurname(USER_SURNAME_UPDATE);
-       user.setLogin(USER_LOGIN_UPDATE);
-       user.setBirthDate(USER_BIRTHDAY_UPDATE);
-       user.setCity(USER_CITY_UPDATE);
-       user.setMail(USER_MAIL_UPDATE);
-       Role userRole = roleDao.selectAllRoles().get(0);
-       user.setRole(userRole);
-       userDao.insert(user);
-       userDao.getById(1);
-       assertNotNull(user);
-       user.setId(1);
-       userDao.delete(user);
-       assertNull(userDao.getById(1));
+        user.setName(USERNAME);
+        user.setSurname(USER_SURNAME);
+        user.setLogin(USER_LOGIN);
+        user.setBirthDate(USER_BIRTHDAY);
+        user.setCity(USER_CITY);
+        user.setMail(USER_MAIL);
+        //Role userRole = roleDao.selectAllRoles().get(0);
+        user.setRole(roleDao.selectAllRoles().get(0));
+        return user;
+    }
 
-}
+    private void clearUserTable(){
+        List<User > result =  userDao.selectAllUsers();
+        for(int i=0;i<result.size();i++)
+            userDao.delete(result.get(i));
+    }
 }
