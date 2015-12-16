@@ -48,6 +48,11 @@ public class UserDaoTest extends TestData {
     @Test
 
     public void testInsertRole(){
+        List<User > result =  userDao.selectAllUsers();
+        for(User entity : result)
+        {
+            userDao.delete(entity);
+        }
         log.info("testing insert User()...");
         userDao.clearUserTable();
         User user = new User();
@@ -77,8 +82,12 @@ public class UserDaoTest extends TestData {
 
     @Test
     public void testUpdate(){
+        List<User > result =  userDao.selectAllUsers();
+        for(User entity : result)
+        {
+            userDao.delete(entity);
+        }
         log.info("testing update User()...");
-        userDao.clearUserTable();
         User user = new User();
         user.setName(USERNAME_UPDATE);
         user.setSurname(USER_SURNAME_UPDATE);
@@ -105,7 +114,11 @@ public class UserDaoTest extends TestData {
     }
    @Test
    public void deleteTest(){
-       userDao.clearUserTable();
+       List<User > result =  userDao.selectAllUsers();
+       for(User entity : result)
+       {
+           userDao.delete(entity);
+       }
         log.info("testing delete User()...");
         User user = new User();
        user.setName(USERNAME_UPDATE);

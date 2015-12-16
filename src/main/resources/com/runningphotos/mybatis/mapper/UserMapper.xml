@@ -33,7 +33,4 @@
     <select id="getById" parameterType="int" resultMap="UserMap">
         SELECT* FROM user where user.id = #{id}
     </select>
-    <delete id="clearUserTable">
-        DELETE from user;
-    </delete>
     </mapper>
