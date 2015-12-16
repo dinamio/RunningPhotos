@@ -11,23 +11,29 @@ import com.runningphotos.dao.UserDao;
 import com.runningphotos.testdata.TestData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/spring-config.xml")
+
+
+
 public class UserDaoTest extends TestData {
 
     private static Log log = LogFactory.getLog(RoleDaoTest.class);
@@ -38,9 +44,12 @@ public class UserDaoTest extends TestData {
     @Autowired
     private RoleDao roleDao;
 
+
     @Test
+
     public void testInsertRole(){
         log.info("testing insert User()...");
+        userDao.clearUserTable();
         User user = new User();
         user.setName(USERNAME);
         user.setSurname(USER_SURNAME);
@@ -69,65 +78,50 @@ public class UserDaoTest extends TestData {
     @Test
     public void testUpdate(){
         log.info("testing update User()...");
+        userDao.clearUserTable();
         User user = new User();
-        user.setName(USERNAME);
-
-        user.setSurname(USER_SURNAME);
-        user.setLogin(USER_LOGIN);
-        user.setBirthDate(USER_BIRTHDAY);
-        user.setCity(USER_CITY);
-        user.setMail(USER_MAIL);
+        user.setName(USERNAME_UPDATE);
+        user.setSurname(USER_SURNAME_UPDATE);
+        user.setLogin(USER_LOGIN_UPDATE);
+        user.setBirthDate(USER_BIRTHDAY_UPDATE);
+        user.setCity(USER_CITY_UPDATE);
+        user.setMail(USER_MAIL_UPDATE);
         Role userRole = roleDao.selectAllRoles().get(0);
         user.setRole(userRole);
-
-        user.setName("Andrey");
-        user.setSurname("Stepanov");
+        userDao.insert(user);
         user.setId(1);
+
         userDao.update(user);
         List<User> users = userDao.selectAllUsers();
         System.out.println(users + "second Test");
-
-        assertEquals("Andrey", users.get(0).getName());
-        assertEquals("Stepanov", user.getSurname());
-        assertEquals(USER_LOGIN, user.getLogin());
-        assertEquals(dateFormat.format(USER_BIRTHDAY), dateFormat.format(user.getBirthDate()));
-        assertEquals(USER_CITY, user.getCity());
-        assertEquals(USER_MAIL,user.getMail());
+        assertEquals(USERNAME_UPDATE, users.get(0).getName());
+        assertEquals(USER_SURNAME_UPDATE, user.getSurname());
+        assertEquals(USER_LOGIN_UPDATE, user.getLogin());
+        assertEquals(dateFormat.format(USER_BIRTHDAY_UPDATE), dateFormat.format(user.getBirthDate()));
+        assertEquals(USER_CITY_UPDATE, user.getCity());
+        assertEquals(USER_MAIL_UPDATE,user.getMail());
         assertEquals(userRole.getId(),user.getRole().getId());
         log.info(users);
     }
    @Test
    public void deleteTest(){
-       /* Значит в чем беда.
-       Первый инсерт Ivan Ivanov.Потом апдейт меняет его на Andrey Stepanov. Потом я делаю в делите
-       инсерт Nick Ivanov. Результаты сисаутов селекта всех полей таблицы:
-       [User: name = Ivan surname = Ivanov]first test
-       [User: name = Andrey surname = Stepanov]second Test
-       [User: name = Ivan surname = Ivanov, User: name = Nick surname = Ivanov]Third test
-       В третьем тесте остается Иван Иванов.
-       В предыдущей версии тестов, в тесте апдейта, я делал инсерт Ivan Ivanov. По идее при сисауте
-       в третьем тесте должно вывести три обьекта (сисаут перед delete, естественно), выводило два,
-       причем Ivan Ivanov и Nick Ivanov
-       Могу предположить что неправильно работает апдейт. Но тесты пройденны ибо Андрея Степанова для тестов
-       я вытаскиваю через селект users = userDao.selectAllUsers();
-       * */
+       userDao.clearUserTable();
         log.info("testing delete User()...");
         User user = new User();
-       user.setName("Nick"); // тут так добавил строкой, чтобы не путать с иванами
-       user.setSurname(USER_SURNAME);
-       user.setLogin(USER_LOGIN);
-       user.setBirthDate(USER_BIRTHDAY);
-       user.setCity(USER_CITY);
-       user.setMail(USER_MAIL);
+       user.setName(USERNAME_UPDATE);
+       user.setSurname(USER_SURNAME_UPDATE);
+       user.setLogin(USER_LOGIN_UPDATE);
+       user.setBirthDate(USER_BIRTHDAY_UPDATE);
+       user.setCity(USER_CITY_UPDATE);
+       user.setMail(USER_MAIL_UPDATE);
        Role userRole = roleDao.selectAllRoles().get(0);
        user.setRole(userRole);
        userDao.insert(user);
-       List<User> users = userDao.selectAllUsers();
-       System.out.println(users + "Third test");
-       assertEquals(2,users.size());
-       user.setId(2);
+       userDao.getById(1);
+       assertNotNull(user);
+       user.setId(1);
        userDao.delete(user);
-       users = userDao.selectAllUsers();
-       assertEquals(1,users.size());
-    }
+       assertNull(userDao.getById(1));
+
+}
 }
