@@ -16,4 +16,10 @@ public interface UserDao {
     void update(User user);
 
     void delete(User user);
+
+    User getById(int id);
+
+    void clearUserTable();
+
+
 }
