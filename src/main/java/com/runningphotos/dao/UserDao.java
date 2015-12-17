@@ -7,15 +7,6 @@ import java.util.List;
 /**
  * Created by Николай on 14.12.2015.
  */
-public interface UserDao {
+public interface UserDao extends MyBatisDao<User> {
 
-    void insert(User user);
-
-    List<User> selectAllUsers();
-
-    void update(User user);
-
-    void delete(User user);
-
-    User getById(int id);
 }

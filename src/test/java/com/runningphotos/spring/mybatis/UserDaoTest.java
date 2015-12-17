@@ -53,7 +53,7 @@ public class UserDaoTest extends TestData {
         User user = new User();
         user = fillUser();
         userDao.insert(user);
-        List<User> users = userDao.selectAllUsers();
+        List<User> users = userDao.selectAll();
         System.out.println(users+"first test");
         assertEquals(1, users.size());
         user = users.get(0);
@@ -74,14 +74,14 @@ public class UserDaoTest extends TestData {
         User user = new User();
         user = fillUser();
         userDao.insert(user);
-        List<User> users = userDao.selectAllUsers();
+        List<User> users = userDao.selectAll();
 
 
         user = fillUpdatedUser();
         user.setId(users.get(0).getId());
 
         userDao.update(user);
-         users = userDao.selectAllUsers();
+         users = userDao.selectAll();
         System.out.println(users.get(0) + " second Test");
         assertEquals(USERNAME_UPDATE, users.get(0).getName());
         assertEquals(USER_SURNAME_UPDATE, users.get(0).getSurname());
@@ -99,12 +99,12 @@ public class UserDaoTest extends TestData {
         User user = new User();
         user = fillUser();
         userDao.insert(user);
-        List<User> users = userDao.selectAllUsers();
+        List<User> users = userDao.selectAll();
 
         assertNotNull(users.get(0));
 
         userDao.delete(users.get(0));
-        users = userDao.selectAllUsers();
+        users = userDao.selectAll();
         assertEquals(0,users.size());
 }
     private User fillUpdatedUser(){
@@ -133,7 +133,7 @@ public class UserDaoTest extends TestData {
     }
 
     private void clearUserTable(){
-        List<User > result =  userDao.selectAllUsers();
+        List<User > result =  userDao.selectAll();
         for(int i=0;i<result.size();i++)
             userDao.delete(result.get(i));
     }

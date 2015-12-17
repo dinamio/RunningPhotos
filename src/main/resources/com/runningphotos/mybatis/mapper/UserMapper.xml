@@ -19,7 +19,7 @@
         VALUES
         (#{login},#{mail},#{name},#{surname},#{city},#{birthDate},#{role.id})
     </insert>
-    <select id="selectAllUsers" resultMap="UserMap">
+    <select id="selectAll" resultMap="UserMap">
         select * from user
     </select>
     <update id="update" parameterType="com.runningphotos.bom.User">
