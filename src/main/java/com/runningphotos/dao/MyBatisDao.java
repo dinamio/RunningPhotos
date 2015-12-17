@@ -9,6 +9,7 @@ import java.util.List;
  * Created by Николай on 17.12.2015.
  */
 public interface MyBatisDao<T extends Entity> {
+    //
     void insert(T variable);
 
     List<T> selectAll();

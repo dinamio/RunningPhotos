@@ -33,7 +33,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = "/spring-config.xml")
 
 
-
+//
 public class UserDaoTest extends TestData {
 
     private static Log log = LogFactory.getLog(RoleDaoTest.class);
