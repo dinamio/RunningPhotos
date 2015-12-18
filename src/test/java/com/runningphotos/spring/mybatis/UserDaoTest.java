@@ -46,7 +46,7 @@ public class UserDaoTest extends TestData {
 
 
     @Test
-   //lets commit
+   //lets commit.
     public void testInsertRole(){
         log.info("testing insert User()...");
         clearUserTable();
