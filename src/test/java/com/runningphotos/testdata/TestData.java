@@ -38,6 +38,16 @@ public class TestData {
 
     public static final String USER_MAIL_UPDATE = "andri@ukr.net";
 
+    public static final String RUNNER_NAME = "Anton";
+
+    public static final String RUNNER_SURNAME = "Ivanchenko";
+
+    public static final String RUNNER_NAME_UPDATE = "Michael";
+
+    public static final String RUNNER_SURNAME_UPDATE = "Dobrynin";
+
+
+
 
 
 }

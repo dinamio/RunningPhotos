@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.runningphotos.dao.RunnerDao" >
+
+    <resultMap type="com.runningphotos.bom.Runner" id="RunnerMap">
+        <id column="id" property="id"  />
+        <result column="name" property="name"/>
+        <result column="surname" property="surname"/>
+        <result column="user_id" property="user.id"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.runningphotos.bom.Runner" >
+        INSERT INTO runner
+        (name,surname,user_id)
+        VALUES
+        (#{name},#{surname},#{user.id})
+    </insert>
+    <select id="selectAll" resultMap="RunnerMap">
+        select * from Runner
+    </select>
+    <update id="update" parameterType="com.runningphotos.bom.Runner">
+        UPDATE Runner set  name=#{name},
+        surname = #{surname}, user_id = #{user.id}
+    </update>
+    <delete id="delete" parameterType="com.runningphotos.bom.Runner">
+        DELETE  from Runner where id = #{id}
+    </delete>
+    <select id="selectById" parameterType="int" resultMap="RunnerMap">
+        SELECT* FROM Runner where Runner.id = #{id}
+    </select>
+</mapper>
