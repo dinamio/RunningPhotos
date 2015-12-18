@@ -24,7 +24,7 @@ public class TestData {
 
     public static final String USER_MAIL = "ivani@ukr.net";
 
-
+//
     public static final String USERNAME_UPDATE = "Andrey";
 
     public static final String USER_SURNAME_UPDATE = "Stepanov";
