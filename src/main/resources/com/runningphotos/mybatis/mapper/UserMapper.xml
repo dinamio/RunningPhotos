@@ -30,7 +30,7 @@
     <delete id="delete" parameterType="com.runningphotos.bom.User">
     DELETE  from user where id = #{id}
     </delete>
-    <select id="getById" parameterType="int" resultMap="UserMap">
+    <select id="selectById" parameterType="int" resultMap="UserMap">
         SELECT* FROM user where user.id = #{id}
     </select>
     </mapper>

@@ -18,5 +18,5 @@ public interface MyBatisDao<T extends Entity> {
 
     void delete(T variable);
 
-    T getById(int id);
+    T selectById(int id);
 }

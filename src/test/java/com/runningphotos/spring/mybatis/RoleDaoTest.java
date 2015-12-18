@@ -29,7 +29,7 @@ public class RoleDaoTest {
 
     @Autowired
     private RoleDao roleDao;
-
+//
     @Test
     public void testInsertRole(){
         log.info("testing insert Role()...");
