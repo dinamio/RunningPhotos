@@ -5,7 +5,7 @@
 
     <resultMap type="com.runningphotos.bom.Role" id="RoleMap">
         <id column="id" property="id"  />
-        <result column="name" property="name"/>
+        <result column="role" property="name"/>
     </resultMap>
 
     <insert id="insert" parameterType="com.runningphotos.bom.Role" >
