@@ -6,7 +6,7 @@ Race_Name varchar(50));
 
 create table Role(
 id int primary key auto_increment,
-Role varchar(30)
+name varchar(30)
 );
 
 create table User(

@@ -34,12 +34,11 @@ public class RoleDaoTest {
     public void testInsertRole(){
         log.info("testing insert Role()...");
         Role role = new Role();
-        role.setId(2);
-        role.setName("Runner");
+        role.setName("Admin");
         roleDao.insert(role);
         List<Role> roles = roleDao.selectAllRoles();
-        assertEquals(roles.size(),2);
-        assertEquals(roles.get(1).getName(),"Runner");
+        assertEquals(roles.size(),3);
+        assertEquals(roles.get(2).getName(),"Admin");
         log.info(roles);
     }
 }
