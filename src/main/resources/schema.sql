@@ -35,7 +35,9 @@ id int primary key auto_increment,
 Name varchar(20),
 Surname varchar(30),
 User_id int,
-foreign key (User_id) references User(id)
+foreign key (User_id)
+references User(id)
+on delete SET NULL
 );
 
 create table Runners_on_photo(
