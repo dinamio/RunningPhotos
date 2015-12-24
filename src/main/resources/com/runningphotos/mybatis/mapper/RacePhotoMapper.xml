@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.runningphotos.dao.RacePhotoDao" >
+
+    <resultMap type="com.runningphotos.bom.RacePhoto" id="RacePhotoMap">
+    <id column="id" property="id"  />
+    <result column="Path" property="Path"/>
+    <result column="Race_id" property="Race.id"/>
+    <result column="Author_id" property="user.id"/>
+</resultMap>
+
+<insert id="insert" parameterType="com.runningphotos.bom.RacePhoto" >
+INSERT INTO runner
+(Path,Race_id,Author_id)
+VALUES
+(#{Path},#{Race.id},#{User.id})
+</insert>
+    <select id="selectAll" resultMap="RacePhotoMap">
+        SELECT * FROM RacePhoto
+    </select>
+    <select id="selectById" parameterType="int" resultMap="RacePhotoMap">
+        SELECT * FROM RacePhoto WHERE Author.id = #{User.id}
+    </select>
+
+    <update id="update" parameterType="com.runningphotos.bom.RacePhoto">
+        UPDATE RaceDao SET  path=#{path},
+        Race_id = #{Race.id}, Author_id = #{user.id}
+    </update>
+
+    <delete id="delete" parameterType="com.runningphotos.bom.RacePhotoe">
+        DELETE  FROM RacePhoto where id = #{id}
+    </delete>
+
+</mapper>
