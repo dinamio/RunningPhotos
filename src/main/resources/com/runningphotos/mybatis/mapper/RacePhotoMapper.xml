@@ -11,7 +11,7 @@
 </resultMap>
 
 <insert id="insert" parameterType="com.runningphotos.bom.RacePhoto" >
-INSERT INTO runner
+INSERT INTO RacePhoto
 (Path,Race_id,Author_id)
 VALUES
 (#{Path},#{Race.id},#{User.id})
@@ -20,16 +20,15 @@ VALUES
         SELECT * FROM RacePhoto
     </select>
     <select id="selectById" parameterType="int" resultMap="RacePhotoMap">
-        SELECT * FROM RacePhoto WHERE Author.id = #{User.id}
+        SELECT racephoto.Path FROM RacePhoto
+        WHERE Author_id=#{User.id}
     </select>
-
     <update id="update" parameterType="com.runningphotos.bom.RacePhoto">
-        UPDATE RaceDao SET  path=#{path},
-        Race_id = #{Race.id}, Author_id = #{user.id}
+        UPDATE RacePhoto
+        SET  path=#{path}, Race_id=#{Race.id}, Author_id=#{user.id}
     </update>
 
     <delete id="delete" parameterType="com.runningphotos.bom.RacePhotoe">
         DELETE  FROM RacePhoto where id = #{id}
     </delete>
-
 </mapper>

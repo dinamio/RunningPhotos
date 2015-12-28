@@ -36,7 +36,7 @@ public class RacePhotoTest extends TestData {
     private RacePhotoDao racePhotoDao;
     @Autowired
     private UserDao userDao;
-  //  @Autowired
+    //  @Autowired
    // private RaceDao raceDao;
 
     @Test
@@ -81,7 +81,8 @@ public class RacePhotoTest extends TestData {
         List<RacePhoto> racePhotos = racePhotoDao.selectAll();
         assertEquals(1, racePhotos.size());
         assertEquals(RACE_PHOTO_PATH, racePhotos.get(0).getPath());
-        assertEquals(racePhoto.getRace().getId(),racePhotos.get(0).getUser().getId());
+        assertEquals(racePhoto.getUser().getId(), racePhotos.get(0).getUser().getId());
+        assertEquals(racePhoto.getRace().getId(), racePhotos.get(0).getRace().getId());
         log.info(racePhoto);
     }
 
