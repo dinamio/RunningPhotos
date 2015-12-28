@@ -28,7 +28,7 @@ VALUES
         SET  path=#{path}, Race_id=#{Race.id}, Author_id=#{user.id}
     </update>
 
-    <delete id="delete" parameterType="com.runningphotos.bom.RacePhotoe">
+    <delete id="delete" parameterType="com.runningphotos.bom.RacePhoto">
         DELETE  FROM RacePhoto where id = #{id}
     </delete>
 </mapper>
