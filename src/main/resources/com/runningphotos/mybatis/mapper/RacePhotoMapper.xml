@@ -5,8 +5,8 @@
 
     <resultMap type="com.runningphotos.bom.RacePhoto" id="RacePhotoMap">
     <id column="id" property="id"  />
-    <result column="Path" property="Path"/>
-    <result column="Race_id" property="Race.id"/>
+    <result column="Path" property="path"/>
+    <result column="Race_id" property="race.id"/>
     <result column="Author_id" property="user.id"/>
 </resultMap>
 
@@ -14,21 +14,21 @@
 INSERT INTO RacePhoto
 (Path,Race_id,Author_id)
 VALUES
-(#{Path},#{Race.id},#{User.id})
+(#{path},#{race.id},#{user.id})
 </insert>
     <select id="selectAll" resultMap="RacePhotoMap">
         SELECT * FROM RacePhoto
     </select>
     <select id="selectById" parameterType="int" resultMap="RacePhotoMap">
         SELECT racephoto.Path FROM RacePhoto
-        WHERE Author_id=#{User.id}
+        WHERE Author_id=#{user.id}
     </select>
     <update id="update" parameterType="com.runningphotos.bom.RacePhoto">
         UPDATE RacePhoto
-        SET  path=#{path}, Race_id=#{Race.id}, Author_id=#{user.id}
+        SET  path=#{path}, Race_id=#{race.id}, Author_id=#{user.id}
     </update>
 
-    <delete id="delete" parameterType="com.runningphotos.bom.RacePhotoe">
+    <delete id="delete" parameterType="com.runningphotos.bom.RacePhoto">
         DELETE  FROM RacePhoto where id = #{id}
     </delete>
 </mapper>
