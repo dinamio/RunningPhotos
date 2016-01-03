@@ -4,11 +4,17 @@
 <mapper namespace="com.runningphotos.dao.RacePhotoDao" >
 
     <resultMap type="com.runningphotos.bom.RacePhoto" id="RacePhotoMap">
-    <id column="id" property="id"  />
-    <result column="Path" property="path"/>
-    <result column="Race_id" property="race.id"/>
-    <result column="Author_id" property="user.id"/>
-</resultMap>
+        <id column="id" property="id"  />
+        <result column="Path" property="path"/>
+        <result column="Race_id" property="race.id"/>
+        <result column="Author_id" property="user.id"/>
+        <collection property="runnersMarked" resultMap="RunnerMap"/>
+    </resultMap>
+    <resultMap type="com.runningphotos.bom.Runner" id="RunnerMap">
+        <id column="runner_id" property="id"  />
+        <result column="name" property="name"/>
+        <result column="surname" property="surname"/>
+    </resultMap>
 
 <insert id="insert" parameterType="com.runningphotos.bom.RacePhoto" >
 INSERT INTO RacePhoto
@@ -17,11 +23,15 @@ VALUES
 (#{path},#{race.id},#{user.id})
 </insert>
     <select id="selectAll" resultMap="RacePhotoMap">
-        SELECT * FROM RacePhoto
+        SELECT rp.id,rp.path,rp.race_id,rp.author_id,r.id as runner_id,r.name,r.surname  FROM RacePhoto rp
+        Left join Runners_on_photo rop
+        on rp.id=rop.photo_id
+        left join runner r
+        on r.id = rop.runner_id
     </select>
     <select id="selectById" parameterType="int" resultMap="RacePhotoMap">
-        SELECT racephoto.Path FROM RacePhoto
-        WHERE Author_id=#{user.id}
+        SELECT * FROM RacePhoto
+        WHERE id=#{id}
     </select>
     <update id="update" parameterType="com.runningphotos.bom.RacePhoto">
         UPDATE RacePhoto

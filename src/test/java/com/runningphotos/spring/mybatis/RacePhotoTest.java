@@ -4,6 +4,7 @@ import com.runningphotos.bom.Race;
 import com.runningphotos.bom.RacePhoto;
 
 import com.runningphotos.bom.User;
+import com.runningphotos.dao.RaceDao;
 import com.runningphotos.dao.RacePhotoDao;
 
 
@@ -36,8 +37,8 @@ public class RacePhotoTest extends TestData {
     private RacePhotoDao racePhotoDao;
     @Autowired
     private UserDao userDao;
-    //  @Autowired
-   // private RaceDao raceDao;
+    @Autowired
+    private RaceDao raceDao;
 
     @Test
     public void testInsert(){
@@ -75,7 +76,6 @@ public class RacePhotoTest extends TestData {
 
         log.info(racePhotos);
     }
-
     @Test
     public void testDelete(){
         log.info("testing delete RacePhoto()...");
@@ -89,11 +89,10 @@ public class RacePhotoTest extends TestData {
         racePhotos = racePhotoDao.selectAll();
         assertEquals(0,racePhotos.size());
     }
-
+    // Допилить тесты на бегунов
     private RacePhoto fillRacePhoto(){
         User user = userDao.selectAll().get(0);
-        Race race = new Race();
-        race.setId(1); //TODO: When raceDao implemented, change to dao query
+        Race race = raceDao.selectAll().get(0);
         RacePhoto racePhoto = new RacePhoto();
         racePhoto.setPath(RACE_PHOTO_PATH);
         racePhoto.setRace(race);
@@ -103,8 +102,7 @@ public class RacePhotoTest extends TestData {
 
       private RacePhoto fillUpdatedRacePhoto() {
         User user = userDao.selectAll().get(1);
-        Race race = new Race();
-        race.setId(2);
+        Race race = raceDao.selectAll().get(0);
         RacePhoto racePhoto = new RacePhoto();
         racePhoto.setPath(RACE_PHOTO_PATH_UPDATE);
         racePhoto.setUser(user);
