@@ -25,7 +25,8 @@ create table RacePhoto(
 id int primary key auto_increment,
 Path varchar(150),
 Author_id int,
-foreign key (Author_id) references User(id),
+foreign key (Author_id) references User(id)
+on delete SET NULL,
 Race_id int,
 foreign key (Race_id) references Race(id)
 );

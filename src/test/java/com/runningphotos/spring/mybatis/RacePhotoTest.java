@@ -30,7 +30,7 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(locations = "/spring-config.xml")
 public class RacePhotoTest extends TestData {
 
-    private static Log log = LogFactory.getLog(RoleDaoTest.class);
+    private static Log log = LogFactory.getLog(RacePhotoTest.class);
 
     @Autowired
     private RacePhotoDao racePhotoDao;
@@ -38,6 +38,22 @@ public class RacePhotoTest extends TestData {
     private UserDao userDao;
     //  @Autowired
    // private RaceDao raceDao;
+
+    @Test
+    public void testInsert(){
+        log.info("testing insert RacePhoto()...");
+        clearRacePhotoTable();
+        RacePhoto racePhoto = new RacePhoto();
+        racePhoto = fillRacePhoto();
+        racePhotoDao.insert(racePhoto);
+        List<RacePhoto> racePhotos = racePhotoDao.selectAll();
+        assertEquals(1, racePhotos.size());
+        RacePhoto racePhotoSelected = racePhotos.get(0);
+        assertEquals(RACE_PHOTO_PATH, racePhotoSelected.getPath());
+        assertNotNull(racePhotoSelected.getUser().getId());
+        assertNotNull(racePhotoSelected.getRace().getId());
+        log.info(racePhoto);
+    }
 
     @Test
     public void testUpdate(){
@@ -51,9 +67,11 @@ public class RacePhotoTest extends TestData {
         racePhoto.setId(racePhotos.get(0).getId());
         racePhotoDao.update(racePhoto);
         racePhotos = racePhotoDao.selectAll();
-        assertEquals(RACE_PHOTO_PATH_UPDATE, racePhotos.get(0).getPath());
-        assertEquals(racePhoto.getUser().getId(), racePhotos.get(0).getUser().getId());
-        assertEquals(racePhoto.getRace().getId(), racePhotos.get(0).getRace().getId());
+        assertEquals(1, racePhotos.size());
+        RacePhoto racePhotoSelected = racePhotos.get(0);
+        assertEquals(RACE_PHOTO_PATH_UPDATE, racePhotoSelected.getPath());
+        assertNotNull(racePhotoSelected.getUser().getId());
+        assertNotNull(racePhotoSelected.getRace().getId());
 
         log.info(racePhotos);
     }
@@ -71,44 +89,12 @@ public class RacePhotoTest extends TestData {
         racePhotos = racePhotoDao.selectAll();
         assertEquals(0,racePhotos.size());
     }
-    @Test
-    public void testInsert(){
-        log.info("testing insert RacePhoto()...");
-        clearRacePhotoTable();
-        RacePhoto racePhoto = new RacePhoto();
-        racePhoto = fillRacePhoto();
-        racePhotoDao.insert(racePhoto);
-        List<RacePhoto> racePhotos = racePhotoDao.selectAll();
-        assertEquals(1, racePhotos.size());
-        assertEquals(RACE_PHOTO_PATH, racePhotos.get(0).getPath());
-        assertEquals(racePhoto.getUser().getId(), racePhotos.get(0).getUser().getId());
-        assertEquals(racePhoto.getRace().getId(), racePhotos.get(0).getRace().getId());
-        log.info(racePhoto);
-    }
 
     private RacePhoto fillRacePhoto(){
-        User user = new User();
-        user.setName(USERNAME);
-        user.setSurname(USER_SURNAME);
-        user.setBirthDate(USER_BIRTHDAY);
-        user.setCity(USER_CITY);
-        user.setLogin(USER_LOGIN);
-        user.setMail(USER_MAIL);
-
+        User user = userDao.selectAll().get(0);
         Race race = new Race();
-        race.setName(RACE_NAME);
-        race.setCity(RACE_CITY);
-        race.setRaceDate(RACE_DATE);
-        race.setId(1); // delete
-
-
-
+        race.setId(1); //TODO: When raceDao implemented, change to dao query
         RacePhoto racePhoto = new RacePhoto();
-        List<User> users =  userDao.selectAll();
-        List<Race> racers = new ArrayList<Race>(); // = raceDao.selectALL();
-        racers.add(race); // delete
-        user=users.get(0);
-        race=racers.get(0);
         racePhoto.setPath(RACE_PHOTO_PATH);
         racePhoto.setRace(race);
         racePhoto.setUser(user);
@@ -116,22 +102,10 @@ public class RacePhotoTest extends TestData {
     }
 
       private RacePhoto fillUpdatedRacePhoto() {
-        User user = new User();
-        user.setName(USERNAME_UPDATE);
-        user.setSurname(USER_SURNAME_UPDATE);
-        user.setBirthDate(USER_BIRTHDAY_UPDATE);
-        user.setCity(USER_CITY_UPDATE);
-        user.setLogin(USER_LOGIN_UPDATE);
-        user.setMail(USER_MAIL_UPDATE);
-
+        User user = userDao.selectAll().get(1);
         Race race = new Race();
-        race.setName(RACE_NAME_UPDATE);
-        race.setCity(RACE_CITY_UPDATE);
-        race.setRaceDate(RACE_DATE_UPDATE);
         race.setId(2);
-
         RacePhoto racePhoto = new RacePhoto();
-
         racePhoto.setPath(RACE_PHOTO_PATH_UPDATE);
         racePhoto.setUser(user);
         racePhoto.setRace(race);

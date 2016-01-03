@@ -46,11 +46,9 @@ public class TestData {
 
     public static final String RUNNER_SURNAME_UPDATE = "Dobrynin";
 
-	
     public static final String RACE_PHOTO_PATH = "race://photo/path";
 
     public static final String RACE_PHOTO_PATH_UPDATE = "race://photo/path2";
-
 
     public static final Date RACE_DATE = new Date();
 
