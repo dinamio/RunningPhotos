@@ -47,7 +47,7 @@ public class UserDaoTest extends TestData {
 
     @Test
 
-    public void testInsertRole(){
+    public void testInsert(){
         log.info("testing insert User()...");
         clearUserTable();
         User user = new User();
