@@ -24,6 +24,7 @@ public class RacePhoto extends Entity {
     }
 
 
+
     public Race getRace() {
       return race;
     }
