@@ -31,59 +31,52 @@ import static org.junit.Assert.*;
     @Autowired
     private RaceDao raceDao;
 
+
     @Test
-    public void testInsert() {
+    public void testRun(){
+        testInsert();
+        testUpdate();
+        deleteTest();
+    }
+
+
+    private void testInsert() {
         log.info("testing insert Race()...");
-        clearRaceTable();
-        Race race = new Race();
-        race = fillRace();
+        Race race = fillRace();
         raceDao.insert(race);
         List<Race> races = raceDao.selectAll();
         System.out.println(race + "first test");
-        assertEquals(1, races.size());
-        race = races.get(0);
+        assertEquals(3, races.size());
+        race = races.get(2);
         assertEquals(dateFormat.format(RACE_DATE),dateFormat.format(race.getRaceDate()));
         assertEquals(RACE_CITY, race.getCity());
         assertEquals(RACE_NAME, race.getName());
         log.info(races);
     }
 
-    @Test
-    public void testUpdate() {
+
+    private void testUpdate() {
         log.info("testing update Race()...");
-        clearRaceTable();
-        Race race = new Race();
-        race = fillRace();
-        raceDao.insert(race);
         List<Race> races = raceDao.selectAll();
-
-
-        race = fillUpdateRace();
-        race.setId(races.get(0).getId());
-
+        Race race = fillUpdateRace();
+        race.setId(races.get(2).getId());
         raceDao.update(race);
         races = raceDao.selectAll();
-        System.out.println(races.get(0) + " second Test");
-        assertEquals(dateFormat.format(RACE_DATE_UPDATE),dateFormat.format(race.getRaceDate()));
-        assertEquals(RACE_CITY_UPDATE, races.get(0).getCity());
-        assertEquals(RACE_NAME_UPDATE, races.get(0).getName());
+        System.out.println(races.get(2) + " second Test");
+        assertEquals(dateFormat.format(RACE_DATE_UPDATE),dateFormat.format(races.get(2).getRaceDate()));
+        assertEquals(RACE_CITY_UPDATE, races.get(2).getCity());
+        assertEquals(RACE_NAME_UPDATE, races.get(2).getName());
         log.info(races);
     }
 
-    @Test
-    public void deleteTest() {
+
+    private void deleteTest() {
         log.info("testing delete Race()...");
-        clearRaceTable();
-        Race race = new Race();
-        race = fillRace();
-        raceDao.insert(race);
         List<Race> races = raceDao.selectAll();
-
-        assertNotNull(races.get(0));
-
-        raceDao.delete(races.get(0));
+        assertNotNull(races.get(2));
+        raceDao.delete(races.get(2));
         races = raceDao.selectAll();
-        assertEquals(0, races.size());
+        assertEquals(2, races.size());
     }
 
     private Race fillRace() {
@@ -100,12 +93,6 @@ import static org.junit.Assert.*;
         race.setCity(RACE_CITY_UPDATE);
         race.setName(RACE_NAME_UPDATE);
         return race;
-    }
-
-    private void clearRaceTable() {
-        List<Race> result = raceDao.selectAll();
-        for (int i = 0; i < result.size(); i++)
-            raceDao.delete(result.get(i));
     }
 
 

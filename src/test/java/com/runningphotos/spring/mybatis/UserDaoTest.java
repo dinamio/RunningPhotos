@@ -46,17 +46,21 @@ public class UserDaoTest extends TestData {
 
 
     @Test
+    public void testRun(){
+        testInsert();
+        testUpdate();
+        deleteTest();
+    }
 
-    public void testInsert(){
+
+    private void testInsert(){
         log.info("testing insert User()...");
-        clearUserTable();
-        User user = new User();
-        user = fillUser();
+        User user = fillUser();
         userDao.insert(user);
         List<User> users = userDao.selectAll();
         System.out.println(users+"first test");
-        assertEquals(1, users.size());
-        user = users.get(0);
+        assertEquals(3, users.size());
+        user = users.get(2);
         assertEquals(USERNAME, user.getName());
         assertEquals(USER_SURNAME, user.getSurname());
         assertEquals(USER_LOGIN, user.getLogin());
@@ -67,45 +71,31 @@ public class UserDaoTest extends TestData {
         log.info(users);
     }
 
-    @Test
-    public void testUpdate(){
+    private void testUpdate(){
         log.info("testing update User()...");
-        clearUserTable();
-        User user = new User();
-        user = fillUser();
-        userDao.insert(user);
         List<User> users = userDao.selectAll();
-
-
-        user = fillUpdatedUser();
-        user.setId(users.get(0).getId());
-
+        User user = fillUpdatedUser();
+        user.setId(users.get(2).getId());
         userDao.update(user);
          users = userDao.selectAll();
-        System.out.println(users.get(0) + " second Test");
-        assertEquals(USERNAME_UPDATE, users.get(0).getName());
-        assertEquals(USER_SURNAME_UPDATE, users.get(0).getSurname());
-        assertEquals(USER_LOGIN_UPDATE, users.get(0).getLogin());
-        assertEquals(dateFormat.format(USER_BIRTHDAY_UPDATE), dateFormat.format(users.get(0).getBirthDate()));
-        assertEquals(USER_CITY_UPDATE, users.get(0).getCity());
-        assertEquals(USER_MAIL_UPDATE,users.get(0).getMail());
-        assertEquals(user.getRole().getId(),users.get(0).getRole().getId());
+        System.out.println(users.get(2) + " second Test");
+        assertEquals(USERNAME_UPDATE, users.get(2).getName());
+        assertEquals(USER_SURNAME_UPDATE, users.get(2).getSurname());
+        assertEquals(USER_LOGIN_UPDATE, users.get(2).getLogin());
+        assertEquals(dateFormat.format(USER_BIRTHDAY_UPDATE), dateFormat.format(users.get(2).getBirthDate()));
+        assertEquals(USER_CITY_UPDATE, users.get(2).getCity());
+        assertEquals(USER_MAIL_UPDATE,users.get(2).getMail());
+        assertEquals(user.getRole().getId(),users.get(2).getRole().getId());
         log.info(users);
     }
-  @Test
-   public void deleteTest(){
+
+    private void deleteTest(){
         log.info("testing delete User()...");
-        clearUserTable();
-        User user = new User();
-        user = fillUser();
-        userDao.insert(user);
         List<User> users = userDao.selectAll();
-
-        assertNotNull(users.get(0));
-
-        userDao.delete(users.get(0));
+        assertNotNull(users.get(2));
+        userDao.delete(users.get(2));
         users = userDao.selectAll();
-        assertEquals(0,users.size());
+        assertEquals(2,users.size());
 }
     private User fillUpdatedUser(){
         User user = new User();
@@ -132,9 +122,4 @@ public class UserDaoTest extends TestData {
         return user;
     }
 
-    private void clearUserTable(){
-        List<User > result =  userDao.selectAll();
-        for(int i=0;i<result.size();i++)
-            userDao.delete(result.get(i));
-    }
 }

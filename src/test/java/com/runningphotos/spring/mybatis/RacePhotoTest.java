@@ -41,11 +41,16 @@ public class RacePhotoTest extends TestData {
     private RaceDao raceDao;
 
     @Test
-    public void testInsert(){
+    public void testRun(){
+        testInsert();
+        testUpdate();
+        testDelete();
+    }
+
+
+    private void testInsert(){
         log.info("testing insert RacePhoto()...");
-        clearRacePhotoTable();
-        RacePhoto racePhoto = new RacePhoto();
-        racePhoto = fillRacePhoto();
+        RacePhoto racePhoto = fillRacePhoto(RACE_PHOTO_PATH);
         racePhotoDao.insert(racePhoto);
         List<RacePhoto> racePhotos = racePhotoDao.selectAll();
         assertEquals(1, racePhotos.size());
@@ -56,15 +61,10 @@ public class RacePhotoTest extends TestData {
         log.info(racePhoto);
     }
 
-    @Test
-    public void testUpdate(){
+    private void testUpdate(){
         log.info("testing update RacePhoto()...");
-        clearRacePhotoTable();
-        RacePhoto racePhoto = new RacePhoto();
-        racePhoto = fillRacePhoto();
-        racePhotoDao.insert(racePhoto);
         List<RacePhoto> racePhotos = racePhotoDao.selectAll();
-        racePhoto = fillUpdatedRacePhoto();
+        RacePhoto racePhoto = fillRacePhoto(RACE_PHOTO_PATH_UPDATE);
         racePhoto.setId(racePhotos.get(0).getId());
         racePhotoDao.update(racePhoto);
         racePhotos = racePhotoDao.selectAll();
@@ -73,46 +73,26 @@ public class RacePhotoTest extends TestData {
         assertEquals(RACE_PHOTO_PATH_UPDATE, racePhotoSelected.getPath());
         assertNotNull(racePhotoSelected.getUser().getId());
         assertNotNull(racePhotoSelected.getRace().getId());
-
         log.info(racePhotos);
     }
-    @Test
-    public void testDelete(){
+
+    private void testDelete(){
         log.info("testing delete RacePhoto()...");
-        clearRacePhotoTable();
-        RacePhoto racePhoto = new RacePhoto();
-        racePhoto = fillRacePhoto();
-        racePhotoDao.insert(racePhoto);
         List<RacePhoto> racePhotos = racePhotoDao.selectAll();
         assertNotNull(racePhotos.get(0));
         racePhotoDao.delete(racePhotos.get(0));
         racePhotos = racePhotoDao.selectAll();
         assertEquals(0,racePhotos.size());
     }
-    // Допилить тесты на бегунов
-    private RacePhoto fillRacePhoto(){
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private RacePhoto fillRacePhoto(String path){
         User user = userDao.selectAll().get(0);
         Race race = raceDao.selectAll().get(0);
         RacePhoto racePhoto = new RacePhoto();
-        racePhoto.setPath(RACE_PHOTO_PATH);
+        racePhoto.setPath(path);
         racePhoto.setRace(race);
         racePhoto.setUser(user);
         return racePhoto;
     }
 
-      private RacePhoto fillUpdatedRacePhoto() {
-        User user = userDao.selectAll().get(1);
-        Race race = raceDao.selectAll().get(0);
-        RacePhoto racePhoto = new RacePhoto();
-        racePhoto.setPath(RACE_PHOTO_PATH_UPDATE);
-        racePhoto.setUser(user);
-        racePhoto.setRace(race);
-        return racePhoto;
-    }
-
-    private void clearRacePhotoTable(){
-        List<RacePhoto> result =  racePhotoDao.selectAll();
-        for(int i=0;i<result.size();i++)
-            racePhotoDao.delete(result.get(i));
-    }
 }
