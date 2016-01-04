@@ -1,6 +1,9 @@
 package com.runningphotos.testdata;
 
 
+import com.runningphotos.bom.Sex;
+import com.runningphotos.bom.Time;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,9 +45,13 @@ public class TestData {
 
     public static final String RUNNER_SURNAME = "Ivanchenko";
 
+    public static final Sex RUNNER_SEX = Sex.MALE;
+
     public static final String RUNNER_NAME_UPDATE = "Michael";
 
     public static final String RUNNER_SURNAME_UPDATE = "Dobrynin";
+
+    public static final Sex RUNNER_SEX_UPDATE = Sex.MALE;
 
     public static final String RACE_PHOTO_PATH = "race://photo/path";
 
@@ -62,7 +69,12 @@ public class TestData {
 
     public static final String RACE_NAME_UPDATE = "Worry start";
 
+    public static final Time RESULT_TIME = new Time(11,22,33);
 
+    public static final String RESULT_NUMBER = "1";
 
+    public static final Time RESULT_TIME_UPDATE = new Time(10,20,30);
+
+    public static final String RESULT_NUMBER_UPDATE = "7";
 
 }

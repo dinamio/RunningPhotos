@@ -7,20 +7,22 @@
         <id column="id" property="id"  />
         <result column="name" property="name"/>
         <result column="surname" property="surname"/>
+        <result column="sex" property="sex"/>
         <result column="user_id" property="user.id"/>
+
     </resultMap>
     <insert id="insert" parameterType="com.runningphotos.bom.Runner" >
         INSERT INTO runner
-        (name,surname,user_id)
+        (name,surname,sex,user_id)
         VALUES
-        (#{name},#{surname},#{user.id})
+        (#{name},#{surname},#{sex},#{user.id})
     </insert>
     <select id="selectAll" resultMap="RunnerMap">
         select * from Runner
     </select>
     <update id="update" parameterType="com.runningphotos.bom.Runner">
         UPDATE Runner set  name=#{name},
-        surname = #{surname}, user_id = #{user.id}
+        surname = #{surname}, sex =#{sex}, user_id = #{user.id}
     </update>
     <delete id="delete" parameterType="com.runningphotos.bom.Runner">
         DELETE  from Runner where id = #{id}

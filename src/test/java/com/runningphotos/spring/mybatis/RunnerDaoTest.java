@@ -6,6 +6,7 @@ package com.runningphotos.spring.mybatis;
 
 import com.runningphotos.bom.Role;
 import com.runningphotos.bom.Runner;
+import com.runningphotos.bom.Sex;
 import com.runningphotos.bom.User;
 import com.runningphotos.dao.RoleDao;
 import com.runningphotos.dao.RunnerDao;
@@ -38,7 +39,7 @@ import static org.junit.Assert.*;
 //
 public class RunnerDaoTest extends TestData {
 
-    private static Log log = LogFactory.getLog(RoleDaoTest.class);
+    private static Log log = LogFactory.getLog(RunnerDaoTest.class);
 
     @Autowired
     private UserDao userDao;
@@ -62,6 +63,7 @@ public class RunnerDaoTest extends TestData {
         assertEquals(1, runners.size());
         assertEquals(RUNNER_NAME, runners.get(0).getName());
         assertEquals(RUNNER_SURNAME, runners.get(0).getSurname());
+        assertEquals(RUNNER_SEX, runners.get(0).getSex());
         assertEquals(runner.getUser().getId(),runners.get(0).getUser().getId());
         log.info(runner);
     }
@@ -80,6 +82,7 @@ public class RunnerDaoTest extends TestData {
         runners = runnerDao.selectAll();
         assertEquals(RUNNER_NAME_UPDATE, runners.get(0).getName());
         assertEquals(RUNNER_SURNAME_UPDATE, runners.get(0).getSurname());
+        assertEquals(RUNNER_SEX_UPDATE, runners.get(0).getSex());
         assertEquals(runner.getUser().getId(), runners.get(0).getUser().getId());
         log.info(runners);
     }
@@ -113,6 +116,7 @@ public class RunnerDaoTest extends TestData {
         user = users.get(0);
         runner.setName(RUNNER_NAME_UPDATE);
         runner.setSurname(RUNNER_SURNAME_UPDATE);
+        runner.setSex(RUNNER_SEX_UPDATE);
         runner.setUser(user);
         return runner;
     }
@@ -125,6 +129,7 @@ public class RunnerDaoTest extends TestData {
         user=users.get(0);
         runner.setName(RUNNER_NAME);
         runner.setSurname(RUNNER_SURNAME);
+        runner.setSex(RUNNER_SEX);
         runner.setUser(user);
         return runner;
     }

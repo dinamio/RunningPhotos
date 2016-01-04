@@ -1,13 +1,18 @@
 package com.runningphotos.bom;
 
 
-public class Result {
+public class Result extends Entity {
 
   private String number;
 
   private Distance distance;
 
   private Time time;
+
+  private Runner runner;
+
+  private Race race;
+
 
 
   public String getNumber() {
@@ -38,5 +43,21 @@ public class Result {
   public void setTime(Time time) {
     this.time = time;
   }
+
+
+  public Race getRace() {
+    return race;
+  }
+
+
+  public void setRace(Race race) {
+    this.race = race;
+  }
+
+
+  public Runner getRunner() { return runner; }
+
+
+  public void setRunner(Runner runner) { this.runner = runner; }
 
 }
