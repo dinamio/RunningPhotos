@@ -4,7 +4,6 @@ INSERT INTO user (login,mail,name,surname,city,birthdate,role_id) VALUES ('anton
 INSERT INTO user (login,mail,name,surname,city,birthdate,role_id) VALUES ('olya01','olyA@mail.ru','Olya','Pilipenko','Kharkiv','1991-02-01',2)
 INSERT INTO Race (city,race_date,race_name) values ('Kharkiv','2015-01-01','Fun run')
 INSERT INTO Race (city,race_date,race_name) values ('Kiev','2016-05-05','New Year run')
-INSERT INTO Runner (name,surname,sex,user_id) values ('Anton','Ivanchenko','MALE',1)
 INSERT INTO Runner (name,surname,sex,user_id) values ('Michael','Dobrynin','MALE',2)
 INSERT INTO Distance (name,length) values ('marathon',42)
 INSERT INTO Distance (name,length) values ('half marathon',21)

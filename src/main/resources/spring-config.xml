@@ -17,7 +17,7 @@
           <property name="driverClassName" value="com.mysql.jdbc.Driver" />
           <property name="url" value="jdbc:mysql://localhost:3306/runningphotos" />
           <property name="username" value="root" />
-          <property name="password" value ="lbyfvj" />
+          <property name="password" value ="ilai1111" />
        </bean-->
 
        <!-- ( 1 ) datasource -->
@@ -32,7 +32,7 @@
               <property name="configLocation" value="classpath:com/runningphotos/mybatis/mybatis-config.xml" />
               <property name="mapperLocations" value="classpath*:com/runningphotos/mybatis/mapper/*.xml"/>
        </bean>
-
+       <bean id="TopRunnersParser" class="com.runningphotos.service.TopRunnersParser"></bean>
        <!-- ( 3 ) mapper (sqlSessionFactory, Mapper) -->
        <mybatis:scan base-package="com.runningphotos.dao" />
 

@@ -49,4 +49,7 @@ public class Runner extends EntityWithName{
 
   public void setSex(Sex sex) { this.sex = sex; }
 
+  public String toString(){
+    return getName()+" "+getSurname();
+  }
 }

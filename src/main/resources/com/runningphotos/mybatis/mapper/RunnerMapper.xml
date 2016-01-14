@@ -11,7 +11,11 @@
         <result column="user_id" property="user.id"/>
 
     </resultMap>
-    <insert id="insert" parameterType="com.runningphotos.bom.Runner" >
+    <insert id="insert" parameterType="com.runningphotos.bom.Runner" timeout="10" useGeneratedKeys="true">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            SELECT nextVal('mySequence')
+            <!-- or ->  SELECT my_sequence.nextVal from dual   -->
+        </selectKey>
         INSERT INTO runner
         (name,surname,sex,user_id)
         VALUES
@@ -29,5 +33,8 @@
     </delete>
     <select id="selectById" parameterType="int" resultMap="RunnerMap">
         SELECT* FROM Runner where Runner.id = #{id}
+    </select>
+    <select id="findRunner" parameterType="com.runningphotos.bom.Runner" resultMap="RunnerMap">
+        SELECT* from Runner where name=#{name} and surname=#{surname}
     </select>
 </mapper>

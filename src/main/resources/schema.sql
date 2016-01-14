@@ -66,6 +66,6 @@ foreign key (Runner_id) references Runner(id),
 Race_id int ,
 foreign key (Race_id) references Race(id)
 );
-
+CREATE SEQUENCE mySequence START WITH 1 INCREMENT BY 1;
  
 
