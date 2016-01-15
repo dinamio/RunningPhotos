@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/spring-config.xml")
+@ContextConfiguration(locations = "/applicationContext.xml")
 
 
     public class RaceDaoTest extends TestData {

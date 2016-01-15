@@ -23,7 +23,7 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/spring-config.xml")
+@ContextConfiguration(locations = "/applicationContext.xml")
 
 
 public class ResultDaoTest extends TestData {

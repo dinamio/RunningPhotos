@@ -19,12 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
-import javax.security.sasl.SaslServer;
-import javax.sql.DataSource;
-import javax.xml.crypto.Data;
+
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -32,8 +28,7 @@ import java.util.StringTokenizer;
 /**
  * Created by ������� on 27.12.2015.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/spring-config.xml")
+
 @Component
 public class TopRunnersParser {
     private static Log log = LogFactory.getLog(TopRunnersParser.class);
@@ -47,16 +42,9 @@ public class TopRunnersParser {
 
     private static String path = "http://toprunners.org/event-28-11-2015.html";
 
-
-
-
-
-
-
     public List<Result> parse()
     {
         List<Result> resultList = new ArrayList<Result>();
-
         Document doc  = null;
         try {
             doc = Jsoup.connect(path).get();

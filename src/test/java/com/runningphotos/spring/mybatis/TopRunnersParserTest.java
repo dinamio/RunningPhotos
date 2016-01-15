@@ -15,10 +15,10 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 /**
- * Created by Николай on 29.12.2015.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 29.12.2015.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/spring-config.xml")
+@ContextConfiguration(locations = "/applicationContext.xml")
 
 public class TopRunnersParserTest {
     @Autowired

@@ -28,7 +28,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by zOpa on 22.12.2015.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/spring-config.xml")
+@ContextConfiguration(locations = "/applicationContext.xml")
 public class RacePhotoTest extends TestData {
 
     private static Log log = LogFactory.getLog(RacePhotoTest.class);
