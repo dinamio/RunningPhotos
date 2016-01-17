@@ -18,8 +18,7 @@ import java.util.List;
  * Created by ������� on 29.12.2015.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/applicationContext.xml")
-
+@ContextConfiguration(locations = "classpath*:applicationContext.xml")
 public class TopRunnersParserTest {
     @Autowired
     TopRunnersParser topRunnersParser;

@@ -22,14 +22,14 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/applicationContext.xml")
+@ContextConfiguration(locations = "classpath*:applicationContext.xml")
 public class RoleDaoTest {
 
     private static Log log = LogFactory.getLog(RoleDaoTest.class);
 
     @Autowired
     private RoleDao roleDao;
-//
+
     @Test
     public void testInsertRole(){
         log.info("testing insert Role()...");

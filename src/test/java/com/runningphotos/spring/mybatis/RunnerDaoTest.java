@@ -23,14 +23,10 @@ import static org.junit.Assert.*;
  * Unit test for simple App.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/applicationContext.xml")
-
-
-//
+@ContextConfiguration(locations = "classpath*:applicationContext.xml")
 public class RunnerDaoTest extends TestData {
 
     private static Log log = LogFactory.getLog(RunnerDaoTest.class);
-
 
     @Autowired
     private RunnerDao runnerDao;

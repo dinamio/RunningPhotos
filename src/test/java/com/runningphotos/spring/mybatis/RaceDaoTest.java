@@ -21,10 +21,8 @@ import static org.junit.Assert.*;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/applicationContext.xml")
-
-
-    public class RaceDaoTest extends TestData {
+@ContextConfiguration(locations = "classpath*:applicationContext.xml")
+public class RaceDaoTest extends TestData {
 
     private static Log log = LogFactory.getLog(RaceDaoTest.class);
 
