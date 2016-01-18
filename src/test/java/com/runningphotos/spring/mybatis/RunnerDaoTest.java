@@ -48,11 +48,11 @@ public class RunnerDaoTest extends TestData {
         Runner runner = fillRunner();
         runnerDao.insert(runner);
         List<Runner> runners = runnerDao.selectAll();
-        assertEquals(3, runners.size());
-        assertEquals(RUNNER_NAME, runners.get(2).getName());
-        assertEquals(RUNNER_SURNAME, runners.get(2).getSurname());
-        assertEquals(RUNNER_SEX, runners.get(2).getSex());
-        assertEquals(runner.getUser().getId(),runners.get(2).getUser().getId());
+        assertEquals(2, runners.size());
+        assertEquals(RUNNER_NAME, runners.get(1).getName());
+        assertEquals(RUNNER_SURNAME, runners.get(1).getSurname());
+        assertEquals(RUNNER_SEX, runners.get(1).getSex());
+        assertEquals(runner.getUser().getId(),runners.get(1).getUser().getId());
         log.info(runner);
     }
 
@@ -60,23 +60,23 @@ public class RunnerDaoTest extends TestData {
         log.info("testing update Runner()...");
         List<Runner> runners = runnerDao.selectAll();
         Runner runner = fillUpdatedRunner();
-        runner.setId(runners.get(2).getId());
+        runner.setId(runners.get(1).getId());
         runnerDao.update(runner);
         runners = runnerDao.selectAll();
-        assertEquals(RUNNER_NAME_UPDATE, runners.get(2).getName());
-        assertEquals(RUNNER_SURNAME_UPDATE, runners.get(2).getSurname());
-        assertEquals(RUNNER_SEX_UPDATE, runners.get(2).getSex());
-        assertEquals(runner.getUser().getId(), runners.get(2).getUser().getId());
+        assertEquals(RUNNER_NAME_UPDATE, runners.get(1).getName());
+        assertEquals(RUNNER_SURNAME_UPDATE, runners.get(1).getSurname());
+        assertEquals(RUNNER_SEX_UPDATE, runners.get(1).getSex());
+        assertEquals(runner.getUser().getId(), runners.get(1).getUser().getId());
         log.info(runners);
     }
 
     private void testDelete(){
         log.info("testing delete Runner()...");
         List<Runner> runners = runnerDao.selectAll();
-        assertNotNull(runners.get(2));
-        runnerDao.delete(runners.get(2));
+        assertNotNull(runners.get(1));
+        runnerDao.delete(runners.get(1));
         runners = runnerDao.selectAll();
-        assertEquals(2,runners.size());
+        assertEquals(1,runners.size());
     }
     private Runner fillUpdatedRunner(){
         Runner runner = new Runner();

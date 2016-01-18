@@ -1,5 +1,7 @@
 package com.runningphotos.service;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.runningphotos.bom.Distance;
 import com.runningphotos.bom.Result;
 import com.runningphotos.bom.Runner;
@@ -21,6 +23,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -40,9 +43,7 @@ public class TopRunnersParser {
 
     private static final String DQ = "DQ";
 
-    private static String path = "http://toprunners.org/event-28-11-2015.html";
-
-    public List<Result> parse()
+    public List<Result> parse(String path)
     {
         List<Result> resultList = new ArrayList<Result>();
         Document doc  = null;
@@ -55,7 +56,6 @@ public class TopRunnersParser {
         Elements rows = table.select("tr");
 
         for (int i = 1; i < rows.size(); i++) {
-            Element row = rows.get(i);
             String resultData = rows.get(i).text();
             try {
                 Result result = parseResultRow(resultData);
@@ -70,8 +70,6 @@ public class TopRunnersParser {
         }
         return resultList;
 }
-
-
     public Result parseResultRow(String runnerData){
         Runner runner = new Runner();
 
@@ -79,12 +77,9 @@ public class TopRunnersParser {
 
         StringTokenizer token = new StringTokenizer (runnerData);
 
-        Distance distance = new Distance();
-
         Time time = new Time();
         String flag = token.nextToken();
         if(flag.equals(DQ))throw new IllegalArgumentException("Runner is DQ");
-
         runner.setName(token.nextToken());
         runner.setSurname(token.nextToken());
         result.setNumber(token.nextToken());
@@ -98,18 +93,14 @@ public class TopRunnersParser {
 
         }
 
-    public void parseAndInsert(){
-        Runner runner = new Runner();
-        List<Result> resultList = parse();
-        for(int i=0;i<resultList.size();i++) {
-            if (resultList.get(i).getRunner().getId()!=null)
-                continue;
-            else {
-                runnerDao.insert(resultList.get(i).getRunner());
-            }
-            resultDao.insert(resultList.get(i));
-        }
+    public String parseToJson(String path){
+        List<Result> resultList = parse(path);
+        Gson gson = new Gson();
+        String json;
+        json = gson.toJson(resultList);
+        return json;
     }
+
 
 }
 

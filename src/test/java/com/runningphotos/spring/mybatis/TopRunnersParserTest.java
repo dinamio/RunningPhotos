@@ -1,5 +1,7 @@
 package com.runningphotos.spring.mybatis;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.runningphotos.bom.Result;
 import com.runningphotos.bom.Runner;
 import com.runningphotos.dao.ResultDao;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.*;
+
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -29,16 +33,19 @@ public class TopRunnersParserTest {
 
     @Test
     public  void parserTest(){
-        topRunnersParser.parseAndInsert();
-        List<Runner> runners = runnerDao.selectAll();
-        List<Result> results = resultDao.selectAll();
-        assertEquals("Vladimir", runners.get(4).getName());
-        assertEquals("Semenuk",runners.get(4).getSurname());
-        assertEquals(173,runners.size());
-        assertEquals(172,results.size());
-        assertEquals("00:31:37",results.get(0).getTime().getTimeToString());
-        assertEquals("1097",results.get(0).getNumber());
-        assertEquals("1",String.valueOf(results.get(0).getRunner().getId()));
-
+        String path = "http://toprunners.org/event-28-11-2015.html";
+        String json;
+        Gson gson = new Gson();
+        json = topRunnersParser.parseToJson(path);
+        List<Result> resultList = topRunnersParser.parse(path);
+        Type type = new TypeToken<List<Result>>(){}.getType();
+        List<Result> listFromJson= gson.fromJson(json,type);
+        assertEquals(resultList.size(),listFromJson.size());
+        assertEquals(resultList.get(0).getRunner().getName(),listFromJson.get(0).getRunner().getName());
+        assertEquals(resultList.get(0).getRunner().getSurname(),listFromJson.get(0).getRunner().getSurname());
+        assertEquals(resultList.get(0).getDistance(),listFromJson.get(0).getDistance());
+        assertEquals(resultList.get(0).getNumber(),listFromJson.get(0).getNumber());
+        assertEquals(resultList.get(0).getRace(),listFromJson.get(0).getRace());
+        assertEquals(resultList.get(0).getTime(),listFromJson.get(0).getTime());
     }
 }

@@ -113,7 +113,7 @@ public class ResultDaoTest extends TestData {
         result.setTime(RESULT_TIME_UPDATE);
         result.setNumber(RESULT_NUMBER_UPDATE);
         result.setDistance(distanceDao.selectAll().get(1));
-        result.setRunner(runnerDao.selectAll().get(1));
+        result.setRunner(runnerDao.selectAll().get(0));
         result.setRace(raceDao.selectAll().get(1));
         return result;
     }
