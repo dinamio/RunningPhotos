@@ -95,10 +95,7 @@ public class TopRunnersParser {
 
     public String parseToJson(String path){
         List<Result> resultList = parse(path);
-        Gson gson = new Gson();
-        String json;
-        json = gson.toJson(resultList);
-        return json;
+        return new Gson().toJson(resultList);
     }
 
 
