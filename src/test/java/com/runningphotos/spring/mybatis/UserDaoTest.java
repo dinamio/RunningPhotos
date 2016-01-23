@@ -56,7 +56,7 @@ public class UserDaoTest extends TestData {
         userDao.insert(user);
         List<User> users = userDao.selectAll();
         System.out.println(users+"first test");
-        assertEquals(3, users.size());
+        assertEquals(5, users.size());
         user = users.get(2);
         assertEquals(USERNAME, user.getName());
         assertEquals(USER_SURNAME, user.getSurname());

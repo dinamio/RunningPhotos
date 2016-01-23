@@ -37,8 +37,8 @@ public class RoleDaoTest {
         role.setName("Admin");
         roleDao.insert(role);
         List<Role> roles = roleDao.selectAllRoles();
-        assertEquals(roles.size(),3);
-        assertEquals(roles.get(2).getName(),"Admin");
+        assertEquals(5,roles.size());
+        assertEquals(roles.get(4).getName(),"Admin");
         log.info(roles);
     }
 }

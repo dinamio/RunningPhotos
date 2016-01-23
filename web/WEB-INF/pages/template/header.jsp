@@ -1,5 +1,6 @@
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -48,7 +49,16 @@
               </ul>
             </div>
           </li>
-          <li><a href="login">Login</a></li>
+          <c:choose>
+            <c:when test="${pageContext.request.userPrincipal.name != null}">
+              Welcome, <strong>${pageContext.request.userPrincipal.name}</strong>
+              <li><a href="<c:url value="/logout" />" >Logout</a></li>
+            </c:when>
+            <c:otherwise>
+              <li><a href="login">Login</a></li>
+            </c:otherwise>
+          </c:choose>
+
         </ul>
       </div>
     </div>
@@ -58,9 +68,11 @@
         <li class="active">
           <a href="index.html">Home</a>
         </li>
+        <sec:authorize access="hasRole('Admin')">
         <li>
           <a href="features.html">Features</a>
         </li>
+        </sec:authorize>
         <li class="has-submenu">
           <a href="#">Pages +</a>
           <div class="mainmenu-submenu">
@@ -130,9 +142,11 @@
             </div><!-- /mainmenu-submenu-inner -->
           </div><!-- /mainmenu-submenu -->
         </li>
+        <sec:authorize access="hasRole('Operator')">
         <li>
           <a href="credits.html">Credits</a>
         </li>
+        </sec:authorize>
       </ul>
     </nav>
   </div>
