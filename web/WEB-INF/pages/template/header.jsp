@@ -14,17 +14,30 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
 
-  <link rel="stylesheet" href="<c:url value="resources/css/bootstrap.min.css"/>">
-  <link rel="stylesheet" href="<c:url value="resources/css/icomoon-social.css"/>">
+  <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>">
+  <link rel="stylesheet" href="<c:url value="/resources/css/icomoon-social.css"/>">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="<c:url value="resources/css/leaflet.css"/>" />
+  <link rel="stylesheet" href="<c:url value="/resources/css/leaflet.css"/>" />
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="<c:url value="resources/css/leaflet.ie.css"/>" />
+  <link rel="stylesheet" href="<c:url value="/resources/css/leaflet.ie.css"/>" />
   <![endif]-->
-  <link rel="stylesheet" href="<c:url value="resources/css/main.css"/>">
+  <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
 
-  <script src="<c:url value="resources/js/modernizr-2.6.2-respond-1.1.0.min.js"/>"></script>
+  <script src="<c:url value="/resources/js/modernizr-2.6.2-respond-1.1.0.min.js"/>"></script>
+  <!-- Javascripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"><\/script>')</script>
+  <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+  <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+  <script src="<c:url value="/resources/js/jquery.fitvids.js"/>"></script>
+  <script src="<c:url value="/resources/js/jquery.sequence-min.js"/>"></script>
+  <script src="<c:url value="/resources/js/jquery.bxslider.js"/>"></script>
+  <script src="<c:url value="/resources/js/main-menu.js"/>"></script>
+  <script src="<c:url value="/resources/js/template.js"/>"></script>
+  <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -41,11 +54,11 @@
           <li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>3 items</b></a></li>
           <li>
             <div class="dropdown choose-country">
-              <a class="#" data-toggle="dropdown" href="#"><img src="<c:url value="resources/img/flags/gb.png"/>" alt="Great Britain"> UK</a>
+              <a class="#" data-toggle="dropdown" href="#"><img src="<c:url value="/resources/img/flags/gb.png"/>" alt="Great Britain"> UK</a>
               <ul class="dropdown-menu" role="menu">
-                <li role="menuitem"><a href="#"><img src="<c:url value="resources/img/flags/us.png"/>" alt="United States"> US</a></li>
-                <li role="menuitem"><a href="#"><img src="<c:url value="resources/img/flags/de.png"/>" alt="Germany"> DE</a></li>
-                <li role="menuitem"><a href="#"><img src="<c:url value="resources/img/flags/es.png"/>" alt="Spain"> ES</a></li>
+                <li role="menuitem"><a href="#"><img src="<c:url value="/resources/img/flags/us.png"/>" alt="United States"> US</a></li>
+                <li role="menuitem"><a href="#"><img src="<c:url value="/resources/img/flags/de.png"/>" alt="Germany"> DE</a></li>
+                <li role="menuitem"><a href="#"><img src="<c:url value="/resources/img/flags/es.png"/>" alt="Spain"> ES</a></li>
               </ul>
             </div>
           </li>
@@ -55,7 +68,7 @@
               <li><a href="<c:url value="/logout" />" >Logout</a></li>
             </c:when>
             <c:otherwise>
-              <li><a href="login">Login</a></li>
+              <li><a href="<c:url value="/login"/>">Login</a></li>
             </c:otherwise>
           </c:choose>
 
@@ -64,15 +77,13 @@
     </div>
     <nav id="mainmenu" class="mainmenu">
       <ul>
-        <li class="logo-wrapper"><a href="index.html"><img src="<c:url value="resources/img/mPurpose-logo.png"/>" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+        <li class="logo-wrapper"><a href="index.html"><img src="<c:url value="/resources/img/mPurpose-logo.png"/>" alt="Multipurpose Twitter Bootstrap Template"></a></li>
         <li class="active">
           <a href="index.html">Home</a>
         </li>
-        <sec:authorize access="hasRole('Admin')">
         <li>
-          <a href="features.html">Features</a>
+          <a href="<c:url value="/admin/addRace"/>">Add race</a>
         </li>
-        </sec:authorize>
         <li class="has-submenu">
           <a href="#">Pages +</a>
           <div class="mainmenu-submenu">

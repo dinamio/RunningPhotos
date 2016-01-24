@@ -28,7 +28,6 @@ public class LoginController {
         if (error != null) {
             model.addObject("error", "Invalid username and password!");
         }
-
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }

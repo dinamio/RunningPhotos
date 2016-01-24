@@ -19,4 +19,6 @@
               <property name="mapperLocations" value="classpath*:com/runningphotos/mybatis/mapper/*.xml"/>
        </bean>
 
+        <bean id="raceValidator" class="com.runningphotos.service.validator.RaceValidator"/>
+
 </beans>
