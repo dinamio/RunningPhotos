@@ -9,5 +9,3 @@ INSERT INTO Race (city,race_date,race_name) values ('Kiev','2016-05-05','New Yea
 INSERT INTO Runner (name,surname,sex,user_id) values ('Michael','Dobrynin','MALE',2)
 INSERT INTO Distance (name,length) values ('marathon',42)
 INSERT INTO Distance (name,length) values ('half marathon',21)
-Insert into user (login,password,role_id) values('admin','admin',4)
-Insert into user (login,password,role_id) values('operator','operator',3)

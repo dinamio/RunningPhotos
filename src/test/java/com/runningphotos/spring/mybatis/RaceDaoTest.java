@@ -1,5 +1,6 @@
 package com.runningphotos.spring.mybatis;
 
+import com.runningphotos.AbstractTest;
 import com.runningphotos.bom.Race;
 import com.runningphotos.dao.RaceDao;
 import com.runningphotos.testdata.TestData;
@@ -20,9 +21,8 @@ import static org.junit.Assert.*;
  * Updatet by Overdark on 03.01.2016
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:applicationContext.xml")
-public class RaceDaoTest extends TestData {
+
+public class RaceDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RaceDaoTest.class);
 

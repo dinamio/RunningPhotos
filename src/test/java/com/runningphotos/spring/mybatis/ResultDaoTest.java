@@ -4,6 +4,7 @@ package com.runningphotos.spring.mybatis;
  * Created by Oleg on 23.12.2015.
  */
 
+import com.runningphotos.AbstractTest;
 import com.runningphotos.bom.*;
 import com.runningphotos.dao.*;
 import com.runningphotos.testdata.TestData;
@@ -22,9 +23,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Unit test for simple App.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:applicationContext.xml")
-public class ResultDaoTest extends TestData {
+public class ResultDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(ResultDaoTest.class);
 

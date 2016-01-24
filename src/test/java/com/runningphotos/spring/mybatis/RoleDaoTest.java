@@ -4,6 +4,7 @@ package com.runningphotos.spring.mybatis;
  * Created by Jimmy on 12.12.2015.
  */
 
+import com.runningphotos.AbstractTest;
 import com.runningphotos.bom.Role;
         import com.runningphotos.dao.RoleDao;
         import org.apache.commons.logging.Log;
@@ -21,9 +22,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Unit test for simple App.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:applicationContext.xml")
-public class RoleDaoTest {
+public class RoleDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RoleDaoTest.class);
 

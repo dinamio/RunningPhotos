@@ -2,6 +2,7 @@ package com.runningphotos.spring.mybatis;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.runningphotos.AbstractTest;
 import com.runningphotos.bom.Result;
 import com.runningphotos.bom.Runner;
 import com.runningphotos.dao.ResultDao;
@@ -21,9 +22,7 @@ import java.util.List;
 /**
  * Created by ������� on 29.12.2015.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:applicationContext.xml")
-public class TopRunnersParserTest {
+public class TopRunnersParserTest extends AbstractTest {
     @Autowired
     TopRunnersParser topRunnersParser;
     @Autowired

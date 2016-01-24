@@ -1,5 +1,6 @@
 package com.runningphotos.spring.mybatis;
 
+import com.runningphotos.AbstractTest;
 import com.runningphotos.bom.Race;
 import com.runningphotos.bom.RacePhoto;
 
@@ -27,9 +28,8 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by zOpa on 22.12.2015.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:applicationContext.xml")
-public class RacePhotoTest extends TestData {
+
+public class RacePhotoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RacePhotoTest.class);
 
