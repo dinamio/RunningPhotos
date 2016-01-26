@@ -33,7 +33,7 @@
   <script src="<c:url value="/resources/js/jquery.fitvids.js"/>"></script>
   <script src="<c:url value="/resources/js/jquery.sequence-min.js"/>"></script>
   <script src="<c:url value="/resources/js/jquery.bxslider.js"/>"></script>
-  <script src="<c:url value="/resources/js/main-menu.js"/>"></script>
+
   <script src="<c:url value="/resources/js/template.js"/>"></script>
   <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
@@ -98,7 +98,7 @@
                         <a href="credits.html">Tag Photos</a>
                     </li>
                   </sec:authorize>
-      <sec:authorize access="hasRole('Admin')">
+                 <sec:authorize access="hasRole('Admin')">
                 <li class= "has-submenu active">
                     <a href="#">Add</a>
                     <div class="mainmenu-submenu">
