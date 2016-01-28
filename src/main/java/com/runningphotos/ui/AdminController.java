@@ -1,21 +1,21 @@
 package com.runningphotos.ui;
 
-import javax.validation.Valid;
 import com.runningphotos.bom.Race;
 import com.runningphotos.dao.RaceDao;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,6 +31,9 @@ public class AdminController {
 
     @Autowired
     private Validator raceValidator;
+
+    @Value(value = "${path.to.file}")
+    private String path;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -49,16 +52,29 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/addRace", method = RequestMethod.POST)
-    public ModelAndView addRace(@Valid Race race, BindingResult errors) {
+    public ModelAndView addRace(Race race, BindingResult errors,
+                                @RequestParam(value = "race-photo", required = false) MultipartFile image) {
         ModelAndView model = new ModelAndView("admin/addRace");
         raceValidator.validate(race,errors);
         if (errors.hasErrors()) {
             model.addAllObjects(errors.getModel());
         } else {
+            saveImage(race,image);
             raceDao.insert(race);
             model.addObject("race", new Race());
             model.addObject("msg", "Race was added successfully!");
         }
         return model;
+    }
+
+    private void saveImage(Race race, MultipartFile image) {
+        try {
+            String pathToFile = "/races/img_"+new Date().getTime()+".jpeg";
+            File file = new File(path + pathToFile);
+            FileUtils.writeByteArrayToFile(file,image.getBytes());
+            race.setPhoto(pathToFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

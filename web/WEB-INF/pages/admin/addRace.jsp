@@ -15,11 +15,11 @@
 <div class="section">
   <div class="container">
     <div class="row">
-      <div class="col-sm-9">
+      <div class="col-sm-10">
         <!-- Add race Form -->
         <div class="contact-form-wrapper">
           <form:form class="form-horizontal" method="post" commandName="race"
-                     action="">
+                     action="" enctype="multipart/form-data">
             <div class="form-group">
                 <c:if test="${not empty msg}">
                     <div class="alert alert-success">${msg}</div>
@@ -51,10 +51,17 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="race-photo" class="col-sm-3 control-label"><b>Race photo</b></label>
+              <div class="col-sm-4">
+                <input name="race-photo" id="race-photo" type="file">
+              </div>
+            </div>
+            <div class="form-group">
               <div class="col-sm-12">
                 <button type="submit" class="btn pull-right">Send</button>
               </div>
             </div>
+            <!--input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/-->
           </form:form>
         </div>
         <!-- End Contact Info -->

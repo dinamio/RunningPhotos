@@ -8,18 +8,19 @@
         <result column="City" property="city"/>
         <result column="Race_Date" property="raceDate"/>
         <result column="Race_Name" property="name"/>
+        <result column="photo" property="photo"/>
     </resultMap>
     <insert id="insert" parameterType="com.runningphotos.bom.Race" >
         INSERT INTO race
-        (city,Race_Date,Race_Name)
+        (city,Race_Date,Race_Name,photo)
         VALUES
-        (#{city},#{raceDate},#{name})
+        (#{city},#{raceDate},#{name},#{photo})
     </insert>
     <select id="selectAll" resultMap="RaceMap">
         select * from race
     </select>
     <update id="update" parameterType="com.runningphotos.bom.Race">
-        UPDATE race set City = #{city}, Race_Date = #{raceDate}, Race_Name =#{name}
+        UPDATE race set City = #{city}, Race_Date = #{raceDate}, Race_Name =#{name}, photo=#{photo}
         where id = #{id}
     </update>
     <delete id="delete" parameterType="com.runningphotos.bom.Race">

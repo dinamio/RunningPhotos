@@ -78,7 +78,7 @@
       <nav id="mainmenu" class="mainmenu">
           <ul>
 
-                <li class="logo-wrapper"><a href="/"><img src="<c:url value="resources/img/mPurpose-logo.png"/>" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+                <li class="logo-wrapper"><a href="/"><img src="<c:url value="/resources/img/mPurpose-logo.png"/>" alt="Multipurpose Twitter Bootstrap Template"></a></li>
           <li class="active">
                     <a href="/">Home</a>
                 </li>
@@ -105,7 +105,7 @@
                         <div class="mainmenu-submenu-inner">
                             <div>
                                 <ul>
-                                    <li><a href="index.html"><Strong>Races</Strong></a></li>
+                                    <li><a href="<c:url value="/admin/addRace"/>"><Strong>Races</Strong></a></li>
                                     <li><a href="index.html"><Strong>Results</Strong></a></li>
 
                                 </ul>
