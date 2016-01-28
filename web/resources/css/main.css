@@ -1711,7 +1711,7 @@ span.color-red {
   -webkit-box-shadow: 0 -1px 12px rgba(0,0,0,0.4);
   -moz-box-shadow: 0 -1px 12px rgba(0,0,0,0.4);
   box-shadow: 0 -1px 12px rgba(0,0,0,0.4);
-  color: 0 -1px 12px rgba(0,0,0,0.4);
+  color: 0 0 12px rgba(0,0,0,0.4);
 }
 .footer h3 {
   color: #E4E4E4;
@@ -2372,8 +2372,8 @@ span.color-red {
 }
 .mainmenu-wrapper {
   background-color: #FFF;
-  border-bottom: 4px solid #4f8db3;
-  z-index: 4;
+  border-bottom: 3px solid #FFFFFF;
+  z-index: 3;
 }
 .mainmenu {
   width: 100%;
@@ -2388,65 +2388,51 @@ span.color-red {
 }
 .mainmenu > ul,
 .mainmenu .mainmenu-submenu-inner {
-  margin: 0 auto;
+  margin: 0;
 }
 .mainmenu > ul > li,
 .mainmenu .mainmenu-submenu-inner > li {
-  display: inline-block;
+  display:inline-block;
   *display: inline;
 }
 .mainmenu > ul > li > a,
 .mainmenu .mainmenu-submenu-inner > li > a {
-  font-size: 1.8em;
-  padding: 1.2em 1.5em;
+  font-size: 1.7em;
+  padding: 1em 1em;
   color: #999;
-  display: inline-block;
+  display: block;
   text-decoration: none;
 }
 .mainmenu > ul > li > a:hover,
 .mainmenu .mainmenu-submenu-inner > li > a:hover {
-  color: #4f8db3;
+  color: #000;
   text-decoration: none;
 }
 .mainmenu > ul > li.active > a,
 .mainmenu .mainmenu-submenu-inner > li.active > a {
-  color: #000000;
+  color: #000;
   font-weight: 600 !important;
-
 }
 .mainmenu > ul > li.mainmenu-open a,
 .mainmenu .mainmenu-submenu-inner > li.mainmenu-open a,
 .mainmenu > ul li.mainmenu-open > a:hover,
 .mainmenu .mainmenu-submenu-inner li.mainmenu-open > a:hover {
-  color: #000000;
-  background: #fff;
-  min-width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 14px 14px;
-  text-decoration: none;
+  color: #000;
+  background: #FFFFFF;
+  width:105px;
+  font-size:larger;
+  position: relative;
+  padding:1em ;
 }
-
 .mainmenu .mainmenu-submenu {
   display:none;
-  position: static;
-  background: #fff;
-  width:0;
-  left: 0;
+  position: absolute;
   z-index: 999;
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-box-shadow: 0 5px 5px rgba(0,0,0,0.4);
-  -moz-box-shadow: 0 5px 5px rgba(0,0,0,0.4);
-  box-shadow: 0 5px 5px rgba(0,0,0,0.4);
-  color: 0 5px 5px rgba(0,0,0,0.4);
+  font-size:14px;
 }
 .mainmenu .mainmenu-submenu-inner > div {
   width: 33%;
   float: left;
-
 }
 .mainmenu .mainmenu-submenu-inner:before,
 .mainmenu .mainmenu-submenu-inner:after {
@@ -2461,11 +2447,11 @@ span.color-red {
 }
 .mainmenu-open .mainmenu-submenu {
   display: block;
-  padding-bottom: 3em;
+  padding-bottom: 0;
 }
 .mainmenu-submenu h4 {
   color: #bad2e1;
-  padding: 1em 0 0.6em;
+  padding: 0.7em 0 0.6em;
   margin-left: 20px;
   font-size: 160%;
   font-weight: 300;
@@ -2474,18 +2460,17 @@ span.color-red {
   margin-left: 20px;
 }
 
-@media screen and (max-width: 979px) {
   .mainmenu {
-    font-size: 0.8em;
+    font-size: 1em;
   }
   .mainmenu-submenu {
-    font-size: 1.2em;
+    font-size: 0.8em;
   }
   .mainmenu-submenu li,
   .mainmenu-submenu h4 {
-    padding-left: 10px;
+    padding-left: 0.5px;
   }
-}
+
 @media screen and (max-width: 479px) {
   .mainmenu {
     font-size: 120%;
@@ -2675,4 +2660,3 @@ span.color-red {
 .dropdown.open a.dropdown-toggle .caret {
   border-top: 4px solid #FFF;
 }
-
