@@ -33,9 +33,9 @@
   <script src="<c:url value="/resources/js/jquery.fitvids.js"/>"></script>
   <script src="<c:url value="/resources/js/jquery.sequence-min.js"/>"></script>
   <script src="<c:url value="/resources/js/jquery.bxslider.js"/>"></script>
-
   <script src="<c:url value="/resources/js/template.js"/>"></script>
   <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script src="<c:url value="/resources/js/template.js"/>"></script>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
 </head>

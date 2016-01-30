@@ -57,6 +57,8 @@
     </div>
   </div>
 </div>
+<script src="<c:url value="/resources/js/jquery.autocomplete.min.js" />"></script>
+<script src="<c:url value="/resources/js/searchform.js" />"></script>
 <script src="<c:url value="/resources/js/main-menu.js"/>"></script>
 
 </body>

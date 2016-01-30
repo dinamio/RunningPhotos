@@ -2660,3 +2660,35 @@ span.color-red {
 .dropdown.open a.dropdown-toggle .caret {
   border-top: 4px solid #FFF;
 }
+
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 5px 5px; white-space: nowrap; overflow: hidden; font-size:22px}
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: bold; color: #3399FF; }
+
+.sbtn{
+  width: 130px;
+  height: 40pt;
+  padding: 7pt;
+  font-size: 18pt;
+}
+
+
+.font-stl{
+  height: 40pt;
+  font-size: 18pt;
+}
+
+.sbtn-d{
+  border-color:  #76777C !important;
+  background: #76777C !important;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.search-label {
+  margin-left:auto;
+  margin-right:auto;
+  font-size: 20pt;
+  padding-bottom: 10pt;
+}

@@ -48,22 +48,7 @@ public class Time {
 
 
   public String getTimeToString(){
-    String hour="0";
-    String minute="0";
-    String second="0";
-    String timeresult;
-    if((hours/10)==0)
-      hour+=hours;
-    else hour= String.valueOf(hours);
-    if((minutes/10)==0)
-      minute+=minutes;
-    else minute= String.valueOf(minutes);
-    if((seconds/10)==0)
-      second+=seconds;
-    else second= String.valueOf(seconds);
-    timeresult=hour+":"+minute+":"+second;
-    return timeresult;
-  //return hours+":"+minutes+":"+seconds;
+  return String.format("%02d:%02d:%02d",hours,minutes,seconds);
   }
 
   @Override
