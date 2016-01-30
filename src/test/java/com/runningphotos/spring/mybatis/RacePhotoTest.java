@@ -3,23 +3,15 @@ package com.runningphotos.spring.mybatis;
 import com.runningphotos.AbstractTest;
 import com.runningphotos.bom.Race;
 import com.runningphotos.bom.RacePhoto;
-
 import com.runningphotos.bom.User;
 import com.runningphotos.dao.RaceDao;
 import com.runningphotos.dao.RacePhotoDao;
-
-
 import com.runningphotos.dao.UserDao;
-import com.runningphotos.testdata.TestData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -29,14 +21,18 @@ import static org.junit.Assert.assertNotNull;
  * Created by zOpa on 22.12.2015.
  */
 
+@SuppressWarnings("SpringJavaAutowiringInspection")
 public class RacePhotoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RacePhotoTest.class);
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RacePhotoDao racePhotoDao;
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private UserDao userDao;
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RaceDao raceDao;
 

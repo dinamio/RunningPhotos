@@ -6,14 +6,11 @@ package com.runningphotos.spring.mybatis;
 
 import com.runningphotos.AbstractTest;
 import com.runningphotos.bom.Role;
-        import com.runningphotos.dao.RoleDao;
-        import org.apache.commons.logging.Log;
-        import org.apache.commons.logging.LogFactory;
-        import org.junit.Test;
-        import org.junit.runner.RunWith;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.test.context.ContextConfiguration;
-        import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import com.runningphotos.dao.RoleDao;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -22,10 +19,12 @@ import static org.junit.Assert.assertEquals;
 /**
  * Unit test for simple App.
  */
+@SuppressWarnings("SpringJavaAutowiringInspection")
 public class RoleDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RoleDaoTest.class);
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RoleDao roleDao;
 

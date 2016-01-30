@@ -23,11 +23,15 @@ import java.util.List;
 /**
  * Created by ������� on 29.12.2015.
  */
+@SuppressWarnings("SpringJavaAutowiringInspection")
 public class TopRunnersParserTest extends AbstractTest {
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     TopRunnersParser topRunnersParser;
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     RunnerDao runnerDao;
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     ResultDao resultDao;
 

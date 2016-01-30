@@ -159,7 +159,7 @@
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
-  background-color: #357ebd;
+  background-color: #000000;
   background-image: -webkit-linear-gradient(top, #428bca 0%, #357ebd 100%);
   background-image:         linear-gradient(to bottom, #428bca 0%, #357ebd 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff357ebd', GradientType=0);
@@ -288,7 +288,7 @@
 .list-group-item.active,
 .list-group-item.active:hover,
 .list-group-item.active:focus {
-  text-shadow: 0 -1px 0 #3071a9;
+  text-shadow: 0 -01px 0 #3071a9;
   background-image: -webkit-linear-gradient(top, #428bca 0%, #3278b3 100%);
   background-image:         linear-gradient(to bottom, #428bca 0%, #3278b3 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff3278b3', GradientType=0);

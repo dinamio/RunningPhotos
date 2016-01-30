@@ -30,13 +30,16 @@ import static org.junit.Assert.*;
 /**
  * Unit test for simple App.
  */
+@SuppressWarnings("SpringJavaAutowiringInspection")
 public class UserDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RoleDaoTest.class);
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private UserDao userDao;
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RoleDao roleDao;
 

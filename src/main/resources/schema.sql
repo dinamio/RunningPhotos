@@ -2,8 +2,7 @@
 id int primary key auto_increment,
 City varchar(50),
 Race_Date date,
-Race_Name varchar(50),
-photo VARCHAR(250));
+Race_Name varchar(50));
 
 create table Role(
 id int primary key auto_increment,

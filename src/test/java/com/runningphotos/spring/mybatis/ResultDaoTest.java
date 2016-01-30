@@ -5,37 +5,45 @@ package com.runningphotos.spring.mybatis;
  */
 
 import com.runningphotos.AbstractTest;
-import com.runningphotos.bom.*;
-import com.runningphotos.dao.*;
-import com.runningphotos.testdata.TestData;
+import com.runningphotos.bom.Distance;
+import com.runningphotos.bom.Race;
+import com.runningphotos.bom.Result;
+import com.runningphotos.bom.Runner;
+import com.runningphotos.dao.DistanceDao;
+import com.runningphotos.dao.RaceDao;
+import com.runningphotos.dao.ResultDao;
+import com.runningphotos.dao.RunnerDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Unit test for simple App.
  */
+@SuppressWarnings("SpringJavaAutowiringInspection")
 public class ResultDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(ResultDaoTest.class);
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private ResultDao resultDao;
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private DistanceDao distanceDao;
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RunnerDao runnerDao;
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RaceDao raceDao;
 

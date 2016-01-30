@@ -2388,7 +2388,7 @@ span.color-red {
 }
 .mainmenu > ul,
 .mainmenu .mainmenu-submenu-inner {
-  margin: 0;
+  margin: 0 auto;
 }
 .mainmenu > ul > li,
 .mainmenu .mainmenu-submenu-inner > li {

@@ -1,15 +1,18 @@
 package com.runningphotos.bom;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.util.Date;
 
 
 public class Race extends EntityWithName {
 
+    @NotEmpty
     private Date raceDate;
 
+    @NotBlank
     private String city;
-
-    private String photo;
 
     public Date getRaceDate() {
       return raceDate;
@@ -28,13 +31,5 @@ public class Race extends EntityWithName {
 
     public void setCity(String city) {
       this.city = city;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 }
