@@ -69,7 +69,7 @@ public class AdminController {
 
     private void saveImage(Race race, MultipartFile image) {
         try {
-            String pathToFile = "/races/img_"+new Date().getTime()+".jpeg";
+            String pathToFile = "/img_"+new Date().getTime()+".jpeg";
             File file = new File(path + pathToFile);
             FileUtils.writeByteArrayToFile(file,image.getBytes());
             race.setPhoto(pathToFile);
