@@ -26,24 +26,19 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Unit test for simple App.
  */
-@SuppressWarnings("SpringJavaAutowiringInspection")
 public class ResultDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(ResultDaoTest.class);
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private ResultDao resultDao;
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private DistanceDao distanceDao;
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RunnerDao runnerDao;
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RaceDao raceDao;
 

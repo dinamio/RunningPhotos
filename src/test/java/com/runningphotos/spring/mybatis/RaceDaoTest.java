@@ -19,15 +19,12 @@ import static org.junit.Assert.assertNotNull;
  */
 
 
-@SuppressWarnings("SpringJavaAutowiringInspection")
 public class RaceDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RaceDaoTest.class);
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RaceDao raceDao;
-
 
     @Test
     public void testRun(){
@@ -35,7 +32,6 @@ public class RaceDaoTest extends AbstractTest {
         testUpdate();
         deleteTest();
     }
-
 
     private void testInsert() {
         log.info("testing insert Race()...");
@@ -51,7 +47,6 @@ public class RaceDaoTest extends AbstractTest {
         log.info(races);
     }
 
-
     private void testUpdate() {
         log.info("testing update Race()...");
         List<Race> races = raceDao.selectAll();
@@ -65,7 +60,6 @@ public class RaceDaoTest extends AbstractTest {
         assertEquals(RACE_NAME_UPDATE, races.get(2).getName());
         log.info(races);
     }
-
 
     private void deleteTest() {
         log.info("testing delete Race()...");

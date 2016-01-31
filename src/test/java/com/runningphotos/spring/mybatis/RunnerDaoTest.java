@@ -23,16 +23,13 @@ import static org.junit.Assert.*;
 /**
  * Unit test for simple App.
  */
-@SuppressWarnings("SpringJavaAutowiringInspection")
 public class RunnerDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RunnerDaoTest.class);
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RunnerDao runnerDao;
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private UserDao userDao;
 

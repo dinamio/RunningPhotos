@@ -19,12 +19,10 @@ import static org.junit.Assert.assertEquals;
 /**
  * Unit test for simple App.
  */
-@SuppressWarnings("SpringJavaAutowiringInspection")
 public class RoleDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RoleDaoTest.class);
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RoleDao roleDao;
 

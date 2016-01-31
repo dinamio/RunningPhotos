@@ -21,18 +21,14 @@ import static org.junit.Assert.assertNotNull;
  * Created by zOpa on 22.12.2015.
  */
 
-@SuppressWarnings("SpringJavaAutowiringInspection")
 public class RacePhotoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RacePhotoTest.class);
 
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RacePhotoDao racePhotoDao;
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private UserDao userDao;
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RaceDao raceDao;
 
