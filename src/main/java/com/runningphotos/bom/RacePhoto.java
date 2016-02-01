@@ -17,7 +17,16 @@ public class RacePhoto extends Entity {
     public String getPath() {
       return path;
     }
-
+// TODO: Delete
+    @Override
+    public String toString() {
+        return "RacePhoto{" +
+                "path='" + path + '\'' +
+                ", race=" + race +
+                ", user=" + user +
+                ", runnersMarked=" + runnersMarked +
+                '}';
+    }
 
     public void setPath(String path) {
       this.path = path;

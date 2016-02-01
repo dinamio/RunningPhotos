@@ -11,24 +11,36 @@
         <collection property="runnersMarked" resultMap="RunnerMap"/>
     </resultMap>
     <resultMap type="com.runningphotos.bom.Runner" id="RunnerMap">
-        <id column="runner_id" property="id"  />
-        <result column="name" property="name"/>
-        <result column="surname" property="surname"/>
+    <id column="runner_id" property="id"  />
+    <result column="name" property="name"/>
+    <result column="surname" property="surname"/>
+</resultMap>
+    <resultMap type="com.runningphotos.bom.User" id="UserMap">
+        <id column="user_id" property="id"  />
     </resultMap>
 
-<insert id="insert" parameterType="com.runningphotos.bom.RacePhoto" >
+
+    <insert id="insert" parameterType="com.runningphotos.bom.RacePhoto" >
 INSERT INTO RacePhoto
 (Path,Race_id,Author_id)
 VALUES
 (#{path},#{race.id},#{user.id})
 </insert>
     <select id="selectAll" resultMap="RacePhotoMap">
-        SELECT rp.id,rp.path,rp.race_id,rp.author_id,r.id as runner_id,r.name,r.surname  FROM RacePhoto rp
-        Left join Runners_on_photo rop
-        on rp.id=rop.photo_id
-        left join runner r
-        on r.id = rop.runner_id
+        SELECT rp.id,rp.path,rp.race_id,rp.author_id,r.id as runner_id,r.name,r.surname FROM RacePhoto rp
+   Left join Runners_on_photo rop
+   on rp.id=rop.photo_id
+   left join runner r
+   on r.id = rop.runner_id
     </select>
+    <select id="getAllAuthorPhotos" resultMap="RacePhotoMap">
+    SELECT rp.id,rp.path,rp.race_id,rp.author_id,r.id as runner_id,r.name,r.surname FROM RacePhoto rp
+    Left join Runners_on_photo rop
+    on rp.id=rop.photo_id
+    left join runner r
+    on r.id = rop.runner_id
+    WHERE Author_id=#{id}
+</select>
     <select id="selectById" parameterType="int" resultMap="RacePhotoMap">
         SELECT * FROM RacePhoto
         WHERE id=#{id}
@@ -39,6 +51,6 @@ VALUES
     </update>
 
     <delete id="delete" parameterType="com.runningphotos.bom.RacePhoto">
-        DELETE  FROM RacePhoto where id = #{id}
+        Delete from RacePhoto where id=#{id}
     </delete>
 </mapper>

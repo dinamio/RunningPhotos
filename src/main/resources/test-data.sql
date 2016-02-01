@@ -7,3 +7,9 @@ INSERT INTO Race (city,race_date,race_name) values ('Kiev','2016-05-05','New Yea
 INSERT INTO Runner (name,surname,sex,user_id) values ('Michael','Dobrynin','MALE',2)
 INSERT INTO Distance (name,length) values ('marathon',42)
 INSERT INTO Distance (name,length) values ('half marathon',21)
+INSERT INTO RacePhoto (Path, Author_id, Race_id) values ('race://photo/path',1,1)
+INSERT INTO Runners_on_photo (Runner_id, Photo_id) values (1,1)
+
+
+
+

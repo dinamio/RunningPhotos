@@ -46,7 +46,7 @@ create table Runners_on_photo(
 Runner_id int,
 foreign key (Runner_id) references Runner(id),
 Photo_id int,
-foreign key (Photo_id) references RacePhoto(id)
+foreign key (Photo_id) references RacePhoto(id) on delete CASCADE
 );
 
 create table Distance (
