@@ -2,17 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://mybatis.org/schema/mybatis-spring
+        http://mybatis.org/schema/mybatis-spring
         http://mybatis.org/schema/mybatis-spring.xsd
-        http://www.springframework.org/schema/jdbc
-        http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.0.xsd"
-        >
-         <context:component-scan base-package="com.runningphotos" />
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+            <property name="maxUploadSize" value="-1" />
+        </bean>
+
+        <context:component-scan base-package="com.runningphotos" />
 
        <mybatis:scan base-package="com.runningphotos.dao" />
 
@@ -22,8 +23,8 @@
               <property name="mapperLocations" value="classpath*:com/runningphotos/mybatis/mapper/*.xml"/>
        </bean>
 
-       <jdbc:embedded-database id="dataSource" type="H2" >
-              <jdbc:script location="classpath:schema.sql"/>
-              <jdbc:script location="classpath:test-data.sql"/>
-       </jdbc:embedded-database>
+        <bean id="raceValidator" class="com.runningphotos.service.validator.RaceValidator"/>
+
+       <context:property-placeholder location="classpath:application.properties"/>
+
 </beans>

@@ -14,4 +14,6 @@ public interface ResultDao extends MyBatisDao<Result> {
     List<Result> getAllRunnerResults(Runner runner);
 
     List<Result> getAllRaceResults(Race race);
+
+    Result selectResultByRaseAndNamber(Race race, String number);
 }

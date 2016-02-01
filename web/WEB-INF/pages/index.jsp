@@ -46,6 +46,35 @@
 </div>
 <!-- End Homepage Slider -->
 
+<!-- Search Form -->
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+      </div>
+      <div class="search-label col-sm-6">
+        <strong>Enter race and number:</strong>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+      </div>
+          <form id="search-form" action="photos">
+              <div class="col-md-4 col-sm-6">
+                <input type="text"  name="racename" class="form-control font-stl" id="race-input-search" value="" placeholder="Input race">
+              </div>
+              <div class="col-md-3 col-sm-4">
+                <input type="text" name="number" class="form-control font-stl" id="number-input-search" value="" placeholder="Input number">
+              </div>
+              <div class="col-md-2 col-sm-2">
+                <a id="search-btn" href="#"  class="sbtn sbtn-d btn btn-orange">Search</a>
+              </div>
+          </form>
+    </div>
+  </div>
+</div>
+<!-- End Homepage Search Form -->
 <!-- Press Coverage -->
 <div class="section">
   <div class="container">

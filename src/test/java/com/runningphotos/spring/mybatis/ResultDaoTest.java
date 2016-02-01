@@ -4,27 +4,29 @@ package com.runningphotos.spring.mybatis;
  * Created by Oleg on 23.12.2015.
  */
 
-import com.runningphotos.bom.*;
-import com.runningphotos.dao.*;
-import com.runningphotos.testdata.TestData;
+import com.runningphotos.AbstractTest;
+import com.runningphotos.bom.Distance;
+import com.runningphotos.bom.Race;
+import com.runningphotos.bom.Result;
+import com.runningphotos.bom.Runner;
+import com.runningphotos.dao.DistanceDao;
+import com.runningphotos.dao.RaceDao;
+import com.runningphotos.dao.ResultDao;
+import com.runningphotos.dao.RunnerDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Unit test for simple App.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:applicationContext.xml")
-public class ResultDaoTest extends TestData {
+public class ResultDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(ResultDaoTest.class);
 

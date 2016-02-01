@@ -1,34 +1,30 @@
 package com.runningphotos.spring.mybatis;
 
+import com.runningphotos.AbstractTest;
 import com.runningphotos.bom.Race;
 import com.runningphotos.dao.RaceDao;
-import com.runningphotos.testdata.TestData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Overdark on 28.12.2015.
  * Updatet by Overdark on 03.01.2016
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:applicationContext.xml")
-public class RaceDaoTest extends TestData {
+
+public class RaceDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(RaceDaoTest.class);
 
     @Autowired
     private RaceDao raceDao;
-
 
     @Test
     public void testRun(){
@@ -36,7 +32,6 @@ public class RaceDaoTest extends TestData {
         testUpdate();
         deleteTest();
     }
-
 
     private void testInsert() {
         log.info("testing insert Race()...");
@@ -52,7 +47,6 @@ public class RaceDaoTest extends TestData {
         log.info(races);
     }
 
-
     private void testUpdate() {
         log.info("testing update Race()...");
         List<Race> races = raceDao.selectAll();
@@ -66,7 +60,6 @@ public class RaceDaoTest extends TestData {
         assertEquals(RACE_NAME_UPDATE, races.get(2).getName());
         log.info(races);
     }
-
 
     private void deleteTest() {
         log.info("testing delete Race()...");

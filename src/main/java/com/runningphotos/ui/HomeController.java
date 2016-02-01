@@ -22,11 +22,7 @@ public class HomeController {
     @RequestMapping(value = "/")
     public ModelAndView getHome()
     {
-        List<Runner> runners = runnerDao.selectAll();
-   //return back to index.jsp
         ModelAndView model = new ModelAndView("index");
-        model.addObject("runner", runners.get(0));
-
         return model;
     }
 }
