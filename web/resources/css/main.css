@@ -2393,6 +2393,7 @@ span.color-red {
 .mainmenu > ul > li,
 .mainmenu .mainmenu-submenu-inner > li {
   display:inline-block;
+  position: relative;
   *display: inline;
 }
 .mainmenu > ul > li > a,
@@ -2429,6 +2430,10 @@ span.color-red {
   position: absolute;
   z-index: 999;
   font-size:14px;
+  background: #FFFFFF;      /*  <<<<< UPDATE*/
+  right: 0;
+  left: 0;
+
 }
 .mainmenu .mainmenu-submenu-inner > div {
   width: 33%;
@@ -2444,6 +2449,7 @@ span.color-red {
 }
 .mainmenu .mainmenu-submenu-inner > div a {
   line-height: 2em;
+  color: #000000;                            /*  <<<<< UPDATE*/
 }
 .mainmenu-open .mainmenu-submenu {
   display: block;
@@ -2507,6 +2513,19 @@ span.color-red {
     float: none;
     padding: 0;
   }
+}
+
+.has-submenu:hover .mainmenu-submenu{
+   display:block;
+   color: #000000;
+ }
+.has-submenu .mainmenu-submenu  a:hover{
+  color: #4F8DB3;
+  text-decoration: none;
+}
+
+.mainmenu ul .active > a:hover{
+  color: #4F8DB3;
 }
 /*--------------------------------------------------------------------------
 +	Extras Menu (Cart, Language, Login) Style

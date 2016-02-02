@@ -92,7 +92,7 @@
           <ul>
 
                 <li class="logo-wrapper"><a href="/"><img src="<c:url value="/resources/img/mPurpose-logo.png"/>" alt="Multipurpose Twitter Bootstrap Template"></a></li>
-          <li class="active">
+                <li class="active">
                     <a href="/"><spring:message code="homepage.home"/></a>
                 </li>
 
@@ -126,12 +126,12 @@
                         </div>
                     </li>
                     <li class="has-submenu active">
-                        <a href="#"><spring:message code="homepage.search"/></a>
+                        <a href="#"><spring:message code="homepage.change"/></a>
                         <div class="mainmenu-submenu">
                             <div class="mainmenu-submenu-inner">
                                 <div>
                                     <ul>
-                                        <li><a href="index.html"><Strong>Races</Strong></a></li>,
+                                        <li><a href="index.html"><Strong>Races</Strong></a></li>
                                         <li><a href="index.html"><Strong>Results</Strong></a></li>
                                     </ul>
                                 </div>
