@@ -1,7 +1,9 @@
 
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -53,22 +55,33 @@
         <ul>
           <li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>3 items</b></a></li>
           <li>
-            <div class="dropdown choose-country">
-              <a class="#" data-toggle="dropdown" href="#"><img src="<c:url value="/resources/img/flags/gb.png"/>" alt="Great Britain"> UK</a>
-              <ul class="dropdown-menu" role="menu">
-                <li role="menuitem"><a href="#"><img src="<c:url value="/resources/img/flags/us.png"/>" alt="United States"> US</a></li>
-                <li role="menuitem"><a href="#"><img src="<c:url value="/resources/img/flags/de.png"/>" alt="Germany"> DE</a></li>
-                <li role="menuitem"><a href="#"><img src="<c:url value="/resources/img/flags/es.png"/>" alt="Spain"> ES</a></li>
-              </ul>
-            </div>
+              <spring:message var="lang" code="language"/>
+              <c:choose>
+                  <c:when test="${lang == 'en'}">
+                      <div class="dropdown choose-country">
+                          <a class="#" data-toggle="dropdown" href="?lang=en"><img src="<c:url value="/resources/img/flags/gb.png"/>" alt="Great Britain"> EN</a>
+                          <ul class="dropdown-menu" role="menu">
+                              <li role="menuitem"><a href="?lang=ru"><img src="<c:url value="/resources/img/flags/ru.png"/>" alt="Russia"> RU</a></li>
+                          </ul>
+                      </div>
+                  </c:when>
+                  <c:otherwise>
+                      <div class="dropdown choose-country">
+                          <a class="#" data-toggle="dropdown" href="?lang=ru"><img src="<c:url value="/resources/img/flags/ru.png"/>" alt="Great Britain"> RU</a>
+                          <ul class="dropdown-menu" role="menu">
+                              <li role="menuitem"><a href="?lang=en"><img src="<c:url value="/resources/img/flags/gb.png"/>" alt="English"> EN</a></li>
+                          </ul>
+                      </div>
+                  </c:otherwise>
+              </c:choose>
           </li>
           <c:choose>
             <c:when test="${pageContext.request.userPrincipal.name != null}">
-              Welcome, <strong>${pageContext.request.userPrincipal.name}</strong>
-              <li><a href="<c:url value="/logout" />" >Logout</a></li>
+              <spring:message code="homepage.welcome"/>, <strong>${pageContext.request.userPrincipal.name}</strong>
+              <li><a href="<c:url value="/logout" />" ><spring:message code="homepage.logout"/></a></li>
             </c:when>
             <c:otherwise>
-              <li><a href="<c:url value="/login"/>">Login</a></li>
+              <li><a href="<c:url value="/login"/>"><spring:message code="homepage.login"/></a></li>
             </c:otherwise>
           </c:choose>
 
@@ -80,27 +93,27 @@
 
                 <li class="logo-wrapper"><a href="/"><img src="<c:url value="/resources/img/mPurpose-logo.png"/>" alt="Multipurpose Twitter Bootstrap Template"></a></li>
           <li class="active">
-                    <a href="/">Home</a>
+                    <a href="/"><spring:message code="homepage.home"/></a>
                 </li>
 
                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Photographer','Runner')">
                 <li class="active">
-                    <a href="credits.html">Buy Photos</a>
+                    <a href="credits.html"><spring:message code="homepage.buyPhotos"/></a>
                 </li>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
                 <li class="active">
-                    <a href="/results">Results</a>
+                    <a href="/results"><spring:message code="homepage.results"/></a>
                 </li>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('Admin','Operator')">
                     <li class="active">
-                        <a href="credits.html">Tag Photos</a>
+                        <a href="credits.html"><spring:message code="homepage.results"/></a>
                     </li>
                   </sec:authorize>
                  <sec:authorize access="hasRole('Admin')">
                 <li class= "has-submenu active">
-                    <a href="#">Add</a>
+                    <a href="#"><spring:message code="homepage.add"/></a>
                     <div class="mainmenu-submenu">
                         <div class="mainmenu-submenu-inner">
                             <div>
@@ -113,7 +126,7 @@
                         </div>
                     </li>
                     <li class="has-submenu active">
-                        <a href="#">Change</a>
+                        <a href="#"><spring:message code="homepage.search"/></a>
                         <div class="mainmenu-submenu">
                             <div class="mainmenu-submenu-inner">
                                 <div>

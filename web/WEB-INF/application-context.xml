@@ -7,8 +7,7 @@
 
        <import resource="database-context.xml"/>
 
-
-
+        <import resource="localization-context.xml"/>
 
 
 </beans>

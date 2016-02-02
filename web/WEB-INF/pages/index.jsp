@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <jsp:include page="template/header.jsp"/>
 <!-- Homepage Slider -->
 <div class="homepage-slider">
@@ -53,7 +54,7 @@
       <div class="col-sm-2">
       </div>
       <div class="search-label col-sm-6">
-        <strong>Enter race and number:</strong>
+        <strong><spring:message code="homepage.searchFormLabel"/></strong>
       </div>
 
     </div>
@@ -62,13 +63,13 @@
       </div>
           <form id="search-form" action="photos">
               <div class="col-md-4 col-sm-6">
-                <input type="text"  name="racename" class="form-control font-stl" id="race-input-search" value="" placeholder="Input race">
+                <input type="text"  name="racename" class="form-control font-stl" id="race-input-search" value="" placeholder="<spring:message code="homepage.enterRace"/>" >
               </div>
               <div class="col-md-3 col-sm-4">
-                <input type="text" name="number" class="form-control font-stl" id="number-input-search" value="" placeholder="Input number">
+                <input type="text" name="number" class="form-control font-stl" id="number-input-search" value="" placeholder="<spring:message code="homepage.enterNumber"/>">
               </div>
               <div class="col-md-2 col-sm-2">
-                <a id="search-btn" href="#"  class="sbtn sbtn-d btn btn-orange">Search</a>
+                <a id="search-btn" href="#"  class="sbtn sbtn-d btn btn-orange"><spring:message code="homepage.search"/></a>
               </div>
           </form>
     </div>

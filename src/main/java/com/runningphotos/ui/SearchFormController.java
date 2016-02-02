@@ -1,7 +1,6 @@
 package com.runningphotos.ui;
 
 import com.runningphotos.bom.Race;
-import com.runningphotos.bom.Result;
 import com.runningphotos.dao.RaceDao;
 import com.runningphotos.dao.ResultDao;
 import org.springframework.beans.factory.annotation.Autowired;
