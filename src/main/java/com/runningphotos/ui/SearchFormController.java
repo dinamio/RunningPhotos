@@ -56,7 +56,7 @@ public class SearchFormController
 	private List<Race> searchRace(String raceName)
 	{
 		List<String> result = new ArrayList<String>();
-		String raceCriteria[] = raceName.split("\\W");
+		String raceCriteria[] = raceName.split(" ");
 		for(String criteria : raceCriteria ){
 			result.add("%"+criteria+"%");
 		}

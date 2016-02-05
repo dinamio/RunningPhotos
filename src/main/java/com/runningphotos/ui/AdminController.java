@@ -59,7 +59,9 @@ public class AdminController {
         if (errors.hasErrors()) {
             model.addAllObjects(errors.getModel());
         } else {
-            saveImage(race,image);
+            if(image.getSize()>0) {
+                saveImage(race, image);
+            }
             raceDao.insert(race);
             model.addObject("race", new Race());
             model.addObject("msg", "Race was added successfully!");
