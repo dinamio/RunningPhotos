@@ -1,5 +1,3 @@
-
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
@@ -53,7 +51,12 @@
     <div class="menuextras">
       <div class="extras">
         <ul>
-          <li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>3 items</b></a></li>
+        <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
+          <li class="active">
+              <i class="glyphicon glyphicon-shopping-cart icon-white"></i>
+                    <a href="/basket"><spring:message code="homepage.basket"/></a>
+                </li>
+            </sec:authorize>
           <li>
               <spring:message var="lang" code="language"/>
               <c:choose>
@@ -95,10 +98,9 @@
                 <li class="active">
                     <a href="/"><spring:message code="homepage.home"/></a>
                 </li>
-
                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Photographer','Runner')">
                 <li class="active">
-                    <a href="credits.html"><spring:message code="homepage.buyPhotos"/></a>
+                    <a href="/buyPhotos"><spring:message code="homepage.buyPhotos"/></a>
                 </li>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
@@ -158,7 +160,6 @@
     </div>
 </body>
 </html>
-
         </nav>
     </div>
 </div>

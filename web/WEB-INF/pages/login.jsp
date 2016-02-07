@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <jsp:include page="template/header.jsp"/>
 
         <!-- Page Title -->
@@ -38,16 +40,22 @@
 									<label class="checkbox">
 										<input type="checkbox" name="remember-me"> Remember me
 									</label>
-									<a href="page-password-reset.html" class="forgot-password">Forgot password?</a>
+
+                                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
+									<a href="/forgotPassword" class="active"><spring:message code="homepage.forgotPassword"/></a>
+								 </sec:authorize>
+
 									<button type="submit" class="btn pull-right">Login</button>
 									<div class="clearfix"></div>
 								</div>
 								<input type="hidden" name="${_csrf.parameterName}"
 									   value="${_csrf.token}" />
 							</form>
-							<div class="not-member">
-								<p>Not a member? <a href="page-register.html">Register here</a></p>
-							</div>
+							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
+								<li class="active">
+									<p>Not a member? <a href="/register"><spring:message code="homepage.register"/></a></p>
+								</li>
+							</sec:authorize>
 						</div>
 					</div>
 					<div class="col-sm-3"></div>
