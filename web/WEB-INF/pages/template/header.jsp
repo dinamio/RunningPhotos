@@ -36,6 +36,7 @@
   <script src="<c:url value="/resources/js/template.js"/>"></script>
   <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <script src="<c:url value="/resources/js/template.js"/>"></script>
+
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 
 </head>
@@ -94,9 +95,9 @@
       <nav id="mainmenu" class="mainmenu">
           <ul>
 
-                <li class="logo-wrapper"><a href="/"><img src="<c:url value="/resources/img/mPurpose-logo.png"/>" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+                <li class="logo-wrapper"><a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/mPurpose-logo.png"/>" alt="Multipurpose Twitter Bootstrap Template"></a></li>
                 <li class="active">
-                    <a href="/"><spring:message code="homepage.home"/></a>
+                    <a href="<c:url value="/"/>"><spring:message code="homepage.home"/></a>
                 </li>
                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Photographer','Runner')">
                 <li class="active">
@@ -105,12 +106,12 @@
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
                 <li class="active">
-                    <a href="/results"><spring:message code="homepage.results"/></a>
+                    <a href="<c:url value="/results"/>"><spring:message code="homepage.results"/></a>
                 </li>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('Admin','Operator')">
                     <li class="active">
-                        <a href="credits.html"><spring:message code="homepage.results"/></a>
+                        <a href="credits.html"><spring:message code="homepage.tagPhotos"/></a>
                     </li>
                   </sec:authorize>
                  <sec:authorize access="hasRole('Admin')">
