@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by Tensa on 06.02.2016.
  */
 @Controller
-public class forgotPasswordController {
+public class ForgotPasswordController {
     @RequestMapping(value = "/forgotPassword")
     public ModelAndView getForgotPassword()
     {
