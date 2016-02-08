@@ -95,7 +95,7 @@
       <nav id="mainmenu" class="mainmenu">
           <ul>
 
-                <li class="logo-wrapper"><a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/mPurpose-logo.png"/>" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+                <li class="logo-wrapper"><a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/runsnap_logo.png"/>" alt="Multipurpose Twitter Bootstrap Template" width="400px"></a></li>
                 <li class="active">
                     <a href="<c:url value="/"/>"><spring:message code="homepage.home"/></a>
                 </li>
