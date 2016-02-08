@@ -25,6 +25,8 @@
         </property>
     </bean>
 
+    <context:property-placeholder location="classpath:application.properties"/>
+
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="lang" />

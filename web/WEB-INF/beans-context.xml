@@ -25,6 +25,6 @@
 
         <bean id="raceValidator" class="com.runningphotos.service.validator.RaceValidator"/>
 
-       <context:property-placeholder location="classpath:application.properties"/>
+         <context:property-placeholder location="classpath:application.properties"/>
 
 </beans>
