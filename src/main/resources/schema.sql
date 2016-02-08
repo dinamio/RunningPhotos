@@ -7,7 +7,7 @@ photo VARCHAR(250));
 
 create table Role(
 id int primary key auto_increment,
-name varchar(30)
+name VARCHAR(30)
 );
 
 create table User(

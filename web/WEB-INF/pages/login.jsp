@@ -46,7 +46,7 @@
 									   value="${_csrf.token}" />
 							</form>
 							<div class="not-member">
-								<p>Not a member? <a href="page-register.html">Register here</a></p>
+								<p>Not a member? <a href="/register">Register here</a></p>
 							</div>
 						</div>
 					</div>

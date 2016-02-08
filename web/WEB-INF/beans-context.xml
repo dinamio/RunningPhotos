@@ -17,6 +17,7 @@
 
        <mybatis:scan base-package="com.runningphotos.dao" />
 
+
        <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
               <property name="dataSource" ref="dataSource" />
               <property name="configLocation" value="classpath:com/runningphotos/mybatis/mybatis-config.xml" />
@@ -24,6 +25,8 @@
        </bean>
 
         <bean id="raceValidator" class="com.runningphotos.service.validator.RaceValidator"/>
+    <bean id="registerValidator" class="com.runningphotos.service.validator.RegisterValidator"/>
+    <bean id="emailValidator" class="com.runningphotos.service.validator.EmailValidator"/>
 
        <context:property-placeholder location="classpath:application.properties"/>
 

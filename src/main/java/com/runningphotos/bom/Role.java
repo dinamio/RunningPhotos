@@ -1,10 +1,12 @@
 package com.runningphotos.bom;
 
 
-public class Role extends EntityWithName{
+public enum Role {
+    PHOTOGRAPHER(1),RUNNER(2),OPERATOR(3),ADMIN(4);
 
-    @Override
-    public String toString() {
-        return "[" + getId() + ","+getName()+"]";
-    }
+    private final int id;
+
+    Role(int id) {this.id=id;}
+    public int getId(){return id;}
+
 }

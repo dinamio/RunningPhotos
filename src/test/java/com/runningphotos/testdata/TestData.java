@@ -1,6 +1,7 @@
 package com.runningphotos.testdata;
 
 
+import com.runningphotos.bom.Role;
 import com.runningphotos.bom.Sex;
 import com.runningphotos.bom.Time;
 
@@ -27,6 +28,7 @@ public class TestData {
 
     public static final String USER_MAIL = "ivani@ukr.net";
 
+
 //
     public static final String USERNAME_UPDATE = "Andrey";
 
@@ -35,6 +37,8 @@ public class TestData {
     public static final String USER_LOGIN_UPDATE = "Andri";
 
     public static final String USER_CITY_UPDATE = "Kherson";
+
+
 
 
     public static final Date USER_BIRTHDAY_UPDATE = new Date();

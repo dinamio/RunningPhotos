@@ -7,22 +7,12 @@ package com.runningphotos.spring.mybatis;
 import com.runningphotos.AbstractTest;
 import com.runningphotos.bom.Role;
 import com.runningphotos.bom.User;
-import com.runningphotos.dao.RoleDao;
 import com.runningphotos.dao.UserDao;
-import com.runningphotos.testdata.TestData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -32,14 +22,10 @@ import static org.junit.Assert.*;
  */
 public class UserDaoTest extends AbstractTest {
 
-    private static Log log = LogFactory.getLog(RoleDaoTest.class);
+    private static Log log = LogFactory.getLog(UserDaoTest.class);
 
     @Autowired
     private UserDao userDao;
-
-    @Autowired
-    private RoleDao roleDao;
-
 
     @Test
     public void testRun(){
@@ -63,7 +49,7 @@ public class UserDaoTest extends AbstractTest {
         assertEquals(dateFormat.format(USER_BIRTHDAY), dateFormat.format(user.getBirthDate()));
         assertEquals(USER_CITY, user.getCity());
         assertEquals(USER_MAIL,user.getMail());
-        assertEquals(user.getRole().getId(),user.getRole().getId());
+        assertEquals(user.getRole(),Role.RUNNER);
         log.info(users);
     }
 
@@ -74,15 +60,16 @@ public class UserDaoTest extends AbstractTest {
         user.setId(users.get(2).getId());
         userDao.update(user);
          users = userDao.selectAll();
-        System.out.println(users.get(2) + " second Test");
+        System.out.println(users.get(2)+" "+user.getRole().getId()+" " + " second Test");
         assertEquals(USERNAME_UPDATE, users.get(2).getName());
         assertEquals(USER_SURNAME_UPDATE, users.get(2).getSurname());
         assertEquals(USER_LOGIN_UPDATE, users.get(2).getLogin());
         assertEquals(dateFormat.format(USER_BIRTHDAY_UPDATE), dateFormat.format(users.get(2).getBirthDate()));
         assertEquals(USER_CITY_UPDATE, users.get(2).getCity());
         assertEquals(USER_MAIL_UPDATE,users.get(2).getMail());
-        assertEquals(user.getRole().getId(),users.get(2).getRole().getId());
+        assertEquals(user.getRole(),Role.PHOTOGRAPHER);
         log.info(users);
+
     }
 
     private void deleteTest(){
@@ -102,7 +89,9 @@ public class UserDaoTest extends AbstractTest {
         user.setCity(USER_CITY_UPDATE);
         user.setMail(USER_MAIL_UPDATE);
         //Role userRole = roleDao.selectAllRoles().get(0);
-        user.setRole(roleDao.selectAllRoles().get(0));
+        //user.setRole(roleDao.selectAllRoles().get(0));
+        Role role = Role.PHOTOGRAPHER;
+        user.setRole(role);
         return user;
     }
     private User fillUser(){
@@ -114,7 +103,10 @@ public class UserDaoTest extends AbstractTest {
         user.setCity(USER_CITY);
         user.setMail(USER_MAIL);
         //Role userRole = roleDao.selectAllRoles().get(0);
-        user.setRole(roleDao.selectAllRoles().get(0));
+        //user.setRole(roleDao.selectAllRoles().get(0));
+        Role role = Role.RUNNER;
+        user.setRole(role);
+
         return user;
     }
 
