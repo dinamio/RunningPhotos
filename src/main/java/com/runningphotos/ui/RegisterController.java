@@ -55,12 +55,12 @@ public class RegisterController {
         String confirmPassword = request.getParameter("confirmPassword");
         ModelAndView model = new ModelAndView("/register");
         registerValidator.validate(user, errors);
-            model.addAllObjects(errors.getModel());
-            if(confirmPassword.equals(user.getPassword()))
+        model.addAllObjects(errors.getModel());
+        if(confirmPassword.equals(user.getPassword()))
             userDao.insert(user);
-            else
-                errors.rejectValue("password","password.sd","Password doesn't match");
-            model.addObject("user", new User());
+        else
+            errors.rejectValue("password","password.sd","Password doesn't match");
+        model.addObject("user", new User());
         if(!errors.hasErrors())
             model.addObject("msg", "Registration successfully completed");
         return model;

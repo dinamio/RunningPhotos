@@ -38,7 +38,11 @@
 									<label class="checkbox">
 										<input type="checkbox" name="remember-me"> Remember me
 									</label>
-									<a href="page-password-reset.html" class="forgot-password">Forgot password?</a>
+
+                                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
+									<a href="/forgotPassword" class="active"><spring:message code="homepage.forgotPassword"/></a>
+								 </sec:authorize>
+
 									<button type="submit" class="btn pull-right">Login</button>
 									<div class="clearfix"></div>
 								</div>
@@ -46,7 +50,7 @@
 									   value="${_csrf.token}" />
 							</form>
 							<div class="not-member">
-								<p>Not a member? <a href="/register">Register here</a></p>
+								<p>Not a member? <a href="page-register.html">Register here</a></p>
 							</div>
 						</div>
 					</div>
