@@ -101,7 +101,7 @@
                 </li>
                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Photographer','Runner')">
                 <li class="active">
-                    <a href="/buyPhotos"><spring:message code="homepage.buyPhotos"/></a>
+                    <a href="<c:url value="/buyPhotos"/>"><spring:message code="homepage.buyPhotos"/></a>
                 </li>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
