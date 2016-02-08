@@ -134,7 +134,7 @@
                             <div class="mainmenu-submenu-inner">
                                 <div>
                                     <ul>
-                                        <li><a href="index.html"><Strong>Races</Strong></a></li>
+                                        <li><a href="<c:url value="/admin/updateRace"/>"><Strong>Races</Strong></a></li>
                                         <li><a href="index.html"><Strong>Results</Strong></a></li>
                                     </ul>
                                 </div>

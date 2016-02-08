@@ -48,12 +48,15 @@ public class AdminController {
     public ModelAndView openAddRace() {
         ModelAndView model = new ModelAndView("admin/addRace");
         model.addObject("race",new Race());
+        model.addObject("pLabel","addracepadge.addRace");
         return model;
     }
+
 
     @RequestMapping(value = "/addRace", method = RequestMethod.POST)
     public ModelAndView addRace(Race race, BindingResult errors,
                                 @RequestParam(value = "race-photo", required = false) MultipartFile image) {
+
         ModelAndView model = new ModelAndView("admin/addRace");
         raceValidator.validate(race,errors);
         if (errors.hasErrors()) {
@@ -65,11 +68,50 @@ public class AdminController {
             raceDao.insert(race);
             model.addObject("race", new Race());
             model.addObject("msg", "Race was added successfully!");
+            model.addObject("pLabel","addracepadge.addRace");
         }
         return model;
     }
 
-    private void saveImage(Race race, MultipartFile image) {
+
+    @RequestMapping(value = "/updateRace", method = RequestMethod.GET)
+    public ModelAndView openUpdateRace() {
+        ModelAndView model = new ModelAndView("admin/addRace");
+        model.addObject("race",new Race());
+        model.addObject("races",raceDao.selectAll());
+        model.addObject("pLabel","addracepadge.updateRace");
+        return model;
+    }
+
+
+    @RequestMapping(value = "/updateRace", method = RequestMethod.POST)
+    public ModelAndView updateRace(Race race, BindingResult errors,
+                                @RequestParam(value = "race-photo", required = false) MultipartFile image) {
+        ModelAndView model = new ModelAndView("admin/addRace");
+        raceValidator.validate(race,errors);
+        if (errors.hasErrors()) {
+            model.addAllObjects(errors.getModel());
+        } else {
+            if(!image.isEmpty()) {
+                saveImage(race, image);
+            }
+            raceDao.update(race);
+            model.addObject("race", race);
+            model.addObject("races",raceDao.selectAll());
+            model.addObject("msg", "Race was updated successfully!");
+            model.addObject("pLabel","addracepadge.updateRace");
+        }
+        return model;
+    }
+
+
+    @RequestMapping(value = "/getRaceById", method = RequestMethod.GET)
+    public @ResponseBody Race getRace(@RequestParam String raceId) {
+        return raceDao.selectById(Integer.parseInt(raceId));
+    }
+
+
+        private void saveImage(Race race, MultipartFile image) {
         try {
             String pathToFile = "/img_"+new Date().getTime()+".jpeg";
             File file = new File(path + pathToFile);
