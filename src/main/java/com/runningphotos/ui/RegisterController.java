@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +50,7 @@ public class RegisterController {
         return model;
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView getNewUser(@Valid User user, BindingResult errors,HttpServletRequest request) {
+    public ModelAndView getNewUser(User user, BindingResult errors,HttpServletRequest request) {
         String confirmPassword = request.getParameter("confirmPassword");
         ModelAndView model = new ModelAndView("/register");
         registerValidator.validate(user, errors);

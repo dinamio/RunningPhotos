@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <jsp:include page="template/header.jsp"/>
 
         <!-- Page Title -->
@@ -50,7 +52,7 @@
 									   value="${_csrf.token}" />
 							</form>
 							<div class="not-member">
-								<p>Not a member? <a href="page-register.html">Register here</a></p>
+								<p>Not a member? <a href="<c:url value="/register"/>">Register here</a></p>
 							</div>
 						</div>
 					</div>
