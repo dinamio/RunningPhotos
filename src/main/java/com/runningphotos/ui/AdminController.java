@@ -44,6 +44,33 @@ public class AdminController {
         }
     }
 
+    @RequestMapping(value = "/tagPhotos", method = RequestMethod.GET)
+    public ModelAndView openTagPhotos() {
+        ModelAndView model = new ModelAndView("admin/tagPhotos");
+        return model;
+    }
+
+    @RequestMapping(value = "/changeResults", method = RequestMethod.GET)
+    public ModelAndView openChangeResults() {
+        ModelAndView model = new ModelAndView("admin/changeResults");
+        model.addObject("results",new Race());
+        return model;
+    }
+
+    @RequestMapping(value = "/changeRace", method = RequestMethod.GET)
+    public ModelAndView openСhangeRace() {
+        ModelAndView model = new ModelAndView("admin/changeRace");
+        model.addObject("race",new Race());
+        return model;
+    }
+
+    @RequestMapping(value = "/addResults", method = RequestMethod.GET)
+    public ModelAndView openAddResults() {
+        ModelAndView model = new ModelAndView("admin/addResults");
+        model.addObject("results",new Race());
+        return model;
+    }
+
     @RequestMapping(value = "/addRace", method = RequestMethod.GET)
     public ModelAndView openAddRace() {
         ModelAndView model = new ModelAndView("admin/addRace");

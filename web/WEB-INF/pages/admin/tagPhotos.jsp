@@ -1,16 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: Tensa
-  Date: 05.02.2016
-  Time: 15:25
+  Date: 09.02.2016
+  Time: 22:50
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:include page="../template/header.jsp"/>
 <html>
 <head>
-  <title>Results</title>
+    <title>Tag Photos</title>
 </head>
 <body>
-<b2>RESULTS</b2>
+<h2>Tag photos</h2>
 </body>
 </html>
+<jsp:include page="../template/footer.jsp"/>

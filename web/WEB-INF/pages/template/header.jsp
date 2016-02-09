@@ -113,7 +113,7 @@
               </sec:authorize>
               <sec:authorize access="hasAnyRole('Admin','Operator')">
                   <li class="active">
-                      <a href="credits.html"><spring:message code="homepage.tagPhotos"/></a>
+                      <a href="<c:url value="/admin/tagPhotos"/>"><spring:message code="homepage.tagPhotos"/></a>
                   </li>
               </sec:authorize>
               <sec:authorize access="hasRole('Admin')">
@@ -124,7 +124,7 @@
                               <div>
                                   <ul>
                                       <li><a href="<c:url value="/admin/addRace"/>"><Strong>Races</Strong></a></li>
-                                      <li><a href="<c:url value="/results"/>"><Strong>Results</Strong></a></li>
+                                      <li><a href="<c:url value="/admin/addResults"/>"><Strong>Results</Strong></a></li>
                                   </ul>
                               </div>
                           </div>
@@ -137,7 +137,7 @@
                               <div>
                                   <ul>
                                       <li><a href="<c:url value="/admin/updateRace"/>"><Strong>Races</Strong></a></li>
-                                      <li><a href="index.html"><Strong>Results</Strong></a></li>
+                                      <li><a href="<c:url value="/admin/changeResults"/>"><Strong>Results</Strong></a></li>
                                   </ul>
                               </div>
                           </div>
@@ -146,20 +146,15 @@
               </sec:authorize>
               <sec:authorize access="hasRole('Runner')">
                   <li class="active">
-                      <a href="credits.html">My Races</a>
+                      <a href="<c:url value="/runner/myRaces"/>">My Races</a>
                   </li>
               </sec:authorize>
-              <sec:authorize access="hasRole('Photographer')">
-                    <li class="active">
-                        <a href="credits.html">My Races</a>
-                    </li>
-                </sec:authorize>
                 <sec:authorize access="hasRole('Photographer')">
                 <li class="active">
-                    <a href="credits.html">Upload Photos</a>
+                    <a href="<c:url value="/photographer/uploadPhotos"/>">Upload Photos</a>
                 </li>
                 <li class="active">
-                    <a href="credits.html">My Photos</a>
+                    <a href="<c:url value="/photographer/myPhotos"/>">My Photos</a>
                 </li>
                 </sec:authorize>
             </ul>
