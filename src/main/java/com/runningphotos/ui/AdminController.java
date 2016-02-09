@@ -68,6 +68,12 @@ public class AdminController {
         }
         return model;
     }
+    @RequestMapping(value = "/updateRace")
+    public ModelAndView updateRace(){
+        ModelAndView model = new ModelAndView("/admin/updateRace");
+        return model;
+    }
+
 
     private void saveImage(Race race, MultipartFile image) {
         try {

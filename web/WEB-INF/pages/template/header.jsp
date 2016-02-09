@@ -53,7 +53,12 @@
     <div class="menuextras">
       <div class="extras">
         <ul>
-          <li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>3 items</b></a></li>
+            <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
+                          <li class="active">
+                              <i class="glyphicon glyphicon-shopping-cart icon-white"></i>
+                                    <a href="<c:url value="/basket"/>"><spring:message code="homepage.basket"/></a>
+                                </li>
+                            </sec:authorize>
           <li>
               <spring:message var="lang" code="language"/>
               <c:choose>
@@ -96,50 +101,55 @@
                     <a href="/"><spring:message code="homepage.home"/></a>
                 </li>
 
-                <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Photographer','Runner')">
-                <li class="active">
-                    <a href="credits.html"><spring:message code="homepage.buyPhotos"/></a>
-                </li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
-                <li class="active">
-                    <a href="/results"><spring:message code="homepage.results"/></a>
-                </li>
-                </sec:authorize>
-                <sec:authorize access="hasAnyRole('Admin','Operator')">
-                    <li class="active">
-                        <a href="credits.html"><spring:message code="homepage.results"/></a>
-                    </li>
-                  </sec:authorize>
-                 <sec:authorize access="hasRole('Admin')">
-                <li class= "has-submenu active">
-                    <a href="#"><spring:message code="homepage.add"/></a>
-                    <div class="mainmenu-submenu">
-                        <div class="mainmenu-submenu-inner">
-                            <div>
-                                <ul>
-                                    <li><a href="<c:url value="/admin/addRace"/>"><Strong>Races</Strong></a></li>
-                                    <li><a href="index.html"><Strong>Results</Strong></a></li>
-                                </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="has-submenu active">
-                        <a href="#"><spring:message code="homepage.change"/></a>
-                        <div class="mainmenu-submenu">
-                            <div class="mainmenu-submenu-inner">
-                                <div>
-                                    <ul>
-                                        <li><a href="index.html"><Strong>Races</Strong></a></li>
-                                        <li><a href="index.html"><Strong>Results</Strong></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </sec:authorize>
-                <sec:authorize access="hasRole('Runner')">
+              <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Photographer','Runner')">
+                  <li class="active">
+                      <a href="<c:url value="/buyPhotos"/>"><spring:message code="homepage.buyPhotos"/></a>
+                  </li>
+              </sec:authorize>
+              <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
+                  <li class="active">
+                      <a href="<c:url value="/results"/>"><spring:message code="homepage.results"/></a>
+                  </li>
+              </sec:authorize>
+              <sec:authorize access="hasAnyRole('Admin','Operator')">
+                  <li class="active">
+                      <a href="credits.html"><spring:message code="homepage.tagPhotos"/></a>
+                  </li>
+              </sec:authorize>
+              <sec:authorize access="hasRole('Admin')">
+                  <li class= "has-submenu active">
+                      <a href="#"><spring:message code="homepage.add"/></a>
+                      <div class="mainmenu-submenu">
+                          <div class="mainmenu-submenu-inner">
+                              <div>
+                                  <ul>
+                                      <li><a href="<c:url value="/admin/addRace"/>"><Strong>Races</Strong></a></li>
+                                      <li><a href="<c:url value="/results"/>"><Strong>Results</Strong></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="has-submenu active">
+                      <a href="#"><spring:message code="homepage.change"/></a>
+                      <div class="mainmenu-submenu">
+                          <div class="mainmenu-submenu-inner">
+                              <div>
+                                  <ul>
+                                      <li><a href="<c:url value="/admin/updateRace"/>"><Strong>Races</Strong></a></li>
+                                      <li><a href="index.html"><Strong>Results</Strong></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+              </sec:authorize>
+              <sec:authorize access="hasRole('Runner')">
+                  <li class="active">
+                      <a href="credits.html">My Races</a>
+                  </li>
+              </sec:authorize>
+              <sec:authorize access="hasRole('Photographer')">
                     <li class="active">
                         <a href="credits.html">My Races</a>
                     </li>

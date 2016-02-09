@@ -61,21 +61,22 @@
     <div class="row">
       <div class="col-sm-2">
       </div>
-          <form id="search-form" action="photos">
-              <div class="col-md-4 col-sm-6">
-                <input type="text"  name="racename" class="form-control font-stl" id="race-input-search" value="" placeholder="<spring:message code="homepage.enterRace"/>" >
-              </div>
-              <div class="col-md-3 col-sm-4">
-                <input type="text" name="number" class="form-control font-stl" id="number-input-search" value="" placeholder="<spring:message code="homepage.enterNumber"/>">
-              </div>
-              <div class="col-md-2 col-sm-2">
-                <a id="search-btn" href="#"  class="sbtn sbtn-d btn btn-orange"><spring:message code="homepage.search"/></a>
-              </div>
-          </form>
+      <form id="search-form" action="photos">
+        <div class="col-md-4 col-sm-6">
+          <input type="text"  name="racename" class="form-control font-stl" id="race-input-search" value="" placeholder="<spring:message code="homepage.enterRace"/>" >
+        </div>
+        <div class="col-md-3 col-sm-4">
+          <input type="text" name="number" class="form-control font-stl" id="number-input-search" value="" placeholder="<spring:message code="homepage.enterNumber"/>">
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <a id="search-btn" href="#"  class="sbtn sbtn-d btn btn-orange"><spring:message code="homepage.search"/></a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
 <!-- End Homepage Search Form -->
 
+<!--  Footer -->
 <jsp:include page="template/footer.jsp"/>
-<!-- End Our Clients -->
+<!-- End Footer -->
