@@ -37,10 +37,10 @@ public class AdminController {
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        if(binder.getTarget() instanceof Race) {
+        if (binder.getTarget() instanceof Race) {
             binder.setValidator(raceValidator);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat,true));
+            binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
         }
     }
 
@@ -53,28 +53,29 @@ public class AdminController {
     @RequestMapping(value = "/changeResults", method = RequestMethod.GET)
     public ModelAndView openChangeResults() {
         ModelAndView model = new ModelAndView("admin/changeResults");
-        model.addObject("results",new Race());
+        model.addObject("results", new Race());
         return model;
     }
 
     @RequestMapping(value = "/changeRace", method = RequestMethod.GET)
     public ModelAndView openСhangeRace() {
         ModelAndView model = new ModelAndView("admin/changeRace");
-        model.addObject("race",new Race());
+        model.addObject("race", new Race());
         return model;
     }
 
     @RequestMapping(value = "/addResults", method = RequestMethod.GET)
     public ModelAndView openAddResults() {
         ModelAndView model = new ModelAndView("admin/addResults");
-        model.addObject("results",new Race());
+        model.addObject("results", new Race());
         return model;
     }
 
     @RequestMapping(value = "/addRace", method = RequestMethod.GET)
     public ModelAndView openAddRace() {
         ModelAndView model = new ModelAndView("admin/addRace");
-        model.addObject("race",new Race());
+        model.addObject("race", new Race());
+        model.addObject("pLabel", "addracepadge.addRace");
         return model;
     }
 
@@ -82,31 +83,64 @@ public class AdminController {
     public ModelAndView addRace(Race race, BindingResult errors,
                                 @RequestParam(value = "race-photo", required = false) MultipartFile image) {
         ModelAndView model = new ModelAndView("admin/addRace");
-        raceValidator.validate(race,errors);
+        raceValidator.validate(race, errors);
         if (errors.hasErrors()) {
             model.addAllObjects(errors.getModel());
         } else {
-            if(image.getSize()>0) {
+            if (image.getSize() > 0) {
                 saveImage(race, image);
             }
             raceDao.insert(race);
             model.addObject("race", new Race());
             model.addObject("msg", "Race was added successfully!");
+            model.addObject("pLabel", "addracepadge.addRace");
         }
         return model;
     }
-    @RequestMapping(value = "/updateRace")
-    public ModelAndView updateRace(){
-        ModelAndView model = new ModelAndView("/admin/updateRace");
+
+    @RequestMapping(value = "/updateRace", method = RequestMethod.GET)
+    public ModelAndView openUpdateRace() {
+        ModelAndView model = new ModelAndView("admin/addRace");
+        model.addObject("race", new Race());
+        model.addObject("races", raceDao.selectAll());
+        model.addObject("pLabel", "addracepadge.updateRace");
         return model;
     }
+
+
+    @RequestMapping(value = "/updateRace", method = RequestMethod.POST)
+    public ModelAndView updateRace(Race race, BindingResult errors,
+                                   @RequestParam(value = "race-photo", required = false) MultipartFile image) {
+        ModelAndView model = new ModelAndView("admin/addRace");
+        raceValidator.validate(race, errors);
+        if (errors.hasErrors()) {
+            model.addAllObjects(errors.getModel());
+        } else {
+            if (!image.isEmpty()) {
+                saveImage(race, image);
+            }
+            raceDao.update(race);
+            model.addObject("race", race);
+            model.addObject("races", raceDao.selectAll());
+            model.addObject("msg", "Race was updated successfully!");
+            model.addObject("pLabel", "addracepadge.updateRace");
+        }
+        return model;
+    }
+
+
+    @RequestMapping(value = "/getRaceById", method = RequestMethod.GET)
+    public @ResponseBody  Race getRace(@RequestParam String raceId) {
+        return raceDao.selectById(Integer.parseInt(raceId));
+    }
+
 
 
     private void saveImage(Race race, MultipartFile image) {
         try {
-            String pathToFile = "/img_"+new Date().getTime()+".jpeg";
+            String pathToFile = "/img_" + new Date().getTime() + ".jpeg";
             File file = new File(path + pathToFile);
-            FileUtils.writeByteArrayToFile(file,image.getBytes());
+            FileUtils.writeByteArrayToFile(file, image.getBytes());
             race.setPhoto(pathToFile);
         } catch (IOException e) {
             e.printStackTrace();

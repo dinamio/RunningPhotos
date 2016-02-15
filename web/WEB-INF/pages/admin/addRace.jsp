@@ -1,12 +1,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <jsp:include page="../template/header.jsp"/>
 <!-- Page Title -->
 <div class="section section-breadcrumbs">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1>Add race</h1>
+        <h1><spring:message code="${pLabel}"/></h1>
       </div>
     </div>
   </div>
@@ -21,12 +22,31 @@
           <form:form class="form-horizontal" method="post" commandName="race"
                      action="" enctype="multipart/form-data">
             <div class="form-group">
-                <c:if test="${not empty msg}">
-                    <div class="alert alert-success">${msg}</div>
-                </c:if>
+              <c:if test="${not empty msg}">
+                <div class="alert alert-success">${msg}</div>
+              </c:if>
+                           <!-- Update race select -->
+                            <c:if test="${not empty races}">
+                              <label for="Name" class="col-sm-3 control-label"><b>Select updated race</b></label>
+                                <div class="col-sm-4">
+                                  <select class="form-control" id="select-update-race">
+                                    <c:set var="raceId" value="${race.id}"/>
+                                    <option >select race...</option>
+                                    <c:forEach var="race" items="${races}">
+                                      <option
+                                                   <c:if test="${race.id == raceId}" > selected</c:if>
+                                                    value="<c:out value="${race.id}"/>"><c:out value="${race.name}"/></option>
+                                    </c:forEach>
+                                  </select>
+                                </div>
+                            </c:if>
+                          </div>
+                       <!-- End update race select -->
+                        <!-- Add race Form -->
+                        <div class="form-group">
                 <label for="Name" class="col-sm-3 control-label"><b>Race name</b></label>
               <div class="col-sm-4">
-                <form:input path="name" class="form-control" id="Name" type="text" placeholder=""/>
+                <form:input path="name" class="form-control" id="name" type="text" placeholder=""/>
               </div>
               <div class="col-sm-5">
                 <form:errors path="name" cssClass="alert alert-danger"/>
@@ -43,8 +63,8 @@
             </div>
             <div class="form-group">
               <label for="raceDate" class="col-sm-3 control-label"><b>Date</b></label>
-              <div class="col-sm-4">
-                <form:input path="raceDate" id="raceDate"/>
+              <div class="col-sm-2">
+                <form:input path="raceDate" class="form-control" id="raceDate"/>
               </div>
               <div class="col-sm-5">
                 <form:errors path="raceDate" cssClass="alert alert-danger"/>
@@ -62,6 +82,8 @@
               </div>
             </div>
             <!--input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/-->
+            <form:input path="id" type="hidden" value=""/>
+            <form:input path="photo" type="hidden" value=""/>
           </form:form>
         </div>
         <!-- End Contact Info -->
@@ -76,4 +98,5 @@
     });
   });
 </script>
+<script src="<c:url value="/resources/js/race.update.js"/>"></script>
 <jsp:include page="../template/footer.jsp"/>

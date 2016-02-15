@@ -11,33 +11,7 @@
 				</div>
 			</div>
 		</div>
-        
-        <div class="section">
-	    	<div class="container">
-				<div class="row">
-					<div class="col-sm-3"></div>
-					<div class="col-sm-6">
-						<div class="basic-login">
-							<c:url value="/j_spring_security_check" var="loginUrl" />
-							<form name='loginForm' action="${loginUrl}" method='POST'>
-								<c:if test="${not empty error}">
-									<div class="alert alert-danger">${error}</div>
-								</c:if>
-								<c:if test="${not empty msg}">
-									<div class="alert alert-success">${msg}</div>
-								</c:if>
-								<div class="form-group">
-		        				 	<label for="login-username"><i class="icon-user"></i> <b>Username</b></label>
-									<input class="form-control" id="login-username" name="login" type="text" placeholder="">
-								</div>
-								<div class="form-group">
-		        				 	<label for="login-password"><i class="icon-lock"></i> <b>Password</b></label>
-									<input class="form-control" id="login-password" name="password" type="password" placeholder="">
-								</div>
-								<div class="form-group">
-									<label class="checkbox">
-										<input type="checkbox" name="remember-me"> Remember me
-									</label>
+
 
 <div class="section">
 	<div class="container">

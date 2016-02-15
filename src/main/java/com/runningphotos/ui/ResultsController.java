@@ -18,7 +18,7 @@ public class ResultsController {
 
     @RequestMapping (value = "/results")
     public ModelAndView getRaces(){
-        ModelAndView mav = new ModelAndView("results");
+        ModelAndView mav = new ModelAndView("ResultPage");
         List<Race> raceList = raceDao.selectAll();
         mav.addObject("races", raceList);
         return mav;
