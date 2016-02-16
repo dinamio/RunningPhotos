@@ -15,8 +15,8 @@ public class RaceValidator implements Validator{
 
     public void validate(Object o, Errors errors) {
         //Race race = (Race)o;
-        ValidationUtils.rejectIfEmpty(errors, "name", "name.empty", "Name must not be empty");
-        ValidationUtils.rejectIfEmpty(errors, "city", "city.empty", "City must not be empty");
+        ValidationUtils.rejectIfEmpty(errors, "name", "name.empty");
+        ValidationUtils.rejectIfEmpty(errors, "city", "city.empty");
         ValidationUtils.rejectIfEmpty(errors, "raceDate","race.date.error", "Race date must not be empty");
     }
 }

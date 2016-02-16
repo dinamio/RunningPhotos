@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <jsp:include page="template/header.jsp"/>
 
         <!-- Page Title -->
@@ -6,7 +8,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<h1>Login</h1>
+						<h1><spring:message code="login.login"/></h1>
 					</div>
 				</div>
 			</div>
@@ -28,23 +30,23 @@
 							<div class="alert alert-success">${msg}</div>
 						</c:if>
 						<div class="form-group">
-							<label for="login-username"><i class="icon-user"></i> <b>Username</b></label>
+							<label for="login-username"><i class="icon-user"></i> <b><spring:message code="login.username"/></b></label>
 							<input class="form-control" id="login-username" name="login" type="text" placeholder="">
 						</div>
 						<div class="form-group">
-							<label for="login-password"><i class="icon-lock"></i> <b>Password</b></label>
+							<label for="login-password"><i class="icon-lock"></i> <b><spring:message code="login.password"/></b></label>
 							<input class="form-control" id="login-password" name="password" type="password" placeholder="">
 						</div>
 						<div class="form-group">
 							<label class="checkbox">
-								<input type="checkbox" name="remember-me"> Remember me
+								<input type="checkbox" name="remember-me"><spring:message code="login.rememberMe"/>
 							</label>
 
 							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
-							<p>Forgot password? <a href="/forgotPassword" class="active"><spring:message code="homepage.forgotPassword"/></a>
+							<p><a href="/forgotPassword" class="active"><spring:message code="homepage.forgotPassword"/></a>
 							</sec:authorize>
 
-							<button type="submit" class="btn pull-right">Login</button>
+							<button type="submit" class="btn pull-right"><spring:message code="login.loginButton"/></button>
 							<div class="clearfix"></div>
 						</div>
 						<input type="hidden" name="${_csrf.parameterName}"
@@ -52,7 +54,7 @@
 					</form>
 					<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
 						<li class="active">
-							<p>Not a member? <a href="<c:url value="/register"/>"><spring:message code="homepage.register"/></a></p>
+							<p><a href="<c:url value="/register"/>"><spring:message code="homepage.register"/></a></p>
 						</li>
 					</sec:authorize>
 				</div>
@@ -61,5 +63,4 @@
 		</div>
 	</div>
 </div>
-
 <jsp:include page="template/footer.jsp"/>

@@ -123,8 +123,8 @@
                           <div class="mainmenu-submenu-inner">
                               <div>
                                   <ul>
-                                      <li><a href="<c:url value="/admin/addRace"/>"><Strong>Races</Strong></a></li>
-                                      <li><a href="<c:url value="/admin/addResults"/>"><Strong>Results</Strong></a></li>
+                                      <li><a href="<c:url value="/admin/addRace"/>"><Strong><spring:message code="header.races"/></Strong></a></li>
+                                      <li><a href="<c:url value="/admin/addResults"/>"><Strong><spring:message code="header.results"/></Strong></a></li>
                                   </ul>
                               </div>
                           </div>
@@ -136,8 +136,8 @@
                           <div class="mainmenu-submenu-inner">
                               <div>
                                   <ul>
-                                      <li><a href="<c:url value="/admin/updateRace"/>"><Strong>Races</Strong></a></li>
-                                      <li><a href="<c:url value="/admin/changeResults"/>"><Strong>Results</Strong></a></li>
+                                      <li><a href="<c:url value="/admin/updateRace"/>"><Strong><spring:message code="header.races"/></Strong></a></li>
+                                      <li><a href="<c:url value="/admin/changeResults"/>"><Strong><spring:message code="header.results"/></Strong></a></li>
                                   </ul>
                               </div>
                           </div>
