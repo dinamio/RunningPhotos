@@ -72,9 +72,11 @@
           <a id="search-btn" href="#"  class="sbtn sbtn-d btn btn-orange"><spring:message code="homepage.search"/></a>
         </div>
       </form>
+      <jsp:include page="template/resultsTable.jsp"/>
     </div>
   </div>
 </div>
+
 <!-- End Homepage Search Form -->
 
 <!--  Footer -->

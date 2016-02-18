@@ -11,6 +11,9 @@ INSERT INTO user (login,mail,name,surname,city,birthdate,role_id) VALUES ('olya0
 INSERT INTO Race (city,race_date,race_name) values ('Kharkiv','2015-01-01','Fun run')
 INSERT INTO Race (city,race_date,race_name) values ('Kiev','2016-05-05','New Year run')
 INSERT INTO Runner (name,surname,sex,user_id) values ('Michael','Dobrynin','MALE',2)
+INSERT INTO Runner (name,surname,sex,user_id) values ('Андрей','Павелко','MALE',null)
+INSERT INTO Runner (name,surname,sex,user_id) values ('Дмитрий','Гармаш','MALE',null)
+INSERT INTO Runner (name,surname,sex,user_id) values ('Анатолий','Курячий','MALE',null)
 INSERT INTO result (Finish_time,Number,Distance_id,Runner_id,Race_id) VALUES ('01:32:05','777',1,1,2)
 
 

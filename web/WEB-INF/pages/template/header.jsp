@@ -96,9 +96,9 @@
       <nav id="mainmenu" class="mainmenu">
           <ul>
 
-                <li class="logo-wrapper"><a href="/"><img src="<c:url value="/resources/img/runsnap1.png"/>" width="400px" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+                <li class="logo-wrapper"><a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/runsnap1.png"/>" width="400px" alt="Multipurpose Twitter Bootstrap Template"></a></li>
                 <li class="active">
-                    <a href="/"><spring:message code="homepage.home"/></a>
+                    <a href="<c:url value="/"/>"><spring:message code="homepage.home"/></a>
                 </li>
 
               <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Photographer','Runner')">
