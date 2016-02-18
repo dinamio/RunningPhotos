@@ -6,6 +6,7 @@ import com.runningphotos.dao.UserDao;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ValidationUtils;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by eugenegodun on 1/19/16.
@@ -27,6 +29,9 @@ import java.util.List;
 @Controller
 
 public class RegisterController {
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     private Validator registerValidator;
@@ -50,7 +55,7 @@ public class RegisterController {
         return model;
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView getNewUser(User user, BindingResult errors,HttpServletRequest request) {
+    public ModelAndView getNewUser(User user, BindingResult errors,HttpServletRequest request, Locale locale) {
         String confirmPassword = request.getParameter("confirmPassword");
         ModelAndView model = new ModelAndView("/register");
         registerValidator.validate(user, errors);
@@ -58,10 +63,10 @@ public class RegisterController {
         if(confirmPassword.equals(user.getPassword()))
             userDao.insert(user);
         else
-            errors.rejectValue("password","password.sd","Password doesn't match");
+            errors.rejectValue("password","password.sd",messageSource.getMessage("register.passNotMath",null,locale));
         model.addObject("user", new User());
         if(!errors.hasErrors())
-            model.addObject("msg", "Registration successfully completed");
+            model.addObject("msg", messageSource.getMessage("register.successfully",null,locale));
         return model;
     }
 }

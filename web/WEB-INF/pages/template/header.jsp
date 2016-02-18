@@ -146,15 +146,15 @@
               </sec:authorize>
               <sec:authorize access="hasRole('Runner')">
                   <li class="active">
-                      <a href="<c:url value="/runner/myRaces"/>">My Races</a>
+                      <a href="<c:url value="/runner/myRaces"/>"><spring:message code="header.myRaces"/></a>
                   </li>
               </sec:authorize>
                 <sec:authorize access="hasRole('Photographer')">
                 <li class="active">
-                    <a href="<c:url value="/photographer/uploadPhotos"/>">Upload Photos</a>
+                    <a href="<c:url value="/photographer/uploadPhotos"/>"><spring:message code="header.uploadPhotos"/></a>
                 </li>
                 <li class="active">
-                    <a href="<c:url value="/photographer/myPhotos"/>">My Photos</a>
+                    <a href="<c:url value="/photographer/myPhotos"/>"><spring:message code="header.myPhotos"/></a>
                 </li>
                 </sec:authorize>
             </ul>
