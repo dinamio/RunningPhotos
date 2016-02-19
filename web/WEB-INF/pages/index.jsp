@@ -78,7 +78,7 @@
 </div>
 
 <!-- End Homepage Search Form -->
-
+<script src="<c:url value="/resources/js/searchform.js" />"></script>
 <!--  Footer -->
 <jsp:include page="template/footer.jsp"/>
 <!-- End Footer -->

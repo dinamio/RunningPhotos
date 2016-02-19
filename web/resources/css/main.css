@@ -2711,3 +2711,9 @@ span.color-red {
   font-size: 20pt;
   padding-bottom: 10pt;
 }
+
+/*file upload panel*/
+
+form#fileupload{
+  min-height: 400px;
+}

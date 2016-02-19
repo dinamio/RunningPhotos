@@ -19,7 +19,7 @@
       <div class="col-sm-10">
         <!-- Add race Form -->
         <div class="contact-form-wrapper">
-          <form:form class="form-horizontal" method="post" commandName="race"
+          <form:form class="form-horizontal" method="POST" commandName="race"
                      action="" enctype="multipart/form-data">
             <div class="form-group">
               <c:if test="${not empty msg}">

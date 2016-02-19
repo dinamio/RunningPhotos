@@ -2,6 +2,7 @@ package com.runningphotos.ui;
 
 import com.runningphotos.bom.Race;
 import com.runningphotos.dao.RaceDao;
+import com.runningphotos.service.ImageService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -88,7 +89,7 @@ public class AdminController {
             model.addAllObjects(errors.getModel());
         } else {
             if (image.getSize() > 0) {
-                saveImage(race, image);
+                new ImageService().saveImage(race,image,path);
             }
             raceDao.insert(race);
             model.addObject("race", new Race());
@@ -117,7 +118,7 @@ public class AdminController {
             model.addAllObjects(errors.getModel());
         } else {
             if (!image.isEmpty()) {
-                saveImage(race, image);
+                new ImageService().saveImage(race,image,path);
             }
             raceDao.update(race);
             model.addObject("race", race);
@@ -134,16 +135,4 @@ public class AdminController {
         return raceDao.selectById(Integer.parseInt(raceId));
     }
 
-
-
-    private void saveImage(Race race, MultipartFile image) {
-        try {
-            String pathToFile = "/img_" + new Date().getTime() + ".jpeg";
-            File file = new File(path + pathToFile);
-            FileUtils.writeByteArrayToFile(file, image.getBytes());
-            race.setPhoto(pathToFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
