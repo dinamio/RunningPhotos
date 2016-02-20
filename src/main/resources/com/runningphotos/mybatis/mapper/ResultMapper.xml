@@ -12,6 +12,10 @@
         <result column="distance_id" property="distance.id"/>
         <result column="runner_id" property="runner.id"/>
         <result column="race_id" property="race.id"/>
+        <result column="runner_name" property="runner.name"/>
+        <result column="surname" property="runner.surname"/>
+        <result column="sex" property="runner.sex"/>
+        <result column="distance_name" property="distance.name"/>
     </resultMap>
 
     <resultMap type="com.runningphotos.bom.Runner" id="RunnerMap">
@@ -54,13 +58,29 @@
         from result where runner_id = #{id}
     </select>
     <select id="getAllRaceResults" parameterType="com.runningphotos.bom.Race" resultMap="ResultMap">
-        select id, substring(finish_time,1,2) as hours, substring(finish_time,4,2) as minutes,
-        substring(finish_time,7,2) as minutes, number, distance_id, runner_id, race_id
-        from result where race_id = #{id}
+        select res.id,
+        substring(finish_time,1,2) as hours,
+        substring(finish_time,4,2) as minutes,
+        substring(finish_time,7,2) as seconds,
+        number,
+         distance_id,
+         runner_id,
+         race_id,
+         r.name as runner_name,
+         r.surname,
+         r.sex,
+         d.name as distance_name
+        from result res
+        join runner r
+        on res.runner_id=r.id
+         join distance d
+         on res.distance_id=d.id where race_id = #{id}
     </select>
-    <select id="selectResultByRaseAndNamber"   resultMap="ResultMap">
-        select id, substring(finish_time,1,2) as hours, substring(finish_time,4,2) as minutes,
-        substring(finish_time,7,2) as minutes, number, distance_id, runner_id, race_id
+    <select id="selectResultByRaceAndNumber"   resultMap="ResultMap">
+        select id,
+        substring(finish_time,1,2) as hours,
+         substring(finish_time,4,2) as minutes,
+        substring(finish_time,7,2) as seconds, number, distance_id, runner_id, race_id
         from result where race_id = #{0.id} and number = #{1}
     </select>
 </mapper>

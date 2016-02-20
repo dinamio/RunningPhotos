@@ -44,7 +44,7 @@ public class SearchFormController
 		else {
 			return "";
 		}
-		if(resultDao.selectResultByRaseAndNamber(race,number) != null) {
+		if(resultDao.selectResultByRaceAndNumber(race,number) != null) {
 			return race.getName();
 		}
 		else {

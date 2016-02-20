@@ -30,6 +30,7 @@ public class ResultDaoTest extends AbstractTest {
 
     private static Log log = LogFactory.getLog(ResultDaoTest.class);
 
+
     @Autowired
     private ResultDao resultDao;
 

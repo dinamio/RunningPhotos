@@ -16,5 +16,7 @@ INSERT INTO Runner (name,surname,sex,user_id) values ('Андрей','Павел
 INSERT INTO Runner (name,surname,sex,user_id) values ('Дмитрий','Гармаш','MALE',null)
 INSERT INTO Runner (name,surname,sex,user_id) values ('Анатолий','Курячий','MALE',null)
 INSERT INTO result (Finish_time,Number,Distance_id,Runner_id,Race_id) VALUES ('01:32:05','777',1,1,2)
-
+INSERT INTO result (Finish_time,Number,Distance_id,Runner_id,Race_id) VALUES ('00:44:06','777',2,2,2)
+Insert into user (login,password,role_id) values('runner','runner',2)
+Insert into user (login,password,role_id) values('photographer','photographer',1)
 
