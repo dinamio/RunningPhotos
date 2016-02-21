@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: eugenegodun
@@ -33,15 +34,30 @@
             <div class="tab-pane" id="tab${distanceCounter.index+1}">
           </c:otherwise>
             </c:choose>
-            <table>
-              <c:forEach var="result" items="${results}">
+
+
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th class="info"><spring:message code="runner.number"/></th>
+                <th class="info"><spring:message code="runner.name"/></th>
+                <th class="info"><spring:message code="runner.surname"/></th>
+                <th class="info"><spring:message code="runner.time"/></th>
+                <th class="info"><spring:message code="runner.sex"/></th>
+              </tr>
+              </thead>
+              <c:forEach var="result" items="${results}"  varStatus="resultCounter">
                 <c:if test="${result.distance.name==distance}">
-                  <tr>
+                  <tbody>
+                  <tr class="active">
                     <td>${result.number}</td>
                     <td>${result.runner.name}</td>
                     <td>${result.runner.surname}</td>
                     <td>${result.time.timeToString}</td>
+                    <td>${result.runner.sex}"/>
+                    </td>
                   </tr>
+                  </tbody>
                 </c:if>
               </c:forEach>
             </table>

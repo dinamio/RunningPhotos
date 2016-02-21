@@ -1,3 +1,4 @@
+
  CREATE TABLE Race (
 id int primary key auto_increment,
 City varchar(50),
@@ -53,7 +54,7 @@ foreign key (Photo_id) references RacePhoto(id) on delete CASCADE
 
 create table Distance (
 id int primary key auto_increment,
-Name varchar(20),
+Name varchar(30),
 Length int
 );
 

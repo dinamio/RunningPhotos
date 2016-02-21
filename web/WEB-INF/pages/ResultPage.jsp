@@ -2,11 +2,13 @@
 <jsp:include page="template/header.jsp"/>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="calendar" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <div class="section section-breadcrumbs">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1>LATEST RESULTS</h1>
+        <h1><spring:message code ="results.header"/></h1>
       </div>
     </div>
   </div>
