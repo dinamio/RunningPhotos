@@ -16,8 +16,8 @@
 <div class="section">
     <div class="container">
         <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
+
+
                 <div class="basic-login">
                     <form:form class="form-horizontal" method="post" commandName="user"
                                action="">
@@ -112,7 +112,6 @@
 
                     </div>
                 </div>
-            </div>
             <div class="col-sm-3"></div>
         </div>
     </div>

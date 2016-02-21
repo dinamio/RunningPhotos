@@ -62,7 +62,7 @@ public class RegisterController {
         model.addAllObjects(errors.getModel());
         if(confirmPassword.equals(user.getPassword()))
             userDao.insert(user);
-        else
+        else if (user.getPassword().length() > 5)
             errors.rejectValue("password","password.sd",messageSource.getMessage("register.passNotMath",null,locale));
         model.addObject("user", new User());
         if(!errors.hasErrors())
