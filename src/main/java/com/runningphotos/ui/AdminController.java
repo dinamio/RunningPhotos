@@ -1,9 +1,12 @@
 package com.runningphotos.ui;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.runningphotos.bom.Race;
+import com.runningphotos.bom.Result;
 import com.runningphotos.dao.RaceDao;
 import com.runningphotos.service.ImageService;
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -15,10 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Jimmy on 24.01.2016.
@@ -98,6 +103,26 @@ public class AdminController {
         }
         return model;
     }
+
+    @RequestMapping(value = "/add/result", method = RequestMethod.GET)
+    public ModelAndView getAddResultPage() {
+        ModelAndView model = new ModelAndView("admin/result");
+        List<Race> races =  raceDao.selectRacesWithoutResult();
+        model.addObject("racesList", races);
+        model.addObject("race", races.size()>0 ? races.get(0) : new Race());
+        return model;
+    }
+
+    @RequestMapping(value = "/add/result/addJson", method = RequestMethod.POST)
+    public String downloadJSON(Race race,
+                               @RequestParam(value = "race-results", required = false) MultipartFile json) throws IOException {
+        ByteArrayInputStream stream = new   ByteArrayInputStream(json.getBytes());
+        String jsonContent = IOUtils.toString(stream, "UTF-8");
+        Type type = new TypeToken<List<Result>>(){}.getType();
+        List<Result> results=new Gson().fromJson(jsonContent,type);
+        return "redirect:/results/resultspageinfo/"+race.getId();
+    }
+
 
     @RequestMapping(value = "/updateRace", method = RequestMethod.GET)
     public ModelAndView openUpdateRace() {

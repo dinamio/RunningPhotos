@@ -36,4 +36,8 @@
            UPPER(#{item,javaType=String})
         </foreach>
     </select>
+
+    <select id="selectRacesWithoutResult" resultMap="RaceMap">
+        select * from race where not exists(select * from Result where race_id=race.id)
+    </select>
 </mapper>
