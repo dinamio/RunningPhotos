@@ -46,7 +46,7 @@
                 <th class="info"><spring:message code="runner.sex"/></th>
               </tr>
               </thead>
-              <c:forEach var="result" items="${results}"  varStatus="resultCounter">
+              <c:forEach var="result" items="${results}">
                 <c:if test="${result.distance.name==distance}">
                   <tbody>
                   <tr class="active">
@@ -54,11 +54,10 @@
                     <td>${result.runner.name}</td>
                     <td>${result.runner.surname}</td>
                     <td>${result.time.timeToString}</td>
-                    <td>${result.runner.sex}"/>
-                    </td>
+                    <td><spring:message code ="sex.${result.runner.sex}"/></td>
                   </tr>
                   </tbody>
-                </c:if>
+              </c:if>
               </c:forEach>
             </table>
             </div>
