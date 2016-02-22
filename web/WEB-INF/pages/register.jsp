@@ -21,6 +21,9 @@
                 <div class="basic-login">
                     <form:form class="form-horizontal" method="post" commandName="user"
                                action="">
+                        <c:if test="${not empty msg}">
+                            <div class="alert alert-success">${msg}</div>
+                        </c:if>
                     <label for ="selectRole" class="class="col-sm-3 control-label"><b><spring:message code="register.you"/></b></label>
                     <form:select path="role" id="selectRole">
                         <form:option value="RUNNER"><spring:message code="register.runner"/></form:option>
@@ -94,15 +97,13 @@
                     <div class="form-group">
                         <label for="birthday" class="col-sm-3 control-label"><b><spring:message code="register.birthday"/></b></label>
                         <div class="col-sm-4">
-                            <form:input path="birthDate" id="birthday"/>
+                            <form:input id="birthday" type="text" name="birthday" value="" class="dropdate" path="birthDate"/>
                         </div>
                         <div class="col-sm-5">
                             <form:errors path="birthDate" cssClass="alert alert-danger"/>
                         </div>
                     </div>
-                    <c:if test="${not empty msg}">
-                        <div class="alert alert-success">${msg}</div>
-                    </c:if>
+
 
                     <div class="form-group">
                         <div class="col-sm-12">
@@ -115,13 +116,16 @@
             <div class="col-sm-3"></div>
         </div>
     </div>
+<script src="<c:url value="/resources/js/date.format.js"/>"></script>
+    <script>
+        $(document).ready(function(){
+            $('.dropdate').dropdate({
+                        dateFormat:'mm/dd/yyyy'
+        });
+        });
+
+    </script>
 
 </div>
-<script>
-    $(document).ready(function() {
-        $(function() {
-            $("#birthday").datepicker();
-        });
-    });
-</script>
+
 <jsp:include page="template/footer.jsp"/>
