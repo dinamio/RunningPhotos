@@ -13,4 +13,5 @@ public interface RaceDao extends MyBatisDao<Race> {
     List<Race>searchContainsName(@Param("raceCriteria")List<String> raceCriteria);
 
     List<Race> selectRacesWithoutResult();
+    List<Race> selectRacesWithResult();
 }
