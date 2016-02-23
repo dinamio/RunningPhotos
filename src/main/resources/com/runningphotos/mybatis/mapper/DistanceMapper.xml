@@ -8,7 +8,10 @@
         <result column="name" property="name"/>
         <result column="length" property="length"/>
     </resultMap>
-    <insert id="insert" parameterType="com.runningphotos.bom.Distance" >
+    <insert id="insert" parameterType="com.runningphotos.bom.Distance" useGeneratedKeys="true" >
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         INSERT INTO distance
         (name,length)
         VALUES
@@ -26,5 +29,8 @@
     </delete>
     <select id="selectById" parameterType="int" resultMap="DistanceMap">
         SELECT* FROM distance where distance.id = #{id}
+    </select>
+    <select id="findDistance" parameterType="com.runningphotos.bom.Distance" resultType="com.runningphotos.bom.Distance">
+        SELECT* FROM distance where length = #{length}
     </select>
 </mapper>

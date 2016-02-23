@@ -12,9 +12,8 @@
 
     </resultMap>
     <insert id="insert" parameterType="com.runningphotos.bom.Runner" timeout="10" useGeneratedKeys="true">
-        <selectKey keyProperty="id" resultType="int" order="BEFORE">
-            SELECT nextVal('mySequence')
-            <!-- or ->  SELECT my_sequence.nextVal from dual   -->
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO runner
         (name,surname,sex,user_id)

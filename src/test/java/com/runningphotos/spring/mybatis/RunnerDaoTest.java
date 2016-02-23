@@ -41,6 +41,14 @@ public class RunnerDaoTest extends AbstractTest {
         testDelete();
     }
 
+    @Test
+    public void testAutoincrement(){
+        Runner runner = fillRunner();
+        runnerDao.insert(runner);
+        assertNotNull(runner.getId());
+        runnerDao.delete(runner);
+    }
+
 
     private void testInsert(){
         log.info("testing insert Runner()...");

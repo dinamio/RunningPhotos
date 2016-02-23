@@ -81,4 +81,8 @@ public class TestData {
 
     public static final String RESULT_NUMBER_UPDATE = "7";
 
+    public static final String DISTANCE_NAME = "Dummy distance";
+
+    public static final Double DISTANCE_LENGHT = 0.5 ;
+
 }

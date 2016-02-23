@@ -2,10 +2,13 @@ package com.runningphotos.ui;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.runningphotos.bom.Distance;
 import com.runningphotos.bom.Race;
 import com.runningphotos.bom.Result;
+import com.runningphotos.bom.Sex;
 import com.runningphotos.dao.RaceDao;
 import com.runningphotos.service.ImageService;
+import com.runningphotos.service.ResultService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,6 +40,9 @@ public class AdminController {
 
     @Autowired
     private Validator raceValidator;
+
+    @Autowired
+    private ResultService resultService;
 
     @Value(value = "${path.to.file}")
     private String path;
@@ -70,12 +76,6 @@ public class AdminController {
         return model;
     }
 
-    @RequestMapping(value = "/addResults", method = RequestMethod.GET)
-    public ModelAndView openAddResults() {
-        ModelAndView model = new ModelAndView("admin/addResults");
-        model.addObject("results", new Race());
-        return model;
-    }
 
     @RequestMapping(value = "/addRace", method = RequestMethod.GET)
     public ModelAndView openAddRace() {
@@ -120,7 +120,20 @@ public class AdminController {
         String jsonContent = IOUtils.toString(stream, "UTF-8");
         Type type = new TypeToken<List<Result>>(){}.getType();
         List<Result> results=new Gson().fromJson(jsonContent,type);
+        fillResultsWithRace(results,race);
+        resultService.insertResults(results);
         return "redirect:/results/resultspageinfo/"+race.getId();
+    }
+
+    private void fillResultsWithRace(List<Result> results, Race race) {
+        Distance distance = new Distance();
+        distance.setName("Half marathon");
+        distance.setLength(21.1);
+        for(Result result : results) {
+            result.setRace(race);
+            result.setDistance(distance); //TODO: Remove when json will contain distance
+            result.getRunner().setSex(Sex.MALE); //TODO: and sex
+        }
     }
 
 

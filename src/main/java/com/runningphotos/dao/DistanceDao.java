@@ -7,4 +7,6 @@ import com.runningphotos.bom.Distance;
  */
 public interface DistanceDao extends MyBatisDao<Distance> {
 
+    Distance findDistance(Distance distance);
+
 }

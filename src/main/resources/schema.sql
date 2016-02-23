@@ -55,7 +55,7 @@ foreign key (Photo_id) references RacePhoto(id) on delete CASCADE
 create table Distance (
 id int primary key auto_increment,
 Name varchar(30),
-Length int
+Length DECIMAL(5,2)
 );
 
 create table Result (
@@ -69,6 +69,4 @@ foreign key (Runner_id) references Runner(id),
 Race_id int ,
 foreign key (Race_id) references Race(id)
 );
-CREATE SEQUENCE mySequence START WITH 1 INCREMENT BY 1;
- 
 

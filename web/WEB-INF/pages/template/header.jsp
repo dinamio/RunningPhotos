@@ -124,7 +124,7 @@
                                 <div>
                                     <ul>
                                         <li><a href="<c:url value="/admin/addRace"/>"><Strong><spring:message code="header.races"/></Strong></a></li>
-                                        <li><a href="<c:url value="/admin/addResults"/>"><Strong><spring:message code="header.results"/></Strong></a></li>
+                                        <li><a href="<c:url value="/admin/add/result"/>"><Strong><spring:message code="header.results"/></Strong></a></li>
                                     </ul>
                                 </div>
                             </div>
