@@ -27,16 +27,35 @@
         </div>
     </div>
 </div>
+<form id="fileupload" action="/uploadPhotos" method="POST" enctype="multipart/form-data">
+    <form:form id="fileupload" class="form-horizontal" method="POST" commandName="addphoto"
+               action="" enctype="multipart/form-data">
+<div class="form-group">
+    <div class="container">
+        <div class="row ">
+            <label class="col-sm-2 control-label"><b>Select race</b></label>
+            <div class="col-sm-4">
+                <select class="form-control" id="select-update-race">
+                    <%--<c:set var="raceId" value="${race.id}"/>--%>
+                    <%--<option >select race...</option>--%>
+                    <c:forEach var="race" items="${races}">
+                        <option
+                            <%--<c:if test="${race.id == raceId}" > selected</c:if>--%>
+                                value="<c:out value="${race.id}"/>" ><c:out value="${race.name}"/></option>
+                    </c:forEach>
+                </select>
+                <input id="race-id" type="hidden" name="raceId" value="">
+            </div>
+        </div>
+    </div>
+    </div>
         <div class="container">
             <div class="row">
-
-        <!-- The file upload form used as target for the file upload widget -->
-        <form id="fileupload" action="/uploadPhotos" method="POST" enctype="multipart/form-data">
-<form:form id="fileupload" class="form-horizontal" method="POST" commandName="addphoto"
-           action="" enctype="multipart/form-data">
+                <!-- The file upload form used as target for the file upload widget -->
             <!-- Redirect browsers with JavaScript disabled to the origin page -->
             <%--<noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>--%>
             <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+
             <div class="row fileupload-buttonbar">
                 <div class="col-lg-7">
                     <!-- The fileinput-button span is used to style the file input field as button -->
@@ -72,7 +91,16 @@
         <br>
     </div>
 </div>
-<!-- The template to display files available for upload -->
+        <script>
+         var id = $('#select-update-race :selected').val();
+        $('#race-id').val(id);
+        $('#select-update-race').change(function(){
+         id = $('#select-update-race :selected').val();
+          $('#race-id').val(id);
+         <%--$('#textfield').css('color', curcolor);--%>
+    })
+</script>
+        <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-upload fade">

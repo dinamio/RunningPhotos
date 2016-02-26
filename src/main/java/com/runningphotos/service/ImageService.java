@@ -15,34 +15,20 @@ public class ImageService {
 
 
     public String saveImage(MultipartFile image, String path, String prefix){
+        String pathToFile = "\\"+prefix+new Date().getTime()+".jpeg";
         try {
-            String pathToFile = "/"+prefix+new Date().getTime()+".jpeg";
-            System.out.println(pathToFile);
             File file = new File(path + pathToFile);
             FileUtils.writeByteArrayToFile(file,image.getBytes());
-            return pathToFile;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "error";
+        return pathToFile;
     }
 
 
-    public void saveImage(MultipartFile image, String path){
-        saveImage(image,path,"img_");
+    public String saveImage(MultipartFile image, String path)
+    {
+       return saveImage(image,path,"img_");
     }
 
-
-    public void saveImage(Race race, MultipartFile image, String path, String prefix) {
-        String pathToFile = saveImage(image, path, prefix);
-        if (!pathToFile.equals("error"))
-        {
-            race.setPhoto(pathToFile);
-        }
-    }
-
-
-    public void saveImage(Race race, MultipartFile image, String path) {
-        saveImage(race, image, path, "img_");
-    }
 }

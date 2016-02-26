@@ -94,7 +94,7 @@ public class AdminController {
             model.addAllObjects(errors.getModel());
         } else {
             if (image.getSize() > 0) {
-                new ImageService().saveImage(race,image,path);
+                race.setPhoto(new ImageService().saveImage(image,path));
             }
             raceDao.insert(race);
             model.addObject("race", new Race());
@@ -156,7 +156,7 @@ public class AdminController {
             model.addAllObjects(errors.getModel());
         } else {
             if (!image.isEmpty()) {
-                new ImageService().saveImage(race,image,path);
+                race.setPhoto(new ImageService().saveImage(image,path));
             }
             raceDao.update(race);
             model.addObject("race", race);

@@ -34,4 +34,7 @@
     <select id="selectById" parameterType="int" resultMap="UserMap">
         SELECT* FROM user where user.id = #{id}
     </select>
+    <select id="selectByUsername" resultMap="UserMap">
+        SELECT* FROM user where user.login = #{0}
+    </select>
 </mapper>
