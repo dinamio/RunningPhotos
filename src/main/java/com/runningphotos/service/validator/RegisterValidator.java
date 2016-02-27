@@ -27,7 +27,7 @@ public class RegisterValidator implements Validator{
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "city", "city.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name.empty");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "surname", "surname.empty");
-        ValidationUtils.rejectIfEmpty(errors, "password", "password.empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty");
         ValidationUtils.rejectIfEmpty(errors,"mail", "mail.empty");
         if(user.getPassword().length()<6 && user.getPassword().length() != 0 )
             errors.rejectValue("password","password.size");
