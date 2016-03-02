@@ -82,7 +82,7 @@
                     </li>
                     <c:choose>
                         <c:when test="${pageContext.request.userPrincipal.name != null}">
-                            <spring:message code="homepage.welcome"/>, <strong>${pageContext.request.userPrincipal.name}</strong>
+                            <spring:message code="homepage.welcome"/>, <li><a href="<c:url value="/userInfo"/>"/></li><strong>${pageContext.request.userPrincipal.name}</strong>
                             <li><a href="<c:url value="/logout" />" ><spring:message code="homepage.logout"/></a></li>
                         </c:when>
                         <c:otherwise>
@@ -137,7 +137,7 @@
                                 <div>
                                     <ul>
                                         <li><a href="<c:url value="/admin/updateRace"/>"><Strong><spring:message code="header.races"/></Strong></a></li>
-                                        <li><a href="<c:url value="/admin/changeResults"/>"><Strong><spring:message code="header.results"/></Strong></a></li>
+                                        <li><a href="<c:url value="/admin/add/result"/>"><Strong><spring:message code="header.results"/></Strong></a></li>
                                     </ul>
                                 </div>
                             </div>
