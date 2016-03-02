@@ -68,10 +68,11 @@ public class UserInfoController {
         ModelAndView model = new ModelAndView("updateUserInfo");
         registerValidator.validate(user, errors);
         model.addAllObjects(errors.getModel());
-        System.out.println(confirmPassword);
         if (!errors.hasErrors()) {
-            if(confirmPassword.equals(""))
+            if(confirmPassword.equals("")) {
                 userDao.update(user);
+                model.addObject("msg", messageSource.getMessage("userInfo.updateSuccessful", null, locale));
+            }
             else {
                 if (confirmPassword.equals(currentPassword)) {
                     userDao.update(user);
