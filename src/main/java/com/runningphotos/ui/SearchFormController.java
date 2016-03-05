@@ -28,7 +28,7 @@ public class SearchFormController
 	public @ResponseBody
 	List<Race> getRace(@RequestParam String raceName)
 	{
-		return searchRace(raceName.toLowerCase());
+		return raceDao.searchContainsName("%"+raceName+"%");
 	}
 
 
@@ -36,31 +36,12 @@ public class SearchFormController
 	public @ResponseBody
 	String checkRaceAndNumber(@RequestParam("race") String raceName, @RequestParam("number") String number )
 	{
-		Race race = null;
-		List<Race> raceArr = searchRace(raceName);
-		if(raceArr.size() == 1){
-			race = raceArr.get(0);
-		}
-		else {
-			return "";
-		}
+		Race race = raceDao.selectByName(raceName);
 		if(resultDao.selectResultByRaceAndNumber(race,number) != null) {
-			return race.getName();
-		}
+			return race.getName();}
 		else {
 			return "";
 		}
-	}
-
-
-	private List<Race> searchRace(String raceName)
-	{
-		List<String> result = new ArrayList<String>();
-		String raceCriteria[] = raceName.split(" ");
-		for(String criteria : raceCriteria ){
-			result.add("%"+criteria+"%");
-		}
-		return raceDao.searchContainsName(result);
 	}
 
 }

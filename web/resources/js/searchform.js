@@ -24,9 +24,6 @@ function checkRace(){
 
     var button = document.getElementById('search-btn');
 
-    if( inputNumber.value.length == 0 || inputRace.value.length == 0 )
-        {return;}
-
 	$.ajax({
 		url : 'checkRaceAndNumber',
 		type: 'GET',

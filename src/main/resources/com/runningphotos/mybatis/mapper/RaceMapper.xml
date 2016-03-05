@@ -29,14 +29,12 @@
     <select id="selectById" parameterType="int" resultMap="RaceMap">
         SELECT* FROM race where race.id = #{id}
     </select>
-    <select id="searchContainsName" resultMap="RaceMap">
-        SELECT * FROM race where
-        <foreach item="item"  collection="raceCriteria"
-                 open="UPPER(Race_Name) LIKE " separator="AND UPPER(Race_Name) LIKE " >
-           UPPER(#{item,javaType=String})
-        </foreach>
+    <select id="selectByName" resultMap="RaceMap">
+        SELECT * FROM race where UPPER(Race_Name) = UPPER(#{raceName});
     </select>
-
+    <select id="searchContainsName" resultMap="RaceMap">
+        SELECT * FROM race where UPPER(Race_Name) LIKE UPPER(#{raceCriteria});
+    </select>
     <select id="selectRacesWithoutResult" resultMap="RaceMap">
         select * from race where not exists(select * from Result where race_id=race.id)
     </select>
