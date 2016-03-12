@@ -1,8 +1,11 @@
 package com.runningphotos.ui;
 
 import com.runningphotos.bom.Race;
+import com.runningphotos.bom.Runner;
 import com.runningphotos.bom.User;
+import com.runningphotos.dao.RunnerDao;
 import com.runningphotos.dao.UserDao;
+import com.runningphotos.service.RunnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.MessageSource;
@@ -35,6 +38,12 @@ public class UserInfoController {
     private MessageSource messageSource;
 
     @Autowired
+    private RunnerDao runnerDao;
+
+    @Autowired
+    private RunnerService runnerService;
+
+    @Autowired
     private UserDao userDao;
 
     @Autowired
@@ -53,8 +62,12 @@ public class UserInfoController {
     public ModelAndView getUserInfoPage() {
         ModelAndView model = new ModelAndView("updateUserInfo");
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();//get logged in username
+        String username = auth.getName();
         User user = userDao.selectByUsername(username);
+        if(user.getRunner()!=null) {
+            Runner runner = runnerDao.selectById(user.getRunner().getId());
+            user.setRunner(runner);
+        }
         model.addObject("user", user);
         return model;
     }
@@ -62,6 +75,9 @@ public class UserInfoController {
     @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
     public ModelAndView updateUserInfo( User user,BindingResult errors, HttpServletRequest request, Locale locale) {
         String confirmPassword = request.getParameter("confirmPassword");
+            String runnerSurnameAndName = request.getParameter("runnerSurnameAndName");
+            Runner runner = runnerService.getLinkedRunner(runnerSurnameAndName);
+            user.setRunner(runner);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         String currentPassword = userDao.selectByUsername(username).getPassword();

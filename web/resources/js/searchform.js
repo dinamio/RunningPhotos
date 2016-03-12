@@ -5,12 +5,39 @@ $('#race-input-search').autocomplete({
 	transformResult: function(response) {
 	    return {
             suggestions: $.map($.parseJSON(response), function(item) {
-                return { value: item.name };
+                return { value: item.id };
 	         })
 	    };
     },
     onSelect: function () {checkRace()}
 });
+$('#runner-input-search').autocomplete({
+	serviceUrl: 'getRunner',
+	paramName: "runnerSurnameAndName",
+	delimiter: ",",
+	transformResult: function(response) {
+		return {
+			suggestions: $.map($.parseJSON(response), function(item) {
+				return { value: item.surname+" "+item.name };
+			})
+		};
+	},
+
+});
+
+/*$('#linkWithRunnerOnRegisterPage').autocomplete({
+	serviceUrl: 'getRunner',
+	paramName: "runnerSurnameAndName",
+	delimiter: ",",
+	transformResult: function(response) {
+		return {
+			suggestions: $.map($.parseJSON(response), function(item) {
+				return { value: item.surname+" "+item.name };
+			})
+		};
+	},
+
+});*/
 
 
     var inputRace = document.getElementById('race-input-search');

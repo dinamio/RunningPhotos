@@ -12,20 +12,22 @@
         <result column="city" property="city"/>
         <result column="birthdate" property="birthDate"/>
         <result column="password" property="password"/>
+        <result column="runner_id" property="runner.id"/>
         <result column="role_id" property="role" typeHandler="com.runningphotos.service.typeHandler.EnumHandler"/>
     </resultMap>
     <insert id="insert" parameterType="com.runningphotos.bom.User" >
         INSERT INTO user
-        (login,mail,name,surname,city,birthdate,password,role_id)
+        (login,mail,name,surname,city,birthdate,password,role_id,runner_id)
         VALUES
-        (#{login},#{mail},#{name},#{surname},#{city},#{birthDate},#{password},#{role, typeHandler=com.runningphotos.service.typeHandler.EnumHandler})
+        (#{login},#{mail},#{name},#{surname},#{city},#{birthDate},#{password},#{role, typeHandler=com.runningphotos.service.typeHandler.EnumHandler},#{runner.id})
     </insert>
     <select id="selectAll" resultMap="UserMap">
         select * from user
     </select>
     <update id="update" parameterType="com.runningphotos.bom.User">
         UPDATE user set login=#{login}, mail=#{mail}, name=#{name},
-        surname = #{surname}, city = #{city}, birthdate = #{birthDate},password=#{password}, role_id =#{role, typeHandler= com.runningphotos.service.typeHandler.EnumHandler}
+        surname = #{surname}, city = #{city}, birthdate = #{birthDate},password=#{password}, role_id =#{role, typeHandler= com.runningphotos.service.typeHandler.EnumHandler},
+        runner_id=#{runner.id}
         where id = #{id}
     </update>
     <delete id="delete" parameterType="com.runningphotos.bom.User">

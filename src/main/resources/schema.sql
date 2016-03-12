@@ -11,6 +11,13 @@ id int primary key auto_increment,
 name VARCHAR(30)
 );
 
+CREATE TABLE Runner (
+id int primary key auto_increment,
+Name varchar(20),
+Surname varchar(30),
+Sex VARCHAR (20),
+);
+
 create table User(
 id int primary key auto_increment,
 Login varchar(50),
@@ -21,7 +28,9 @@ Surname varchar(30),
 City varchar (20),
 Birthdate date,
 Role_id int,
-foreign key (Role_id) references Role(id)
+runner_id int,
+foreign key (Role_id) references Role(id),
+foreign key (runner_id) references Runner(id)
 );
 
 create table RacePhoto(
@@ -32,17 +41,6 @@ foreign key (Author_id) references User(id)
 on delete SET NULL,
 Race_id int,
 foreign key (Race_id) references Race(id)
-);
-
-CREATE TABLE Runner (
-id int primary key auto_increment,
-Name varchar(20),
-Surname varchar(30),
-Sex VARCHAR (20),
-User_id int,
-foreign key (User_id)
-references User(id)
-on delete SET NULL
 );
 
 create table Runners_on_photo(

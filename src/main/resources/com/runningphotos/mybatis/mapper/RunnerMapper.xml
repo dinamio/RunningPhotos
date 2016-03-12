@@ -8,7 +8,6 @@
         <result column="name" property="name"/>
         <result column="surname" property="surname"/>
         <result column="sex" property="sex"/>
-        <result column="user_id" property="user.id"/>
 
     </resultMap>
     <insert id="insert" parameterType="com.runningphotos.bom.Runner" timeout="10" useGeneratedKeys="true">
@@ -16,16 +15,16 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO runner
-        (name,surname,sex,user_id)
+        (name,surname,sex)
         VALUES
-        (#{name},#{surname},#{sex},#{user.id})
+        (#{name},#{surname},#{sex})
     </insert>
     <select id="selectAll" resultMap="RunnerMap">
         select * from Runner
     </select>
     <update id="update" parameterType="com.runningphotos.bom.Runner">
         UPDATE Runner set  name=#{name},
-        surname = #{surname}, sex =#{sex}, user_id = #{user.id}
+        surname = #{surname}, sex =#{sex}
     </update>
     <delete id="delete" parameterType="com.runningphotos.bom.Runner">
         DELETE  from Runner where id = #{id}
@@ -35,5 +34,8 @@
     </select>
     <select id="findRunner" parameterType="com.runningphotos.bom.Runner" resultMap="RunnerMap">
         SELECT* from Runner where name=#{name} and surname=#{surname}
+    </select>
+    <select id="selectRunnerBySurname" resultMap="RunnerMap">
+        SELECT * FROM runner where UPPER(surname) LIKE UPPER(#{runnerCriteria});
     </select>
 </mapper>

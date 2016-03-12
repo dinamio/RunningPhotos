@@ -30,9 +30,6 @@ public class RunnerDaoTest extends AbstractTest {
     @Autowired
     private RunnerDao runnerDao;
 
-    @Autowired
-    private UserDao userDao;
-
 
     @Test
     public void testRun(){
@@ -59,7 +56,6 @@ public class RunnerDaoTest extends AbstractTest {
         assertEquals(RUNNER_NAME, runners.get(1).getName());
         assertEquals(RUNNER_SURNAME, runners.get(1).getSurname());
         assertEquals(RUNNER_SEX, runners.get(1).getSex());
-        assertEquals(runner.getUser().getId(),runners.get(1).getUser().getId());
         log.info(runner);
     }
 
@@ -73,7 +69,6 @@ public class RunnerDaoTest extends AbstractTest {
         assertEquals(RUNNER_NAME_UPDATE, runners.get(1).getName());
         assertEquals(RUNNER_SURNAME_UPDATE, runners.get(1).getSurname());
         assertEquals(RUNNER_SEX_UPDATE, runners.get(1).getSex());
-        assertEquals(runner.getUser().getId(), runners.get(1).getUser().getId());
         log.info(runners);
     }
 
@@ -90,7 +85,6 @@ public class RunnerDaoTest extends AbstractTest {
         runner.setName(RUNNER_NAME_UPDATE);
         runner.setSurname(RUNNER_SURNAME_UPDATE);
         runner.setSex(RUNNER_SEX_UPDATE);
-        runner.setUser(userDao.selectAll().get(1));
         return runner;
     }
     private Runner fillRunner(){
@@ -98,13 +92,6 @@ public class RunnerDaoTest extends AbstractTest {
         runner.setName(RUNNER_NAME);
         runner.setSurname(RUNNER_SURNAME);
         runner.setSex(RUNNER_SEX);
-        runner.setUser(userDao.selectAll().get(0));
         return runner;
     }
-
-//    private void clearRunnerTable(){
-//        List<Runner > result =  runnerDao.selectAll();
-//        for(int i=0;i<result.size();i++)
-//            runnerDao.delete(result.get(i));
-//    }
 }

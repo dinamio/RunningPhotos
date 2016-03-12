@@ -9,8 +9,6 @@ public class Runner extends EntityWithName{
 
   private Sex sex;
 
-  private User user;
-
   private List<Result> results;
 
 
@@ -22,17 +20,6 @@ public class Runner extends EntityWithName{
   public void setSurname(String surname) {
     this.surname = surname;
   }
-
-
-  public User getUser() {
-    return user;
-  }
-
-
-  public void setUser(User user) {
-    this.user = user;
-  }
-
 
   public List<Result> getResults() {
     return results;

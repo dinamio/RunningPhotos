@@ -27,3 +27,16 @@
 </div>
 
 <jsp:include page="template/footer.jsp"/>
+<script>
+  $(document).ready(function() {
+    $(function() {
+      $("#birthday").datepicker({
+        changeMonth:true,
+        changeYear:true,
+        yearRange: "-100:+0"
+      });
+    });
+  });
+</script>
+<script src="<c:url value="/resources/js/jquery.autocomplete.min.js" />"></script>
+<script src="<c:url value="/resources/js/searchform.js" />"></script>

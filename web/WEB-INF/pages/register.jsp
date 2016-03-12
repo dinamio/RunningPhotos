@@ -24,15 +24,18 @@
         </div>
     </div>
 <script src="<c:url value="/resources/js/date.format.js"/>"></script>
-    <script>
-        $(document).ready(function(){
-            $('.dropdate').dropdate({
-                        dateFormat:'mm/dd/yyyy'
+<script>
+    $(document).ready(function() {
+        $(function() {
+            $("#birthday").datepicker({
+                changeMonth:true,
+                changeYear:true,
+                yearRange: "-100:+0"
+            });
         });
-        });
-
-    </script>
-
+    });
+</script>
 </div>
-
+<script src="<c:url value="/resources/js/jquery.autocomplete.min.js" />"></script>
+<script src="<c:url value="/resources/js/searchform.js" />"></script>
 <jsp:include page="template/footer.jsp"/>

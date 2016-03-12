@@ -115,6 +115,25 @@
       <form:errors path="birthDate" cssClass="alert alert-danger"/>
     </div>
   </div>
+  <c:choose>
+    <c:when test="${not empty user.runner.id}">
+      <div class="form-group">
+        <label for="runner-input-search" class="col-sm-3 control-label"><b><spring:message code="userInfo.linkWithRunner"/></b></label>
+        <div class="col-sm-4">
+          <input class="form-control" name = "runnerSurnameAndName" id="runner-input-search" type="text" placeholder="" value="${user.runner.surname} ${user.runner.name}"/>
+        </div>
+      </div>
+    </c:when>
+    <c:otherwise>
+      <div class="form-group">
+        <label for="runner-input-search" class="col-sm-3 control-label"><b><spring:message code="userInfo.linkWithRunner"/></b></label>
+        <div class="col-sm-4">
+          <input type="text"  class="form-control" name="runnerSurnameAndName"  id="runner-input-search"  placeholder="<spring:message code="userInfo.surnameAndName"/>" >
+        </div>
+      </div>
+    </c:otherwise>
+  </c:choose>
+
   <c:if test="${not empty user.id}">
     <div class="form-group">
       <div class="col-sm-4">
