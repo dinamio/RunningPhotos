@@ -126,13 +126,8 @@ public class AdminController {
     }
 
     private void fillResultsWithRace(List<Result> results, Race race) {
-        Distance distance = new Distance();
-        distance.setName("Half marathon");
-        distance.setLength(21.1);
         for(Result result : results) {
             result.setRace(race);
-            result.setDistance(distance); //TODO: Remove when json will contain distance
-            result.getRunner().setSex(Sex.MALE); //TODO: and sex
         }
     }
 

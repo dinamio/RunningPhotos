@@ -101,7 +101,7 @@
                     <a href="<c:url value="/"/>"><spring:message code="homepage.home"/></a>
                 </li>
 
-                <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Photographer','Runner')">
+                <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
                     <li class="active">
                         <a href="<c:url value="/buyPhotos"/>"><spring:message code="homepage.buyPhotos"/></a>
                     </li>

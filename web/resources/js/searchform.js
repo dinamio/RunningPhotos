@@ -5,7 +5,7 @@ $('#race-input-search').autocomplete({
 	transformResult: function(response) {
 	    return {
             suggestions: $.map($.parseJSON(response), function(item) {
-                return { value: item.id };
+                return { value: item.name };
 	         })
 	    };
     },
@@ -24,21 +24,6 @@ $('#runner-input-search').autocomplete({
 	},
 
 });
-
-/*$('#linkWithRunnerOnRegisterPage').autocomplete({
-	serviceUrl: 'getRunner',
-	paramName: "runnerSurnameAndName",
-	delimiter: ",",
-	transformResult: function(response) {
-		return {
-			suggestions: $.map($.parseJSON(response), function(item) {
-				return { value: item.surname+" "+item.name };
-			})
-		};
-	},
-
-});*/
-
 
     var inputRace = document.getElementById('race-input-search');
 	var inputNumber = document.getElementById('number-input-search');
