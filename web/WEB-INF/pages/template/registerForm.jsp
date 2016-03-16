@@ -4,9 +4,14 @@
 
 <form:form class="form-horizontal" method="post" commandName="user"
            action="">
+
   <c:if test="${not empty msg}">
     <div class="alert alert-success">${msg}</div>
   </c:if>
+  <c:if test="${not empty notFoundMessage}">
+    <div class="alert alert-danger">${notFoundMessage}</div>
+  </c:if>
+
   <label for ="selectRole" class="class="col-sm-3 control-label"><b><spring:message code="register.you"/></b></label>
   <form:select path="role" id="selectRole">
     <form:option value="RUNNER"><spring:message code="register.runner"/></form:option>
@@ -120,7 +125,10 @@
       <div class="form-group">
         <label for="runner-input-search" class="col-sm-3 control-label"><b><spring:message code="userInfo.linkWithRunner"/></b></label>
         <div class="col-sm-4">
-          <input class="form-control" name = "runnerSurnameAndName" id="runner-input-search" type="text" placeholder="" value="${user.runner.surname} ${user.runner.name}"/>
+          <input title="<spring:message code="userInfo.linkWithRunnerAlert"/>" class="form-control" name = "runnerSurnameAndName" id="runner-input-search" type="text" placeholder="" value="${user.runner.surname} ${user.runner.name}"/>
+        </div>
+        <div class="col-sm-4">
+          <form:input path="runner.id" class="form-control" id="id" type="hidden" placeholder=""/>
         </div>
       </div>
     </c:when>
@@ -128,7 +136,7 @@
       <div class="form-group">
         <label for="runner-input-search" class="col-sm-3 control-label"><b><spring:message code="userInfo.linkWithRunner"/></b></label>
         <div class="col-sm-4">
-          <input type="text"  class="form-control" name="runnerSurnameAndName"  id="runner-input-search"  placeholder="<spring:message code="userInfo.surnameAndName"/>" >
+          <input title="<spring:message code="userInfo.linkWithRunnerAlert"/>" type="text"  class="form-control" name="runnerSurnameAndName"  id="runner-input-search"  placeholder="<spring:message code="userInfo.surnameAndName"/>">
         </div>
       </div>
     </c:otherwise>

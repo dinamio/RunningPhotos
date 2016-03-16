@@ -75,30 +75,30 @@ public class UserInfoController {
     @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
     public ModelAndView updateUserInfo( User user,BindingResult errors, HttpServletRequest request, Locale locale) {
         String confirmPassword = request.getParameter("confirmPassword");
+        ModelAndView model = new ModelAndView("updateUserInfo");
+        if(user.getRunner()==null) {
             String runnerSurnameAndName = request.getParameter("runnerSurnameAndName");
             Runner runner = runnerService.getLinkedRunner(runnerSurnameAndName);
+            if(runner==null) {
+                model.addObject("notFoundMessage", messageSource.getMessage("userInfo.runnerNotFound", null, locale));
+                return model;
+            }
             user.setRunner(runner);
+        }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         String currentPassword = userDao.selectByUsername(username).getPassword();
-        ModelAndView model = new ModelAndView("updateUserInfo");
         registerValidator.validate(user, errors);
         model.addAllObjects(errors.getModel());
         if (!errors.hasErrors()) {
-            if(confirmPassword.equals("")) {
+            if(confirmPassword.equals("")||confirmPassword.equals(currentPassword)) {
                 userDao.update(user);
                 model.addObject("msg", messageSource.getMessage("userInfo.updateSuccessful", null, locale));
             }
-            else {
-                if (confirmPassword.equals(currentPassword)) {
-                    userDao.update(user);
-                    model.addObject("msg", messageSource.getMessage("userInfo.updateSuccessful", null, locale));
-                }
                 else
                     errors.rejectValue("password", "password.sd", messageSource.getMessage("userInfo.incorrectCurrentPassword", null, locale));
             }
             model.addObject("user", user);
-        }
         return model;
     }
 }

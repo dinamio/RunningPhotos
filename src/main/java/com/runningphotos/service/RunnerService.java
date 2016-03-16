@@ -32,7 +32,7 @@ public class RunnerService {
 
         Runner linkedRunner = new Runner();
 
-        if(runnerSurnameAndName.equals(""))
+        if(runnerSurnameAndName.equals(" "))
             return linkedRunner;
         else {
             linkedRunner.setSurname(token.nextToken());

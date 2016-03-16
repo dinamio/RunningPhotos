@@ -58,7 +58,7 @@ public class AdminController {
 
     @RequestMapping(value = "/tagPhotos", method = RequestMethod.GET)
     public ModelAndView openTagPhotos() {
-        ModelAndView model = new ModelAndView("admin/tagPhotos");
+        ModelAndView model = new ModelAndView("/tagPhotos");
         return model;
     }
 

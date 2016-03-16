@@ -61,19 +61,24 @@ public class RegisterController {
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView getNewUser(User user, BindingResult errors,HttpServletRequest request, Locale locale) {
-
-        String confirmPassword = request.getParameter("confirmPassword");
-        Runner runner = new Runner();
-        String runnerSurnameAndName = request.getParameter("runnerSurnameAndName");
-        runner = runnerService.getLinkedRunner(runnerSurnameAndName);
-        user.setRunner(runner);
+        User checkUserInDataBase = userDao.selectByUsername(user.getLogin());
         ModelAndView model = new ModelAndView("/register");
+        if(checkUserInDataBase!=null)
+            errors.rejectValue("login", "login.sd", messageSource.getMessage("register.userExist", null, locale));
+        String confirmPassword = request.getParameter("confirmPassword");
+        String runnerSurnameAndName = request.getParameter("runnerSurnameAndName");
+        Runner runner = runnerService.getLinkedRunner(runnerSurnameAndName);
+        if(runner==null) {
+            model.addObject("notFoundMessage", messageSource.getMessage("userInfo.runnerNotFound", null, locale));
+            return model;
+        }
+        else
+        user.setRunner(runner);
         registerValidator.validate(user, errors);
         model.addAllObjects(errors.getModel());
         if(!errors.hasErrors()) {
             if (confirmPassword.equals(user.getPassword())){
                 userDao.insert(user);
-                System.out.println(user.getLogin()+" "+user.getRunner().getId());
                 model.addObject("msg", messageSource.getMessage("register.successfully",null,locale));}
             else{
                 errors.rejectValue("password", "password.sd", messageSource.getMessage("register.passNotMath", null, locale));}
