@@ -136,7 +136,7 @@
       <div class="form-group">
         <label for="runner-input-search" class="col-sm-3 control-label"><b><spring:message code="userInfo.linkWithRunner"/></b></label>
         <div class="col-sm-4">
-          <input title="<spring:message code="userInfo.linkWithRunnerAlert"/>" type="text"  class="form-control" name="runnerSurnameAndName"  id="runner-input-search"  placeholder="<spring:message code="userInfo.surnameAndName"/>">
+          <input title="<spring:message code="userInfo.linkWithRunnerAlert"/>" type="text"  class="form-control" name="runnerSurnameAndName"  id="runner-input-search" value="" placeholder="<spring:message code="userInfo.surnameAndName"/>">
         </div>
       </div>
     </c:otherwise>
