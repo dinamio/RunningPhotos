@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: Tensa
@@ -58,7 +59,10 @@
             </div>
             <div id="caption" class="caption-container">
                 <div style="margin:5px;">
-                    <form name="selectPhoto" id="marks-select-form" method="POST" action="<c:url value="/${pageContext.request.userPrincipal.name}/tagPhotos"/>">
+                    <c:set var="authorities" value="${pageContext.request.userPrincipal.authorities}"/>
+                    <c:set var="role1" value="${fn:replace(authorities, ']','')}"/>
+                    <c:set var="role2" value="${fn:substringAfter(role1, '[ROLE_')}"/>
+                    <form name="selectPhoto" id="marks-select-form" method="POST" action="<c:url value="/${fn:toLowerCase(role2)}/tagPhotos"/>">
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-primary active">
                                 <input type="radio" name="marks" id="option2" value="unmarked" autocomplete="off" checked> Unmarked

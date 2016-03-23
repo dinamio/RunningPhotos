@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -113,7 +114,10 @@
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('Admin','Operator')">
                     <li class="active">
-                        <a href="<c:url value="/${pageContext.request.userPrincipal.name}/tagPhotos"/>"><spring:message code="homepage.tagPhotos"/></a>
+                        <c:set var="authorities" value="${pageContext.request.userPrincipal.authorities}"/>
+                        <c:set var="role1" value="${fn:replace(authorities, ']','')}"/>
+                        <c:set var="role2" value="${fn:substringAfter(role1, '[ROLE_')}"/>
+                        <a href="<c:url value="/${fn:toLowerCase(role2)}/tagPhotos"/>"><spring:message code="homepage.tagPhotos"/></a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('Admin')">
