@@ -23,8 +23,13 @@
         <a href="#tab${loopCounter.index+1}" data-toggle="tab">${distance}</a></li>
       </c:forEach>
      </ul>
+    <!-- Search Runner-->
+
     <!-- Tab Content (Full Description) -->
     <div class="tab-content product-detail-info">
+      <div class="form-group pull-right">
+        <input class="search form-control" id="livesearch" placeholder="<spring:message code="search.findRunner"/>" type="text" />
+      </div>
       <c:forEach var="distance" items="${distances}" varStatus="distanceCounter">
         <c:choose>
           <c:when test="${distanceCounter.first}">
@@ -35,8 +40,8 @@
           </c:otherwise>
             </c:choose>
 
-
-            <table class="table table-bordered">
+            <c:set var="tableId" value="table${distanceCounter.index+1}"/>
+            <table id="${tableId}" class="table table-bordered table-striped">
               <thead>
               <tr>
                 <th class="info"><spring:message code="runner.number"/></th>
@@ -61,8 +66,20 @@
               </c:forEach>
             </table>
             </div>
+            <script>
+              $(document).ready(function() {
+                $("#${tableId}").simplePagination();
+                $('input#livesearch').liveSearch({
+                  table : 'table' // table selector
+                });
+              });
+            </script>
       </c:forEach>
           </div>
     </div>
   </div>
 </div>
+<script src="<c:url value="/resources/js/jquery.simplePagination.js"/>"></script>
+<script src="<c:url value="/resources/js/livesearch.js"/>"></script>
+<script src="<c:url value="/resources/js/livesearch.min.js"/>"></script>
+
