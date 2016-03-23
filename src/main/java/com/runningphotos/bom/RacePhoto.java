@@ -11,6 +11,8 @@ public class RacePhoto extends Entity {
 
     private User user;
 
+    private boolean mark;
+
     private List<Runner> runnersMarked;
 
 
@@ -24,6 +26,7 @@ public class RacePhoto extends Entity {
                 "path='" + path + '\'' +
                 ", race=" + race +
                 ", user=" + user +
+                ", mark=" + mark +
                 ", runnersMarked=" + runnersMarked +
                 '}';
     }
@@ -52,6 +55,12 @@ public class RacePhoto extends Entity {
     public void setUser(User user) {
       this.user = user;
     }
+
+
+    public boolean isMark() { return mark; }
+
+
+    public void setMark(boolean mark) { this.mark = mark; }
 
 
     public List<Runner> getRunnersMarked() {

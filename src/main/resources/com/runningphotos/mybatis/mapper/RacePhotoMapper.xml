@@ -6,6 +6,7 @@
     <resultMap type="com.runningphotos.bom.RacePhoto" id="RacePhotoMap">
         <id column="id" property="id"  />
         <result column="Path" property="path"/>
+        <result column="Mark" property="mark"/>
         <result column="Race_id" property="race.id"/>
         <result column="Author_id" property="user.id"/>
         <collection property="runnersMarked" resultMap="RunnerMap"/>
@@ -22,19 +23,19 @@
 
     <insert id="insert" parameterType="com.runningphotos.bom.RacePhoto" >
 INSERT INTO RacePhoto
-(Path,Race_id,Author_id)
+(Path,Mark,Race_id,Author_id)
 VALUES
-(#{path},#{race.id},#{user.id})
+(#{path},#{mark},#{race.id},#{user.id})
 </insert>
     <select id="selectAll" resultMap="RacePhotoMap">
-        SELECT rp.id,rp.path,rp.race_id,rp.author_id,r.id as runner_id,r.name,r.surname FROM RacePhoto rp
+        SELECT rp.id,rp.path,rp.mark,rp.race_id,rp.author_id,r.id as runner_id,r.name,r.surname FROM RacePhoto rp
    Left join Runners_on_photo rop
    on rp.id=rop.photo_id
    left join runner r
    on r.id = rop.runner_id
     </select>
     <select id="getAllAuthorPhotos" resultMap="RacePhotoMap">
-    SELECT rp.id,rp.path,rp.race_id,rp.author_id,r.id as runner_id,r.name,r.surname FROM RacePhoto rp
+    SELECT rp.id,rp.path,rp.mark,rp.race_id,rp.author_id,r.id as runner_id,r.name,r.surname FROM RacePhoto rp
     Left join Runners_on_photo rop
     on rp.id=rop.photo_id
     left join runner r
@@ -47,10 +48,15 @@ VALUES
     </select>
     <update id="update" parameterType="com.runningphotos.bom.RacePhoto">
         UPDATE RacePhoto
-        SET  path=#{path}, Race_id=#{race.id}, Author_id=#{user.id}
+        SET  path=#{path}, mark=#{mark}, Race_id=#{race.id}, Author_id=#{user.id} where id=#{id}
     </update>
 
     <delete id="delete" parameterType="com.runningphotos.bom.RacePhoto">
         Delete from RacePhoto where id=#{id}
     </delete>
+
+    <select id="selectByMark" resultMap="RacePhotoMap">
+        SELECT * FROM RacePhoto
+        WHERE mark=#{mark}
+    </select>
 </mapper>

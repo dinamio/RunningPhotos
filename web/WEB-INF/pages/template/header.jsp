@@ -113,7 +113,7 @@
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('Admin','Operator')">
                     <li class="active">
-                        <a href="<c:url value="/admin/tagPhotos"/>"><spring:message code="homepage.tagPhotos"/></a>
+                        <a href="<c:url value="/${pageContext.request.userPrincipal.name}/tagPhotos"/>"><spring:message code="homepage.tagPhotos"/></a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('Admin')">

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.runningphotos.dao.NumberOnPhotoDao" >
+
+    <resultMap type="com.runningphotos.bom.NumberOnPhoto" id="NumberOnPhotoMap">
+        <id column="id" property="id"  />
+        <result column="Number" property="number"/>
+        <result column="RacePhoto_id" property="racePhoto.id"/>
+    </resultMap>
+    <resultMap type="com.runningphotos.bom.RacePhoto" id="RacePhotoMap">
+        <id column="id" property="id"  />
+    </resultMap>
+
+
+    <insert id="insert" parameterType="com.runningphotos.bom.NumberOnPhoto" >
+INSERT INTO NumberOnPhoto
+(Number,RacePhoto_id)
+VALUES
+(#{number},#{racePhoto.id})
+</insert>
+    <select id="selectAll" resultMap="NumberOnPhotoMap">
+        SELECT * FROM NumberOnPhoto
+    </select>
+    <select id="selectById" parameterType="int" resultMap="NumberOnPhotoMap">
+        SELECT * FROM NumberOnPhoto
+        WHERE id=#{id}
+    </select>
+    <update id="update" parameterType="com.runningphotos.bom.NumberOnPhoto">
+        UPDATE NumberOnPhoto
+        SET  number=#{number}, RacePhoto_id=#{racePhoto.id}
+        where id = #{id}
+    </update>
+    <delete id="delete" parameterType="com.runningphotos.bom.NumberOnPhoto">
+        Delete from NumberOnPhoto where id=#{id}
+    </delete>
+    <delete id="deleteAllByPhotoId" parameterType="int">
+        Delete from NumberOnPhoto where RacePhoto_id=#{id}
+    </delete>
+    <select id="selectAllByPhotoId" parameterType="int" resultMap="NumberOnPhotoMap">
+        SELECT * FROM NumberOnPhoto
+        WHERE RacePhoto_id=#{id}
+    </select>
+</mapper>

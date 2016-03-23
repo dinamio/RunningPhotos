@@ -35,6 +35,7 @@ foreign key (runner_id) references Runner(id)
 
 create table RacePhoto(
 id int primary key auto_increment,
+mark bit,
 Path varchar(150),
 Author_id int,
 foreign key (Author_id) references User(id)
@@ -66,5 +67,12 @@ Runner_id int,
 foreign key (Runner_id) references Runner(id),
 Race_id int ,
 foreign key (Race_id) references Race(id)
+);
+
+create table NumberOnPhoto(
+id int primary key auto_increment,
+Number varchar(30),
+RacePhoto_id int,
+foreign key (RacePhoto_id) references RacePhoto(id)
 );
 

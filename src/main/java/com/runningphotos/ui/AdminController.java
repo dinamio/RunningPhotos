@@ -2,13 +2,13 @@ package com.runningphotos.ui;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.runningphotos.bom.Distance;
-import com.runningphotos.bom.Race;
-import com.runningphotos.bom.Result;
-import com.runningphotos.bom.Sex;
+import com.runningphotos.bom.*;
+import com.runningphotos.dao.NumberOnPhotoDao;
 import com.runningphotos.dao.RaceDao;
+import com.runningphotos.dao.RacePhotoDao;
 import com.runningphotos.service.ImageService;
 import com.runningphotos.service.ResultService;
+import com.runningphotos.util.TagPhotoUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -36,6 +37,9 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
+    private NumberOnPhotoDao numberOnPhotoDao;
+
+    @Autowired
     private RaceDao raceDao;
 
     @Autowired
@@ -43,6 +47,9 @@ public class AdminController {
 
     @Autowired
     private ResultService resultService;
+
+    @Autowired
+    private RacePhotoDao racePhotoDao;
 
     @Value(value = "${path.to.file}")
     private String path;
@@ -56,10 +63,29 @@ public class AdminController {
         }
     }
 
+
     @RequestMapping(value = "/tagPhotos", method = RequestMethod.GET)
     public ModelAndView openTagPhotos() {
-        ModelAndView model = new ModelAndView("/tagPhotos");
-        return model;
+
+        return TagPhotoUtils.openTagPhotos(racePhotoDao);
+    }
+
+    @RequestMapping(value = "/tagPhotos", method = RequestMethod.POST)
+    public ModelAndView chooseTagPhotos(String marks) {
+
+        return TagPhotoUtils.chooseTagPhotos(marks, racePhotoDao);
+    }
+
+    @RequestMapping(value = "/getMarkInPhoto", method = RequestMethod.GET)
+    public @ResponseBody List<NumberOnPhoto> getTagPhotos(String id) {
+
+        return TagPhotoUtils.getTagPhotos(id, numberOnPhotoDao);
+    }
+
+    @RequestMapping(value = "/setMarkInPhoto", method = RequestMethod.GET)
+    public @ResponseBody String setTagPhotos(HttpServletRequest request) {
+
+        return TagPhotoUtils.setTagPhotos(request,numberOnPhotoDao, racePhotoDao);
     }
 
     @RequestMapping(value = "/changeResults", method = RequestMethod.GET)
@@ -126,8 +152,13 @@ public class AdminController {
     }
 
     private void fillResultsWithRace(List<Result> results, Race race) {
+        Distance distance = new Distance();
+        distance.setName("Half marathon");
+        distance.setLength(21.1);
         for(Result result : results) {
             result.setRace(race);
+            result.setDistance(distance); //TODO: Remove when json will contain distance
+            result.getRunner().setSex(Sex.MALE); //TODO: and sex
         }
     }
 

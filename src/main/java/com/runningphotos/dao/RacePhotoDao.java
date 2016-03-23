@@ -12,4 +12,6 @@ package com.runningphotos.dao;
 public interface RacePhotoDao extends MyBatisDao<RacePhoto>{
 
     List<RacePhoto> getAllAuthorPhotos(User author);
+
+    List<RacePhoto> selectByMark(boolean mark);
 }
