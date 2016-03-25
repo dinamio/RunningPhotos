@@ -66,13 +66,19 @@
               </c:forEach>
             </table>
             </div>
-            <script>
+            <script type="text/javascript">
               $(document).ready(function() {
                 $("#${tableId}").simplePagination();
                 $('input#livesearch').liveSearch({
                   table : 'table' // table selector
                 });
               });
+              var strings = new Array();
+              strings['settings.next'] = "<spring:message code='paging.next' javaScriptEscape='true' />";
+              strings['settings.previous'] = "<spring:message code='paging.previous' javaScriptEscape='true' />";
+              strings['settings.to'] = "<spring:message code='paging.to' javaScriptEscape='true' />";
+              strings['settings.of'] = "<spring:message code='paging.of' javaScriptEscape='true' />";
+              strings['settings.runners'] = "<spring:message code='paging.runners' javaScriptEscape='true' />";
             </script>
       </c:forEach>
           </div>

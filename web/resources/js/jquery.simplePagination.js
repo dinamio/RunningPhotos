@@ -14,8 +14,8 @@
 			containerClass: '',
 			previousButtonClass: 'btn pull-left',
 			nextButtonClass: 'btn pull-right',
-			previousButtonText: 'Previous',
-			nextButtonText: 'Next',
+			previousButtonText: strings['settings.previous'],
+			nextButtonText:  strings['settings.next'],
 			currentPage: 1
 		};
 
@@ -81,7 +81,7 @@
 				$rows.hide();
 				$rows.slice((from-1), to).show();
 
-				of.innerHTML = from + ' to ' + to + ' of ' + $rows.length + ' entries';
+				of.innerHTML = from +' '+ strings['settings.to']+' ' + to+' ' + strings['settings.of']+' ' + $rows.length+' ' + strings['settings.runners'];
 
 				if ($rows.length <= settings.perPage) {
 					$(container).hide();
