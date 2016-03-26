@@ -57,6 +57,14 @@ public class ImageController {
     }
 
 
+    @RequestMapping(value="/photo_b/{imageAddress}", method = RequestMethod.GET)
+    protected HttpEntity<byte[]> getBigPhoto(@PathVariable String imageAddress, HttpServletRequest request, Model model)throws IOException  {
+        BufferedImage bufferedImage = ImageIO.read(new File(pathPhoto + "/" + imageAddress + ".jpeg"));
+        bufferedImage = getCropImage( bufferedImage, 1024, 1024, false ) ;
+        return readResizeBytes(bufferedImage);
+    }
+
+
     private BufferedImage getCropImage(BufferedImage image, int width, int heigth, boolean crop){
 
         int finalwidth = width;

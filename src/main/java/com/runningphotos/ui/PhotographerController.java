@@ -1,4 +1,5 @@
 package com.runningphotos.ui;
+import com.runningphotos.bom.Race;
 import com.runningphotos.bom.RacePhoto;
 
 import com.runningphotos.dao.RaceDao;
@@ -23,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Date;
+import java.util.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -75,10 +76,55 @@ public class PhotographerController {
     }
 
 
-    public ModelAndView openMyPhotos()
+    @RequestMapping(value = "/myPhotos", method = RequestMethod.GET)
+    public ModelAndView openMyPhotos(Principal principal)
     {
+        User activeUser = (User) ((Authentication) principal).getPrincipal();
+        com.runningphotos.bom.User userName = userDao.selectByUsername(activeUser.getUsername());
+
+        List<RacePhoto> racePhotosArr = racePhotoDao.getAllAuthorPhotos(userName);
+
         ModelAndView model = new ModelAndView("photographer/myPhotos");
+        model.addObject("photos",dividedByRace(racePhotosArr).entrySet());
+
         return model;
+    }
+
+    private Map<String,List<RacePhoto>> dividedByRace(List<RacePhoto> racePhotosArr){
+        Collections.sort(racePhotosArr,new Comparator<RacePhoto>() {
+            public int compare(RacePhoto o1, RacePhoto o2) {
+                return o1.getRace().getId() - o2.getRace().getId();
+            }
+        });
+
+        Iterator<RacePhoto> racePhotoIterator = racePhotosArr.iterator();
+        Map<String,List<RacePhoto>> racePhotoMap = new TreeMap<String,List<RacePhoto>>();
+
+        if(racePhotoIterator.hasNext()) {
+
+            RacePhoto racePhoto = racePhotoIterator.next();
+            int start = 0;
+            int finish = 0;
+
+            while (racePhotoIterator.hasNext()){
+
+                String raceName = raceDao.selectById(racePhoto.getRace().getId()).getName();
+                start = racePhotosArr.indexOf(racePhoto);
+
+                for(int i = racePhoto.getRace().getId() ;
+                    racePhotoIterator.hasNext() && i == racePhoto.getRace().getId();
+                    racePhoto = racePhotoIterator.next());
+
+                if(racePhotoIterator.hasNext()) {
+                    finish = racePhotosArr.indexOf(racePhoto);
+                } else {
+                    finish = racePhotosArr.size();
+                }
+
+                racePhotoMap.put(raceName,racePhotosArr.subList(start,finish) );
+            }
+        }
+        return racePhotoMap;
     }
 
 }

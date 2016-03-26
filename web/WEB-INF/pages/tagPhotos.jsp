@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Tensa
@@ -41,7 +42,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Tag photos</h1>
+                <h1><spring:message code ="tagPhotos.tagPhotos"/></h1>
             </div>
         </div>
     </div>
@@ -65,26 +66,26 @@
                     <form name="selectPhoto" id="marks-select-form" method="POST" action="<c:url value="/${fn:toLowerCase(role2)}/tagPhotos"/>">
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-primary active">
-                                <input type="radio" name="marks" id="option2" value="unmarked" autocomplete="off" checked> Unmarked
+                                <input type="radio" name="marks" id="option2" value="unmarked" autocomplete="off" checked><spring:message code ="tagPhotos.Unmarked"/>
                             </label>
                             <label class="btn btn-primary">
-                                <input type="radio" name="marks" id="option3" value="marked" autocomplete="off"> Marked
+                                <input type="radio" name="marks" id="option3" value="marked" autocomplete="off"> <spring:message code ="tagPhotos.Marked"/>
                             </label>
                         </div>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                     <div id="selected-marks">
-                        <input type="text"  id="add-mark-number" placeholder=" Enter number"/>
-                        <input id="add-mark-btn" type="button" class="btn" value="Add mark"/>
+                        <input type="text"  id="add-mark-number" placeholder="<spring:message code ="tagPhotos.EnterNumber"/>"/>
+                        <input id="add-mark-btn" type="button" class="btn" value="<spring:message code ="tagPhotos.AddMark"/>"/>
                         <div id="marks-container" style="width:200px">
-                            <h4>Marks in photo:</h4>
+                            <h4><spring:message code ="tagPhotos.MarkInPhoto"/></h4>
                             <ul id="added-marks-ul">
 
                             </ul>
                         </div>
                     </div>
                     <div id="save-mark" >
-                        <input type="button" id="mark-save-btn" class="btn" value="Save mark">
+                        <input type="button" id="mark-save-btn" class="btn" value="<spring:message code ="tagPhotos.saveMark"/>">
                     </div>
                 </div>
                 <div class="photo-index"></div>
@@ -153,8 +154,8 @@
 					renderNavControls:         true,
 					<!-- playLinkText:              'Play Slideshow', -->
 					pauseLinkText:             'Pause Slideshow',
-					prevLinkText:              '&lsaquo; Previous Photo',
-					nextLinkText:              'Next Photo &rsaquo;',
+					prevLinkText:              '&lsaquo; <spring:message code ="tagPhotos.PreviousPhoto"/>',
+					nextLinkText:              '<spring:message code ="tagPhotos.NextPhoto"/> &rsaquo;',
 					nextPageLinkText:          'Next &rsaquo;',
 					prevPageLinkText:          '&lsaquo; Prev',
 					enableHistory:             false,
@@ -169,7 +170,7 @@
 
 						// Update the photo index display
 						this.$captionContainer.find('div.photo-index')
-							.html('Photo '+ (nextIndex+1) +' of '+ this.data.length);
+							.html('<spring:message code ="tagPhotos.photo"/> '+ (nextIndex+1) +' <spring:message code ="tagPhotos.of"/> '+ this.data.length);
 
 					},
 					onPageTransitionOut:       function(callback) {
