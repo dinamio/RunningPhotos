@@ -16,7 +16,7 @@
                        password-parameter="password"
                    />
            <logout logout-success-url="/"/>
-           <remember-me token-validity-seconds="1209600"
+           <remember-me token-validity-seconds="1"
                         remember-me-parameter="remember-me"
                    />
        </http>
