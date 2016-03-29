@@ -15,10 +15,13 @@
                        username-parameter="login"
                        password-parameter="password"
                    />
-           <logout logout-success-url="/"/>
-           <remember-me token-validity-seconds="1"
-                        remember-me-parameter="remember-me"
-                   />
+
+           <remember-me remember-me-parameter="remember-me" />
+
+           <logout invalidate-session="true"
+                   logout-success-url="/"
+                   logout-url="/logout"/>
+
        </http>
     <authentication-manager>
         <authentication-provider>
@@ -33,3 +36,4 @@
         </authentication-provider>
     </authentication-manager>
 </beans:beans>
+
