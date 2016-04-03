@@ -10,5 +10,6 @@ import java.util.List;
 public interface UserDao extends MyBatisDao<User> {
 
     User selectByUsername(String username);
+    User selectByMail(User user);
 
 }

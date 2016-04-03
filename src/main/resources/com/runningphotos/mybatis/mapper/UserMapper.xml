@@ -39,4 +39,7 @@
     <select id="selectByUsername" resultMap="UserMap">
         SELECT* FROM user where user.login = #{0}
     </select>
+    <select id="selectByMail" parameterType="com.runningphotos.bom.User" resultMap="UserMap">
+        SELECT* FROM user where user.mail = #{mail}
+    </select>
 </mapper>

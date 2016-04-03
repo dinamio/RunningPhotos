@@ -28,6 +28,25 @@
     <bean id="registerValidator" class="com.runningphotos.service.validator.RegisterValidator"/>
     <bean id="emailValidator" class="com.runningphotos.service.validator.EmailValidator"/>
 
+    <!-- Класс для отправки писем. -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="runsnapshot@gmail.com" />
+        <property name="password" value="runboyrun" />
+
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="mailSenderService" class="com.runningphotos.service.MailSenderService">
+        <property name="mailSender" ref="mailSender" />
+    </bean>
+
        <context:property-placeholder location="classpath:application.properties"/>
 
 </beans>
