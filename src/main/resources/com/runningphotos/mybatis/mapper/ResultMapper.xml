@@ -47,14 +47,14 @@
     </delete>
     <select id="selectById" parameterType="int" resultMap="ResultMap">
         select id, substring(finish_time,1,2) as hours, substring(finish_time,4,2) as minutes,
-        substring(finish_time,7,2) as minutes, number, distance_id, runner_id, race_id
+        substring(finish_time,7,2) as seconds, number, distance_id, runner_id, race_id
         from result
         where result.id = #{id}
     </select>
 
     <select id="getAllRunnerResults" parameterType="com.runningphotos.bom.Runner" resultMap="ResultMap">
         select id, substring(finish_time,1,2) as hours, substring(finish_time,4,2) as minutes,
-        substring(finish_time,7,2) as minutes, number, distance_id, runner_id, race_id
+        substring(finish_time,7,2) as seconds, number, distance_id, runner_id, race_id
         from result where runner_id = #{id}
     </select>
     <select id="getAllRaceResults" parameterType="com.runningphotos.bom.Race" resultMap="ResultMap">
