@@ -71,4 +71,11 @@ public class Time {
     result = 31 * result + (seconds != null ? seconds.hashCode() : 0);
     return result;
   }
+
+  @Override
+  public String toString() {
+    return hours +
+            ":" + minutes +
+            ":" + seconds ;
+  }
 }
