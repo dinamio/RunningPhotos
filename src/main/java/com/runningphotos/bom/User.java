@@ -21,9 +21,6 @@ public class User extends EntityWithName {
 @Range(min=6,max=150)
   private String password;
 
-  private Runner runner;
-
-
   public String getLogin() {
     return login;
   }
@@ -89,14 +86,6 @@ public class User extends EntityWithName {
 
   public void setBirthDate(Date birthDate) {
     this.birthDate = birthDate;
-  }
-
-  public Runner getRunner() {
-    return runner;
-  }
-
-  public void setRunner(Runner runner) {
-    this.runner = runner;
   }
 
   public String toString(){

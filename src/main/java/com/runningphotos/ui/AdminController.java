@@ -7,7 +7,6 @@ import com.runningphotos.dao.NumberOnPhotoDao;
 import com.runningphotos.dao.RaceDao;
 import com.runningphotos.dao.RacePhotoDao;
 import com.runningphotos.service.ImageService;
-import com.runningphotos.service.ResultService;
 import com.runningphotos.util.TagPhotoUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +43,6 @@ public class AdminController {
 
     @Autowired
     private Validator raceValidator;
-
-    @Autowired
-    private ResultService resultService;
 
     @Autowired
     private RacePhotoDao racePhotoDao;
@@ -137,25 +133,6 @@ public class AdminController {
         model.addObject("racesList", races);
         model.addObject("race", races.size()>0 ? races.get(0) : new Race());
         return model;
-    }
-
-    @RequestMapping(value = "/add/result/addJson", method = RequestMethod.POST)
-    public String downloadJSON(Race race,
-                               @RequestParam(value = "race-results", required = false) MultipartFile json) throws IOException {
-        ByteArrayInputStream stream = new   ByteArrayInputStream(json.getBytes());
-        String jsonContent = IOUtils.toString(stream, "UTF-8");
-        Type type = new TypeToken<List<Result>>(){}.getType();
-        List<Result> results=new Gson().fromJson(jsonContent,type);
-        fillResultsWithRace(results,race);
-        resultService.insertResults(results);
-        return "redirect:/results/resultspageinfo/"+race.getId();
-    }
-
-    private void fillResultsWithRace(List<Result> results, Race race) {
-
-        for(Result result : results) {
-            result.setRace(race);
-        }
     }
 
 

@@ -9,7 +9,6 @@ import com.runningphotos.dao.RaceDao;
 import com.runningphotos.dao.RacePhotoDao;
 
 
-import com.runningphotos.dao.RunnerDao;
 import com.runningphotos.dao.UserDao;
 import com.runningphotos.testdata.TestData;
 import org.apache.commons.logging.Log;
@@ -17,6 +16,7 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -35,8 +35,6 @@ public class RacePhotoTest extends AbstractTest {
     private UserDao userDao;
     @Autowired
     private RaceDao raceDao;
-    @Autowired
-    private RunnerDao runnerDao;
 
     @Test
     public void testRun(){
@@ -115,7 +113,7 @@ public class RacePhotoTest extends AbstractTest {
         racePhoto.setPath(path);
         racePhoto.setRace(race);
         racePhoto.setUser(user);
-        racePhoto.setRunnersMarked(runnerDao.selectAll());
+        racePhoto.setRunnersMarked(new ArrayList<Integer>());
         return racePhoto;
     }
 }

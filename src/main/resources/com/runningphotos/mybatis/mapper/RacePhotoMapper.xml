@@ -9,13 +9,8 @@
         <result column="Mark" property="mark"/>
         <result column="Race_id" property="race.id"/>
         <result column="Author_id" property="user.id"/>
-        <collection property="runnersMarked" resultMap="RunnerMap"/>
     </resultMap>
-    <resultMap type="com.runningphotos.bom.Runner" id="RunnerMap">
-    <id column="runner_id" property="id"  />
-    <result column="name" property="name"/>
-    <result column="surname" property="surname"/>
-</resultMap>
+
     <resultMap type="com.runningphotos.bom.User" id="UserMap">
         <id column="user_id" property="id"  />
     </resultMap>

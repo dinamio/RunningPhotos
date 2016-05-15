@@ -1,10 +1,7 @@
 package com.runningphotos.ui;
 
-import com.runningphotos.bom.Runner;
 import com.runningphotos.bom.User;
-import com.runningphotos.dao.RunnerDao;
 import com.runningphotos.dao.UserDao;
-import com.runningphotos.service.RunnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.MessageSource;
@@ -33,12 +30,6 @@ public class RegisterController {
     private MessageSource messageSource;
 
     @Autowired
-    private RunnerService runnerService;
-
-    @Autowired
-    private RunnerDao runnerDao;
-
-    @Autowired
     private Validator registerValidator;
 
     @Autowired
@@ -59,32 +50,6 @@ public class RegisterController {
         model.addObject("user",new User());
         return model;
     }
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView getNewUser(User user, BindingResult errors,HttpServletRequest request, Locale locale) {
-        User checkUserInDataBase = userDao.selectByUsername(user.getLogin());
-        ModelAndView model = new ModelAndView("/register");
-        if(checkUserInDataBase!=null)
-            errors.rejectValue("login", "login.sd", messageSource.getMessage("register.userExist", null, locale));
-        String confirmPassword = request.getParameter("confirmPassword");
-        String runnerSurnameAndName = request.getParameter("runnerSurnameAndName");
-        Runner runner = runnerService.getLinkedRunner(runnerSurnameAndName);
-        if(runner==null) {
-            model.addObject("notFoundMessage", messageSource.getMessage("userInfo.runnerNotFound", null, locale));
-            return model;
-        }
-        else
-        user.setRunner(runner);
-        registerValidator.validate(user, errors);
-        model.addAllObjects(errors.getModel());
-        if(!errors.hasErrors()) {
-            if (confirmPassword.equals(user.getPassword())){
-                userDao.insert(user);
-                model.addObject("msg", messageSource.getMessage("register.successfully",null,locale));}
-            else{
-                errors.rejectValue("password", "password.sd", messageSource.getMessage("register.passNotMath", null, locale));}
-            model.addObject("user", new User());
-        }
-        return model;
-    }
+
 }
 

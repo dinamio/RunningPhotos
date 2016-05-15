@@ -1,6 +1,5 @@
 package com.runningphotos.ui;
 
-import com.runningphotos.bom.Runner;
 import com.runningphotos.bom.User;
 import com.runningphotos.dao.UserDao;
 import com.runningphotos.service.MailSenderService;

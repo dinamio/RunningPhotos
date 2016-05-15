@@ -13,7 +13,7 @@ public class RacePhoto extends Entity {
 
     private boolean mark;
 
-    private List<Runner> runnersMarked;
+    private List<Integer> runnersMarked;
 
 
     public String getPath() {
@@ -63,12 +63,12 @@ public class RacePhoto extends Entity {
     public void setMark(boolean mark) { this.mark = mark; }
 
 
-    public List<Runner> getRunnersMarked() {
+    public List<Integer> getRunnersMarked() {
       return runnersMarked;
     }
 
 
-    public void setRunnersMarked(List<Runner> runnersMarked) {
+    public void setRunnersMarked(List<Integer> runnersMarked) {
       this.runnersMarked = runnersMarked;
     }
 
