@@ -81,16 +81,6 @@
                             </c:otherwise>
                         </c:choose>
                     </li>
-                    <c:choose>
-                        <c:when test="${pageContext.request.userPrincipal.name != null}">
-                            <spring:message code="homepage.welcome"/>, <li><a href="<c:url value="/userInfo"/>"/></li><strong>${pageContext.request.userPrincipal.name}</strong>
-                            <li><a href="<c:url value="/logout" />" ><spring:message code="homepage.logout"/></a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="<c:url value="/login"/>"><spring:message code="homepage.login"/></a></li>
-                        </c:otherwise>
-                    </c:choose>
-
                 </ul>
             </div>
         </div>
@@ -107,11 +97,7 @@
                         <a href="<c:url value="/buyPhotos"/>"><spring:message code="homepage.buyPhotos"/></a>
                     </li>
                 </sec:authorize>
-                <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
-                    <li class="active">
-                        <a href="<c:url value="/results"/>"><spring:message code="homepage.results"/></a>
-                    </li>
-                </sec:authorize>
+
                 <sec:authorize access="hasAnyRole('Admin','Operator')">
                     <li class="active">
                         <c:set var="authorities" value="${pageContext.request.userPrincipal.authorities}"/>
@@ -146,11 +132,6 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
-                </sec:authorize>
-                <sec:authorize access="hasRole('Runner')">
-                    <li class="active">
-                        <a href="<c:url value="/runner/myRaces"/>"><spring:message code="header.myRaces"/></a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('Photographer')">

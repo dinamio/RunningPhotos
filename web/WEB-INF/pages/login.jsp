@@ -42,21 +42,12 @@
 								<input type="checkbox" name="remember-me"><spring:message code="login.rememberMe"/>
 							</label>
 
-							<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
-							<p><a href="/forgotPassword" class="active"><spring:message code="homepage.forgotPassword"/></a>
-							</sec:authorize>
-
 							<button type="submit" class="btn pull-right"><spring:message code="login.loginButton"/></button>
 							<div class="clearfix"></div>
 						</div>
 						<input type="hidden" name="${_csrf.parameterName}"
 							   value="${_csrf.token}" />
 					</form>
-					<sec:authorize access="hasAnyRole('ROLE_ANONYMOUS')">
-						<li class="active">
-							<p><a href="<c:url value="/register"/>"><spring:message code="homepage.register"/></a></p>
-						</li>
-					</sec:authorize>
 				</div>
 			</div>
 			<div class="col-sm-3"></div>
