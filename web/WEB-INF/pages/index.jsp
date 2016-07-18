@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="template/header.jsp"/>
 <!-- Homepage Slider -->
 <div class="homepage-slider">
@@ -63,7 +64,13 @@
       </div>
       <form id="search-form" action="photos">
         <div class="col-md-4 col-sm-6">
-          <input type="text"  name="racename" class="form-control font-stl" id="race-input-search" value="" placeholder="<spring:message code="homepage.enterRace"/>" >
+          <datalist id="races">
+            <c:forEach items="${races}" var="race">
+              <option value="<c:out value="${race.name}"/>"/>
+              <fmt:formatDate pattern="dd-MM-yyyy" value="${race.raceDate}"/>
+            </c:forEach>
+          </datalist>
+          <input type="text"  name="racename" class="form-control font-stl" id="race-input-search" value="" list="races" placeholder="<spring:message code="homepage.enterRace"/>" >
         </div>
         <div class="col-md-3 col-sm-4">
           <input type="text" name="number" class="form-control font-stl" id="number-input-search" value="" placeholder="<spring:message code="homepage.enterNumber"/>">
