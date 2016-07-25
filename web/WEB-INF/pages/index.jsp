@@ -62,7 +62,7 @@
     <div class="row">
       <div class="col-sm-2">
       </div>
-      <form id="search-form" action="photos">
+      <form id="search-form" action="buyPhotos" method="post">
         <div class="col-md-4 col-sm-6">
           <datalist id="races">
             <c:forEach items="${races}" var="race">
@@ -76,8 +76,10 @@
           <input type="text" name="number" class="form-control font-stl" id="number-input-search" value="" placeholder="<spring:message code="homepage.enterNumber"/>">
         </div>
         <div class="col-md-2 col-sm-2">
-          <a id="search-btn" href="#"  class="sbtn sbtn-d btn btn-orange"><spring:message code="homepage.search"/></a>
+          <button type="submit" id="search-btn" class="sbtn btn btn-orange"><spring:message code="homepage.search"/></button>
         </div>
+        <input type="hidden" name="${_csrf.parameterName}"
+               value="${_csrf.token}" />
       </form>
     </div>
   </div>

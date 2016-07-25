@@ -88,15 +88,6 @@
             <ul>
 
                 <li class="logo-wrapper"><a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/runsnap1.png"/>" width="400px" alt="Multipurpose Twitter Bootstrap Template"></a></li>
-                <li class="active">
-                    <a href="<c:url value="/"/>"><spring:message code="homepage.home"/></a>
-                </li>
-
-                <sec:authorize access="hasAnyRole('ROLE_ANONYMOUS','Runner')">
-                    <li class="active">
-                        <a href="<c:url value="/buyPhotos"/>"><spring:message code="homepage.buyPhotos"/></a>
-                    </li>
-                </sec:authorize>
 
                 <sec:authorize access="hasAnyRole('Admin','Operator')">
                     <li class="active">
